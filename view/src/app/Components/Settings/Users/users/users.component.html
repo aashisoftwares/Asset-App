@@ -1,0 +1,126 @@
+<app-header></app-header>
+<!-- <div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1">
+    <div class="Loading">
+          <div class="spinner">
+             <div class="rect1"></div>
+             <div class="rect2"></div>
+             <div class="rect3"></div>
+             <div class="rect4"></div>
+             <div class="rect5"></div>
+             <div class="rect6"></div>
+          </div>
+    </div>
+  </div> -->
+<div>
+ <div class="Page_Section">
+   <div class="Page_Identity">
+      <div class="Page_Name">
+         <h5>USER MANAGEMENT</h5>
+      </div>
+      <div class="Page_Track">
+         <ul >
+            <li class="HeaderName">Settings</li>
+            <li class="arrow">>></li>
+            <li>User Management </li>
+         </ul>
+      </div>
+      </div>
+    <div class="row header_part">
+       <div class="col-sm-8">
+       <button class="Create_Button" mat-raised-button> + Create </button>
+       </div>
+       <div class="col-sm-4">
+          <div class="Table_Activities">
+             <div class="Search_Section">
+                <input type="text" placeholder="Search.." >
+                <i class="material-icons">search</i>
+                <div class="SearchDropDown" dropdown #dropdown="bs-dropdown" [autoClose]="true">
+                   <ul *dropdownMenu class="dropdown-menu" role="menu">
+                      <li role="menuitem"><a class="dropdown-item" >Search Word<span style="font-size: 12px; color: #afafaf">search as Unit of User Name</span></a></li>
+                   </ul>
+                </div>
+             </div>
+             <button mat-raised-button> 5 </button>
+             <mat-menu class="PaginationShort" #Short="matMenu" [overlapTrigger]="false">
+                   <button mat-menu-item> 5 </button>
+                   <button mat-menu-item> 10 </button>
+                   <button mat-menu-item> 20 </button>
+                   <button mat-menu-item> 50 </button>
+             </mat-menu>
+          </div>
+       </div>
+    </div>
+    <div class="Table_Section">
+       <table #TableSection>
+          <thead #TableHeaderSection>
+             <tr>
+                <th style="width: 80px;">S.no</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>User Type</th>
+                <th>Last Modified By</th>
+                <th>Status</th>
+             </tr>
+             </thead>
+             <tbody #TableBodySection>
+             <tr>
+                <td>
+                   <span class="S_no"> 1 </span>
+                </td>
+                <td>
+                   <span class="Style_1"> Name </span>
+                </td>
+                <td>
+                   <span class="Style_1">Email </span>
+                </td>
+                <td>
+                   <span class="Style_1"> Phone </span>
+                </td>
+                <td>
+                   <span class="Style_1"> User Type  </span>
+                </td>
+                <td>
+                   <span class="Style_1"> updated date </span>
+                </td>
+                <td>
+                   <span class="Style_1"> Active </span>
+                   <span class="Style_1"> Inactive </span>
+                </td>
+             </tr>
+             <tr class="TableLoader" #TableLoaderSection >
+                <td colspan="100%" class="Tr_Loader">  Loading<span class="dot">.</span><span class="dot-2">.</span><span class="dot-3">.</span> </td>
+             </tr>
+          </tbody>
+          <tfoot #TableFooterSection>
+             <tr>
+                <td colspan="100">
+                   <div class="Table_Footer_Section">
+                      <div class="Footer_Left">
+                         <p> </p>
+                      </div>
+                      <div class="Footer_Right">
+                         <div class="Pagination">
+                            <ul>
+                               <li>
+                                  <span class="arrow"> << </span>
+                                  <span> Previous </span>
+                               </li>
+                               <li > 
+                                  <span> 1 </span>
+                               </li> 
+                               <li>
+                                  <span> Next </span>
+                                  <span class="arrow"> >> </span>
+                               </li>
+                            </ul>
+                         </div>
+                      </div>
+                   </div>
+                </td>
+             </tr>
+          </tfoot>
+       </table>
+    </div>
+ </div>
+  

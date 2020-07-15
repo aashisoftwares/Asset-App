@@ -1,0 +1,140 @@
+<app-header></app-header>
+<!-- page -->
+ <div class="page" style="margin-top:100px;margin-bottom:100px;">
+    <div class="container-fluid">
+       <!-- page Identity -->
+       <div class="Page_Identity">
+          <div class="Page_Track">
+             <ul>
+                <li class="HeaderName">Asset</li>
+                <li class="arrow">>></li>
+                <li class="LinkName"><a [routerLink]="['/asset']">Customers</a></li>
+                <li class="arrow">>></li>
+                <li>Create</li>
+             </ul>
+          </div>
+       </div>
+       <form [formGroup]="Form" (ngSubmit)="onSubmit()" >
+          <div class="row">
+             <div class="col-sm-3" >
+                <!-- Left Section -->
+                <div class="left_section" style=" background-color:#fff; margin-bottom:150px; box-shadow: 1px 1px 10px #d4d4d4;">
+                   <div class="row">
+                      <div class="col-sm-12 text-center">
+                         <img src="../../../../../assets/images/basic/company.png" alt="Company Image" style="width:150px; height:150px; margin-top:40px; box-shadow:0 1px 5px 1px rgba(0,0,0,.2);">
+                      </div></div><br>
+                      <!-- <div class="col-sm-12 text-center file_Section"> -->
+                         <!-- <button type="button" class="change_button"> Choose Picture </button> -->
+                         <!-- <input type="file">
+                      </div><br><br> -->
+                      <div class="row">
+                      <div class="col-sm-12 Form_Input" style="margin-bottom: 30px" >
+                         <input type="text" formControlName="Asset_Nick_Name" placeholder="Asset Nick Name" style="width:90%;margin-left:15px;margin-bottom: 0px;">
+                         <p class="error" *ngIf="Form.controls['Asset_Nick_Name'].errors && !Form.controls['Asset_Nick_Name'].pristine">
+                           <span *ngIf="Form.controls['Asset_Nick_Name'].errors.required">Asset Group is required</span>
+                        </p>
+                        </div>
+                      <div class="col-sm-12 Form_Input" style="margin-bottom: 30px" >
+                        <input type="text" formControlName="Serial_Number"  placeholder="Serial Number" style="width:90%;margin-left:15px;margin-bottom: 0px;">
+                        <p class="error" *ngIf="Form.controls['Serial_Number'].errors && !Form.controls['Serial_Number'].pristine">
+                           <span *ngIf="Form.controls['Serial_Number'].errors.required">Asset Group is required</span>
+                        </p>
+                     </div>
+                      <div class="col-sm-12 Form_Input" style="margin-bottom: 30px">
+                         <input  type="text" formControlName="Asset_Code" placeholder="Asset Code" style="width:90%;margin-left:15px;margin-bottom: 0px;">
+                         <p class="error" *ngIf="Form.controls['Asset_Code'].errors && !Form.controls['Asset_Code'].pristine">
+                           <span *ngIf="Form.controls['Asset_Code'].errors.required">Asset Group is required</span>
+                        </p>
+                      </div>
+                   </div>
+                </div>
+             </div>
+             <div class="col-sm-9">
+                <div class="Company_Details">
+                   <h5 class="text-style-1"> Asset Details </h5>
+                   <div class="row" >
+                      <div class="col-sm-4 Form_Select" style="margin-bottom: 15px">
+                        <ng-select class="NgSelect" placeholder="Model"></ng-select>
+                      </div>
+                      <div class="col-sm-4 Form_Select" style="margin-bottom: 15px">
+                        <ng-select class="NgSelect" placeholder="Asset Group"></ng-select>
+                      </div>
+                      <div class="col-sm-4 Form_Select" style="margin-bottom: 15px">
+                        <ng-select class="NgSelect" placeholder="Asset Sub Group"></ng-select>
+                      </div>
+                      <div class="col-sm-4 Form_Select" >
+                        <ng-select class="NgSelect" placeholder="Manufacturer"></ng-select>
+                      </div>
+                      <div class="col-sm-4 Form_Select" >
+                        <ng-select class="NgSelect" placeholder="Asset Location"></ng-select>
+                      </div>
+                   </div>
+                </div>
+                <div class="Company_Details">
+                   <h5 class="text-style-1"> Purchase Details </h5>
+                   <div class="row">
+                      <div class="col-sm-4 Form_Input" style="margin-bottom: 15px" >
+                         <input type="text" formControlName="Purchase_Date" placeholder="Purchase Date" style="margin-bottom: 0px">
+                      </div>
+                      <div class="col-sm-4 Form_Input" style="margin-bottom: 15px" >
+                         <input type="text" formControlName="Price" placeholder="Price (incl TAX)">
+                      </div>
+                      <div class="col-sm-4 Form_Input" style="margin-bottom: 15px" >
+                        <input type="text" formControlName="Invoice_Number"  placeholder="Invoice Number">
+                     </div>
+                      <div class="col-sm-4 Form_Select" >
+                        <ng-select class="NgSelect" placeholder="Vendor Name"></ng-select>
+                      </div>
+                      <div class="col-sm-4 Form_Select" >
+                        <ng-select class="NgSelect" placeholder="Warranty Period in months"></ng-select>
+                      </div>
+                      <div class="col-sm-4 Form_Input" style="margin-bottom: 15px">
+                        <input type="text" placeholder="Warranty Start Date" style="margin-bottom: 0px">
+                     </div>
+                      <div class="col-sm-4 Form_Input" style="margin-bottom: 15px">
+                        <input type="text" placeholder="Warranty End Date" style="margin-bottom: 0px">
+                     </div>
+                      <div class="col-sm-4 Form_Select" >
+                        <ng-select class="NgSelect" placeholder="Warranty Coverage Type"></ng-select>
+                      </div>
+                   </div>
+                </div>
+                   <div class="Company_Details">
+                      <div>
+                         <h5 class="text-style-1"> Ownership Details </h5>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-4 Form_Select" style="margin-bottom: 15px">
+                          <ng-select class="NgSelect" placeholder="Ownership Type"></ng-select>
+                        </div>
+                        <div class="col-sm-4 Form_Select" >
+                           <ng-select class="NgSelect" placeholder="Asset Type"></ng-select>
+                         </div>
+                        <div class="col-sm-4 Form_Select" >
+                           <ng-select class="NgSelect" placeholder="Maintanance Stratagy"></ng-select>
+                        </div>
+                        <div class="col-sm-4 Form_Select" >
+                          <ng-select class="NgSelect" 
+                                             [items]="Asset"
+                                             bindLabel="AssetAllocated"
+                                             placeholder="Asset Allocated to"
+                                             appendTo="body"
+                                             multiple="true"
+                                             >
+                          </ng-select>
+                        </div>
+                     </div>
+                   </div>
+                </div>
+             </div>
+         <!-- Footer -->
+         <div class="Footer">
+            <button mat-raised-button color="primary" style = "top: 5px;" type="submit" > Submit </button>
+         </div>
+             
+       </form>
+    </div>
+ </div>
+
+
+ 

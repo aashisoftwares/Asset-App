@@ -1,0 +1,203 @@
+<div class="Modal_Content" *ngIf="_Data['Type'] && (_Data['Type'] === 'Create' || _Data['Type'] === 'Edit')">
+    <div class="Modal_Header">
+      <p> Branch</p>
+      <span data-dismiss="modal">&times;</span>
+    </div>
+    <form [formGroup]="Form">
+    <div class="Model_Body">
+       <div class="row">
+          <div class="col-sm-6 Form_Input">
+             <label>Branch Name:</label>
+             <input type="text" formControlName="Branch_Name">
+             <p class="error">
+                <span > Branch Name is required</span>
+             </p>
+          </div>
+          <!-- <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Branch_Head'].errors && !Form.controls['Branch_Head'].pristine, 'Form_Success': Form.controls['Branch_Head'].valid && !Form.controls['Branch_Head'].pristine }">
+             <label>Branch Head:</label>
+             <input type="text" formControlName="Branch_Head">
+             <p class="error" *ngIf="Form.controls['Branch_Head'].errors && !Form.controls['Branch_Head'].pristine">
+                <span  *ngIf="Form.controls['Branch_Head'].errors.required"> Branch Head is required</span>
+             </p>
+          </div> -->
+          <div class="col-sm-6 Form_Select">
+             <label>Departments:</label>
+             <ng-select class="NgSelect ValueBold" 
+                   [items]="_Departments" 
+                   bindLabel="Department_Name" 
+                   formControlName="Departments" 
+                   [searchable]="true" 
+                   multiple="true"
+                   placeholder="Departments">
+              </ng-select>
+             <p class="error" >
+                <span> Department is required</span>
+             </p>
+          </div>
+          <div class="col-sm-12 Form_Input">
+             <mat-checkbox value="true"> set as Head Office </mat-checkbox>
+          </div>
+          <div class="col-sm-6 Form_Input">
+          <label>No/Street:</label>
+             <input type="text" formControlName="AllStreet" >
+             <p class="error">
+                <span > Street is required</span>
+             </p>
+          </div>
+          <div class="col-sm-6 Form_Input">
+          <label>Area:</label>
+             <input type="text" >
+             <p class="error">
+                <span > Area is required</span>
+             </p>
+          </div>
+          <div class="col-sm-6 Form_Select">
+          <label>Select Country:</label>
+          <ng-select class="NgSelect ValueBold" 
+                [items]="AllCountry" 
+                bindLabel="Country_Name" 
+                formControlName="AllCountry" 
+                [searchable]="true"
+                (ngModelChange)="AllCountry_Change()"
+                placeholder="Country">
+          </ng-select>
+          <p class="error">
+             <span> Country is required</span>
+          </p>
+          </div>
+          <div class="col-sm-6 Form_Select">
+          <label>Select State:</label>   
+          <ng-select class="NgSelect ValueBold"
+             [items]="AllStateOfCountry"
+             [bindLabel]="'State_Name'" 
+             formControlName="AllState" 
+             [searchable]="true" 
+             placeholder="State" 
+             (ngModelChange)="AllState_Change()">
+          </ng-select>
+          <p class="error">
+             <span> State is required</span>
+          </p>
+          </div>
+          <div class="col-sm-6 Form_Select" style="margin-top: 20px">
+          <label>City:</label>
+          <ng-select class="NgSelect ValueBold" 
+             [items]="AllCityOfState"
+             [bindLabel]="'City_Name'" 
+             formControlName="AllCity" 
+             [searchable]="true" 
+             placeholder="City">
+          </ng-select>
+          <p class="error">
+             <span> City is required</span>
+          </p>
+          </div>
+          <div class="col-sm-6 Form_Input" style="margin-top: 20px">
+          <label>Zip Code:</label>
+             <input type="text" formControlName="AllZipCode">
+             <p class="error">
+                <span> ZipCode is required</span>
+             </p>
+          </div>
+       </div>
+    </div>
+    <div class="Model_Footer">
+       <button type="submit" mat-raised-button color="primary">
+          <span >Submit</span>
+          <span>Update</span>
+          <span> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
+       </button>
+  </div>
+ </form>
+    </div>
+ 
+ <div class="Modal_Content">
+       <div class="Modal_Header">
+         <p>View Branch</p>
+         <span data-dismiss="modal">&times;</span>
+       </div>
+       <div class="Model_Body">
+          <div class="view_item">
+             <div class="Static">Branch Name</div>
+             <div class="dots"> : </div>
+             <div class="Data"> Branch_Name </div>
+          </div>
+          <div class="view_item">
+             <div class="Static">Head Office</div>
+             <div class="dots"> : </div>
+             <div class="Data"> <span >Yes</span> <span>No</span></div>
+          </div>
+          <!-- <div class="view_item">
+             <div class="Static"> Branch Head </div>
+             <div class="dots"> : </div>
+             <div class="Data">  {{_Branch_Info['Branch_Head']}} </div>
+          </div> -->
+          <div class="view_item">
+             <div class="Static"> Departments </div>
+             <div class="dots"> : </div>
+             <div class="Data"> 
+                <span class="Style_1">
+                   <span>Department_Name, </span>
+                   <span>Department_Name </span>
+                </span>
+             </div>
+          </div>
+          <!-- <div class="view_item">
+             <div class="Static"> Street </div>
+             <div class="dots"> : </div>
+             <div class="Data">  {{_Branch_Info['AllStreet']}} </div>
+          </div>
+          <div class="view_item">
+             <div class="Static"> Area </div>
+             <div class="dots"> : </div>
+             <div class="Data">  {{_Branch_Info['AllArea']}} </div>
+          </div> -->
+          <!-- <div class="view_item">
+             <div class="Static"> State </div>
+             <div class="dots"> : </div>
+             <div class="Data">  {{_Branch_Info['Global_State']?.AllState}} </div>
+          </div> -->
+          <div class="view_item">
+             <div class="Static"> Country </div>
+             <div class="dots"> : </div>
+             <div class="Data"> AllAddress</div>
+          </div>
+          <!-- <div class="view_item">
+             <div class="Static"> City </div>
+             <div class="dots"> : </div>
+             <div class="Data">  {{_Branch_Info['Global_City']?.AllCity}} </div>
+          </div> -->
+          <div class="view_item">
+             <div class="Static"> ZipCode </div>
+             <div class="dots"> : </div>
+             <div class="Data">ZipCode </div>
+          </div>
+          <!-- <div class="view_item">
+             <div class="Static"> Address </div>
+             <div class="dots"> : </div>
+             <div class="Data">  {{_Branch_Info['Address']}} </div>
+          </div> -->
+          <div class="view_item">
+             <div class="Static">Created By </div>
+             <div class="dots"> : </div>
+             <div class="Data">Created_By</div>
+          </div>
+          <div class="view_item">
+             <div class="Static">Last Modified By </div>
+             <div class="dots"> : </div>
+             <div class="Data">  Last_Modified_By</div>
+          </div>
+          <div class="view_item">
+             <div class="Static"> Created Date </div>
+             <div class="dots"> : </div>
+             <div class="Data">createdAt</div>
+          </div>
+          <div class="view_item">
+             <div class="Static">Last Modified Date  </div>
+             <div class="dots"> : </div>
+             <div class="Data"> updatedAt </div>
+          </div>
+          </div>
+       </div>
+      
+   

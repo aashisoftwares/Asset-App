@@ -1,0 +1,120 @@
+<!-- <div class="DataLoaderStyle_1">
+     <div class="Loading">
+       <div class="spinner">
+          <div class="rect1"></div>
+          <div class="rect2"></div>
+          <div class="rect3"></div>
+          <div class="rect4"></div>
+          <div class="rect5"></div>
+          <div class="rect6"></div>
+       </div>
+    </div> 
+  </div> -->
+  <div>
+    <div class="row header_part">
+      <div class="col-sm-6">
+       <button class="Create_Button" mat-raised-button> + Create </button>
+      </div>
+      <div class="col-sm-6">
+          <div class="Table_Activities">
+             <div class="Search_Section">
+                <input type="text" placeholder="Search..">
+                <i class="material-icons">search</i>
+                <div class="SearchDropDown" dropdown #dropdown="bs-dropdown" [autoClose]="true">
+                   <ul class="dropdown-menu" role="menu">
+                      <li role="menuitem"><a class="dropdown-item" >Search_Word <span style="font-size: 12px; color: #afafaf">search as Department Name </span></a></li>
+                   </ul>
+                </div>
+             </div>
+             <button mat-raised-button [matMenuTriggerFor]="Short"> 5 </button>
+             <mat-menu class="PaginationShort" #Short="matMenu" [overlapTrigger]="false">
+                <button mat-menu-item> 5 </button>
+                <button mat-menu-item> 10 </button>
+                <button mat-menu-item> 20 </button>
+                <button mat-menu-item> 50 </button>
+             </mat-menu>
+          </div>
+      </div>
+    </div>
+    <div class="Table_Section">
+      <table #TableSection>
+        <thead #TableHeaderSection>
+          <tr>
+            <th>S.no</th>
+            <th>Asset Group Name</th>
+            <th>Created By</th>
+            <th>Modified By</th>
+            <th style="width:130px">Action</th>
+          </tr>
+        </thead>
+        <tbody #TableBodySection>
+          <tr>
+            <td>
+              <span class="S_no"> 1 </span>
+            </td>
+            <td>
+              <span class="Style_1">IT Assets</span>
+            </td>
+            <td>
+            <span class="Style_1">Createdby Name</span>
+                
+                <br> 
+                <span class="Time"> createdat date</span>
+            
+            </td>
+            <td>
+              <span class="Style_1"> Modified By</span>
+                
+                  <br> 
+                  <span class="Time">updatedat date</span>
+              
+            </td>
+              <td>
+              <button class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                  <i class="material-icons">zoom_in</i>
+              </button>
+              <button class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                  <i class="material-icons">edit</i>
+              </button>
+              <button class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                  <i class="material-icons">delete_forever</i>
+              </button>
+            </td>
+          </tr>
+          <tr class="TableLoader" #TableLoaderSection >
+            <td colspan="100%" class="Tr_Loader">  Loading<span class="dot">.</span><span class="dot-2">.</span><span class="dot-3">.</span> </td>
+         </tr>
+       </tbody>
+       <tfoot #TableFooterSection>
+        <tr>
+           <td colspan="100">
+              <div class="Table_Footer_Section">
+                 <div class="Footer_Left">
+                    <p> </p>
+                 </div>
+                 <div class="Footer_Right">
+                    <div class="Pagination">
+                       <ul>
+                          <li>
+                             <span class="arrow"> << </span>
+                             <span> Previous </span>
+                          </li>
+                          <li> 
+                             <span> 1 </span>
+                          </li> 
+                          <li>
+                             <span> Next </span>
+                             <span class="arrow"> >> </span>
+                          </li>
+                       </ul>
+                    </div>
+                 </div>
+              </div>
+           </td>
+        </tr>
+     </tfoot>
+      </table>
+      </div>
+      </div>
+    
+    

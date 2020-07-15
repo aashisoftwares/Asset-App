@@ -1,0 +1,42 @@
+
+/* ----------- Create and Search Section ---------- */
+.header_part{
+    margin-bottom: 15px;
+ }
+ .Create_Button{
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #254da0;
+ }
+ 
+ /* ---------- Search Section ----------- */
+ .Search_Section{
+    position: relative;
+    background-color: #ffffff;
+    height: 36px;
+    box-shadow: 1px 2px 4px 0px rgba(0,0,0,.2);
+ }
+ .Search_Section input{
+    width: 100%;
+    border-radius: 0;
+    border: none;
+    background-color: transparent;
+    padding: 10px;
+    height: 36px;
+    color: #4f6a7a;
+    font-weight: 500;
+    outline: none;
+ }
+ .Search_Section input::placeholder{
+    color:#cccccc; 
+    font-weight:400;
+ }
+ .Search_Section i{
+    position: absolute;
+    right: 0px;
+    padding: 7px 5px;
+    color: #254da0;
+    font-weight: 600;
+    cursor: pointer;
+ }

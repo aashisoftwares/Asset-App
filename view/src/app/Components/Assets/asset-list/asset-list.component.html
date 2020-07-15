@@ -1,0 +1,143 @@
+<app-header></app-header>
+<!-- Main Section -->
+ <div class="Main_Section">
+    <div class="Page_Section">
+       <div class="container-fluid">
+          <!-- page Identity -->
+          <div class="Page_Identity">
+             <div class="Page_Track">
+                <ul>
+                   <li class="HeaderName">Asset</li>
+                   <li class="arrow">>></li>
+                   <li>List</li>
+                </ul>
+             </div>
+          </div>
+          <!-- Header Part -->
+          <div class="row header_part">
+             <div class="col-sm-6">
+                <a [routerLink]="['/asset_create']"><button class="Create_Button" mat-raised-button>+ Create</button></a>
+             </div>
+             <div class="col-sm-6">
+                <div class="Table_Activities">
+                   <div class="Search_Section">
+                      <input type="text" placeholder="Search..">
+                      <i class="material-icons">search</i>
+                      <div class="SearchDropDown" dropdown #dropdown="bs-dropdown" [autoClose]="true">
+                         <ul *dropdownMenu class="dropdown-menu" role="menu">
+                            <li role="menuitem"><a class="dropdown-item" >Search Word <span style="font-size: 12px; color: #afafaf">search as Company Name </span></a></li>
+                         </ul>
+                      </div>
+                   </div>
+                   <button mat-raised-button [matMenuTriggerFor]="Short"> Limit </button>
+                   <mat-menu class="PaginationShort" #Short="matMenu" [overlapTrigger]="false">
+                      <button mat-menu-item> 5 </button>
+                      <button mat-menu-item> 10 </button>
+                      <button mat-menu-item> 20 </button>
+                      <button mat-menu-item> 50 </button>
+                   </mat-menu>
+                </div>
+             </div>
+          </div>
+    <!-- content style -->
+    <table #TableSection style="width: 100%">
+       <thead #TableHeaderSection>
+          <tr></tr>
+       </thead>
+       <tbody #TableBodySection>
+          <div class="row Content_Style">
+             <div class="col-sm-3 Page_Content">
+                <a >
+                   <div class="Sub_Content">
+                      <div class="image_section">
+                         <img src="../../../../assets/images/basic/company.png">
+                      </div>
+                      <div class="Content_Section" [routerLink]="['/asset_view']">
+                         <h5>Sam Laptop</h5>
+                         <h5>CE0001258fvg</h5>
+                         <h5>Saravanakumar</h5>
+                      </div>
+                      <!-- <a style="margin-bottom: 60px"><i class="material-icons View" >border_color</i></a>  -->
+                   </div>
+                   </a>
+             </div>
+             <div class="col-sm-3 Page_Content">
+               <a >
+                  <div class="Sub_Content">
+                     <div class="image_section">
+                        <img src="../../../../assets/images/basic/company.png">
+                     </div>
+                     <div class="Content_Section" [routerLink]="['/asset_view']">
+                        <h5>SAMS DESKTOP</h5>
+                        <h5>SDV123465489</h5>
+                        <h5>Saravanakumar</h5>
+                     </div>
+                     <!-- <a style="margin-bottom: 60px"><i class="material-icons View" >border_color</i></a>  -->
+                  </div>
+                  </a>
+            </div>
+            <div class="col-sm-3 Page_Content">
+               <a >
+                  <div class="Sub_Content">
+                     <div class="image_section">
+                        <img src="../../../../assets/images/basic/company.png">
+                     </div>
+                     <div class="Content_Section" [routerLink]="['/asset_view']">
+                        <h5>SARAS Laptop</h5>
+                        <h5>123456132</h5>
+                        <h5>Saravanakumar</h5>
+                     </div>
+                     <!-- <a style="margin-bottom: 60px"><i class="material-icons View" >border_color</i></a>  -->
+                  </div>
+                  </a>
+            </div>
+          </div>
+          <div class="row TableLoader" #TableLoaderSection>
+             <h5 colspan="100%" class="Tr_Loader">Loading<span class="dot">.</span><span class="dot-2">.</span><span class="dot-3">.</span> </h5>
+          </div>
+       </tbody>
+       <tfoot #TableFooterSection>
+          <tr>
+             <td colspan="100">
+                <div class="Table_Footer_Section">
+                   <div class="Footer_Left">
+                      <p> </p>
+                   </div>
+                   <div class="Footer_Right">
+                      <div class="Pagination">
+                         <!-- <ul>
+                            <li>
+                               <span class="arrow"> << </span>
+                               <span> Previous </span>
+                            </li>
+                            <li > 
+                               <span> Text </span>
+                            </li> 
+                            <li>
+                               <span> Next </span>
+                               <span class="arrow"> >> </span>
+                            </li>
+                         </ul> -->
+                      </div>
+                   </div>
+                </div>
+             </td>
+          </tr>
+       </tfoot>
+    </table>
+    </div>
+    </div>
+ </div>
+ <!-- Dropdown menus -->
+ <mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
+    <button mat-menu-item>
+       <span>Add Contact</span>
+    </button>
+    <button mat-menu-item>
+       <span>Add Activity</span>
+    </button>
+    <a [routerLink]="['/crm_quotations_create']"><button mat-menu-item>
+       <span>Create Quote</span>
+    </button></a>
+ </mat-menu>
+ 

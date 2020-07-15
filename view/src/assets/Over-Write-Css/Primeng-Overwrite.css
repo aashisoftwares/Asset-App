@@ -1,0 +1,83 @@
+/* Dashboard Calender Style Overwrite */
+.Custom_Calender_1 .ui-calendar{
+    width: 100%;
+    margin-top: 0px;
+}
+.Custom_Calender_1 .ui-calendar .ui-widget-content{
+    border: 1px solid rgb(235, 237, 239) !important;
+}
+.Custom_Calender_1 .ui-datepicker.ui-datepicker-inline{
+    width:100%;
+}
+.Custom_Calender_1 .ui-datepicker.ui-widget .ui-datepicker-calendar td{
+    border-bottom: none;
+}
+.Custom_Calender_1 .ui-datepicker.ui-widget .ui-datepicker-calendar td a.ui-state-highlight{
+    background-color: #06a92c33;
+    color: #254da0;
+    font-weight: 700;
+}
+.Custom_Calender_1 .ui-datepicker.ui-widget .ui-datepicker-calendar td a.ui-state-active{
+    background-color:#254da0;
+    color: #ffffff;
+}
+.Custom_Calender_1 .ui-datepicker .ui-datepicker-calendar td:not(.ui-state-disabled) a:hover{
+    background: #49b6607a;
+    color: #ffffff;
+}
+.Custom_Calender_1 .ui-datepicker.ui-widget .ui-datepicker-calendar td a.ui-state-active:hover{
+    background-color:#254da0;
+    color: #ffffff;
+}
+.Custom_Calender_1  .ui-datepicker .ui-datepicker-header{
+    background: #ffffff;
+    padding: 7px 0px;
+    border: none;
+}
+.Custom_Calender_1 .ui-datepicker .ui-datepicker-prev, 
+.Custom_Calender_1 .ui-datepicker .ui-datepicker-next{
+    top: 3px;
+    height: 35px;
+    width: 35px;
+}
+
+/* chips class */
+.ChipStyle_One .ui-chips > ul.ui-inputtext{
+   height: auto;
+   min-height: 37px;
+   border-radius: 0;
+   box-shadow: none;
+   border-color: #e8e8e8;
+   padding-top: 3px;
+}
+.ChipStyle_One .ui-chips > ul.ui-inputtext.ui-state-disabled{
+   opacity: 1;
+   background-color: #efefef;
+}
+.ChipStyle_One .ui-chips .ui-chips-input-token{
+   padding: 0px;
+}
+.ChipStyle_One .ui-chips .ui-chips-token{
+   margin-right: 5px;
+   margin-bottom: 4px;
+   background-color: #ffffff;
+   border: 1px solid #4e6a7a75;
+   padding: 3px 7px;
+   letter-spacing: 0.2px;
+   border-radius: 25px;
+   color: #4d6a7a;
+   padding-right: 30px;
+   font-size: 14px;
+}
+.ChipStyle_One .ui-chips .ui-chips-token .ui-chips-token-icon{
+   font-weight: 400;
+   font-size: 15px;
+   line-height: 20px;
+   height: 20px;
+   color: #8f8f8f;
+   margin: 0px;
+   border-radius: 20px;
+   background-color: #d8d8d8;
+   top: 4px;
+   right: 5px;
+}

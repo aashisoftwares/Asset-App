@@ -1,0 +1,63 @@
+<div class="Modal_Content" >
+    <div class="Modal_Header">
+      <p>Department</p>
+       <span data-dismiss="modal">&times;</span>
+  </div>
+  <form >
+   <div class="Model_Body">
+        <div class="row">
+          <div class="col-sm-10 Form_Input" >
+              <label>Department Name:</label>
+              <input type="text">
+              <p class="error" >
+                  <span >Department Name is required</span>
+                      <span> Department Name Already Exist </span>
+                  </p>
+           </div>
+      </div>
+      </div>
+        <div class="Model_Footer">
+          <button type="submit"  [disabled]="Form.status !== 'VALID' || Uploading"  mat-raised-button color="primary" >
+              <span> Submit </span>
+              <span > Update </span> 
+              <span> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
+           </button>
+    </div>
+  </form>
+  </div>
+
+<div class="Modal_Content" *ngIf="Type && Type === 'View'">
+      <div class="Modal_Header">
+       <p>View Department</p>
+          <span data-dismiss="modal">&times;</span>
+   </div>
+    <div class="Model_Body">
+      <div class="view_item">
+          <div class="Static">Department Name </div>
+          <div class="dots"> : </div>
+          <div class="Data"> Department_Name</div>
+       </div>
+       <div class="view_item">
+          <div class="Static">Created By </div>
+          <div class="dots"> : </div>
+          <div class="Data"> reated_By</div>
+       </div>
+       <div class="view_item">
+          <div class="Static">Last Modified By </div>
+          <div class="dots"> : </div>
+          <div class="Data">Last_Modified_By</div>
+       </div>
+       <div class="view_item">
+          <div class="Static"> Created Date </div>
+          <div class="dots"> : </div>
+          <div class="Data"> createdAt</div>
+       </div>
+       <div class="view_item">
+          <div class="Static">Last Modified Date  </div>
+          <div class="dots"> : </div>
+          <div class="Data"> updatedAt </div>
+       </div>
+      </div>
+          
+  </div>
+

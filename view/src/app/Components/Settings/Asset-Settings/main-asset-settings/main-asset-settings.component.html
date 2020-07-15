@@ -1,0 +1,55 @@
+<app-header></app-header>
+<div class="Page_Section">
+    <div class="container-fluid">
+       <div class="Page_Identity">
+       <div class="Page_Name">
+         <h5>ASSET SETTINGS</h5>
+         </div>
+         <div class="Page_Track">
+           <ul >
+             <li class="HeaderName">Settings</li>
+             <li class="arrow">>></li>
+             <li>Asset Settings</li>
+             </ul>
+           </div>
+        </div>
+       <div class="Page_Content Account_Settings">
+          <div class="Main_Section">
+             <div class="Left_Section">
+                <ul class="Tabs">
+                   <li class="Tab" [ngClass]="{'active':Active_Tab === 'Asset_Group'}" (click)="Active_Tab_Change('Asset_Group')"><span class="Tab_Content">Asset Group</span></li>
+                   <li class="Tab" [ngClass]="{'active':Active_Tab === 'Asset_Sub_Group'}" (click)="Active_Tab_Change('Asset_Sub_Group')"><span class="Tab_Content">Asset Sub Group</span></li> 
+                   <li class="Tab" [ngClass]="{'active':Active_Tab === 'Manufacturer'}" (click)="Active_Tab_Change('Manufacturer')"><span class="Tab_Content">Manufacturer</span></li> 
+                   <li class="Tab" [ngClass]="{'active':Active_Tab === 'Model'}" (click)="Active_Tab_Change('Model')"><span class="Tab_Content">Model</span></li> 
+                   <li class="Tab" [ngClass]="{'active':Active_Tab === 'Spare_Types'}" (click)="Active_Tab_Change('Spare_Types')"><span class="Tab_Content">Spare Types</span></li> 
+                   <li class="Tab" [ngClass]="{'active':Active_Tab === 'Spares'}" (click)="Active_Tab_Change('Spares')"><span class="Tab_Content">Spares</span></li> 
+                   <li class="Tab" [ngClass]="{'active':Active_Tab === 'Vendors'}" (click)="Active_Tab_Change('Vendors')"><span class="Tab_Content">Vendors</span></li> 
+                </ul>
+             </div>
+            <div class="Right_Section">
+               <div *ngIf="Active_Tab === 'Asset_Group'">
+                  <app-asset-group></app-asset-group>
+               </div>
+               <div *ngIf="Active_Tab === 'Asset_Sub_Group'">
+                  <app-asset-sub-group></app-asset-sub-group>
+               </div>
+               <div *ngIf="Active_Tab === 'Manufacturer'">
+                  <app-manufacturer></app-manufacturer>
+               </div>
+               <div *ngIf="Active_Tab === 'Spare_Types'">
+                  <app-spare-types></app-spare-types>
+               </div>
+               <div *ngIf="Active_Tab === 'Spares'">
+                  <app-spares></app-spares>
+               </div>
+               <div *ngIf="Active_Tab === 'Model'">
+                  <app-model></app-model>
+               </div>
+               <div *ngIf="Active_Tab === 'Vendors'">
+                  <app-vendors></app-vendors>
+               </div>
+            </div>
+          </div>
+       </div>
+    </div>
+ </div>

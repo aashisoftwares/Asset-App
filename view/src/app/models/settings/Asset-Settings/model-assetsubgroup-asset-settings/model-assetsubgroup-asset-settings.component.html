@@ -1,0 +1,65 @@
+<!-- If Create Or Edit The Activity Priority-->
+<div class="Modal_Content">
+    <div class="Modal_Header">
+       <p>  Activity Priority</p>
+       <span  data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+    </div>
+    <form>
+       <div class="Model_Body">
+          <div class="row">
+             <div class="col-sm-10 Form_Input">
+                <label>Activity Priority:</label>
+                <input type="text">
+                <p class="error" >  
+                </p>
+             </div>
+          </div>
+       </div>
+       <div class="Model_Footer">
+          <button type="submit"   mat-raised-button color="primary">
+             <span>Submit</span>
+             <!-- <span *ngIf="Type === 'Edit' && !Uploading">Update</span> -->
+             <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
+          </button>
+       </div>
+    </form>
+ </div>
+<!-- If View The Activity Priority -->
+ <!-- <div class="Modal_Content" *ngIf=" Type && Type === 'View'">
+    <div class="Modal_Header">
+       <p>View Activity Priority</p>
+       <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+    </div>
+    <div class="Model_Body">
+       <div class="view_item">
+          <div class="Static">Activity Priority </div>
+          <div class="dots"> : </div>
+          <div class="Data"> {{Data.Activity_Priority}}</div>
+       </div>
+       <div class="view_item">
+          <div class="Static">Created By </div>
+          <div class="dots"> : </div>
+          <div class="Data"> {{Data.Created_By.Name}} </div>
+       </div>
+       <div class="view_item">
+          <div class="Static">Last Modified By </div>
+          <div class="dots"> : </div>
+          <div class="Data"> {{Data.Last_Modified_By.Name}}</div>
+       </div>
+       <div class="view_item">
+          <div class="Static"> Created Date </div>
+          <div class="dots"> : </div>
+          <div class="Data"> {{Data.createdAt | date:'medium'}}</div>
+       </div>
+       <div class="view_item">
+          <div class="Static">Last Modified Date  </div>
+          <div class="dots"> : </div>
+          <div class="Data"> {{Data.updatedAt | date:'medium'}}</div>
+       </div>
+    </div>
+ </div> -->
+
+
+
+
+

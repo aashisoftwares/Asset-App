@@ -1,0 +1,137 @@
+<!-- 
+<div class="Page_Section">
+    <div class="container-fluid">
+       <div class="Page_Identity">
+          <div class="Page_Name">
+             <h5>USER PERMISSIONS GROUP CREATE</h5>
+          </div>
+          <div class="Page_Track">
+             <ul >
+                <li class="HeaderName">Settings</li>
+                <li class="arrow">>></li>
+                <li [routerLink]="['/User_Permissions']" class="LinkName">User Permissions</li>
+                <li class="arrow">>></li>
+                <li>Group Create</li>
+             </ul>
+          </div>
+       </div>
+       <div class="Page_Content PermissionsGroupCreate">
+          <div class="Main_Section">
+             <div class="Left_Section">
+                <form>
+                   <div class="Form_Input">
+                      <label> Select Module </label>
+                      <ng-select class="NgSelect" [searchable]="true">
+                         <ng-option>Module Name</ng-option>
+                      </ng-select>
+                      <p class="error" >
+                         <span > Module is required</span>
+                      </p>
+                   </div>
+                   <div class="Form_Input">
+                      <label> Select User Type </label>
+                      <ng-select class="NgSelect" [searchable]="true" >
+                         <ng-option>User Type</ng-option>
+                      </ng-select>
+                      <p class="error">
+                         <span> User Type is required</span>
+                      </p>
+                   </div>
+                   <div class="Form_Input">
+                      <label> Group Name </label>
+                      <input type="text" readonly>
+                   </div>
+                   <div class="Form_TextArea">
+                      <label> Description </label>
+                      <textarea formControlName="Group_Description"></textarea>
+                   </div>    
+                </form>
+             </div>     
+             <div class="Right_Section">
+                <div class="TableSection">
+                   <table>
+                      <thead>
+                         <tr class="MainModuleStyle">
+                            <td> Module Name
+                            </td>
+                            <td>
+                               <div  class="MaduleChekboxField">
+                                  <mat-checkbox> 
+                                     Permission for Access 
+                                  </mat-checkbox>
+                                  <span> 
+                                     <i class="material-icons"> keyboard_arrow_down </i>
+                                     <i class="material-icons"> keyboard_arrow_up </i> 
+                                  </span> 
+                               </div>
+                            </td>
+                         </tr>
+                         <tr class="SubModuleStyle">
+                            <td colspan="2">
+                               <table> 
+                                  <thead> 
+                                     <tr>
+                                        <td> Sub Module Name</td>
+                                        <td> 
+                                           <mat-checkbox> 
+                                                 View 
+                                           </mat-checkbox> 
+                                        </td>
+                                        <td> 
+                                           <mat-checkbox> 
+                                                 Create 
+                                           </mat-checkbox> 
+                                        </td>
+                                        <td> 
+                                           <mat-checkbox> 
+                                                 Edit 
+                                           </mat-checkbox> 
+                                        </td>
+                                        <td> 
+                                           <mat-checkbox> 
+                                                 Delete 
+                                           </mat-checkbox> 
+                                        </td>
+                                     </tr>
+                                  </thead>
+                                  <tbody>
+                                     <tr> 
+                                        <td> SubModule Name</td>
+                                        <td> 
+                                           <mat-checkbox>
+                                           </mat-checkbox> 
+                                        </td>
+                                        <td> 
+                                           <mat-checkbox>
+                                           </mat-checkbox> 
+                                        </td>
+                                        <td> 
+                                           <mat-checkbox>
+                                           </mat-checkbox> 
+                                        </td>
+                                        <td> 
+                                           <mat-checkbox>
+                                           </mat-checkbox> 
+                                        </td>
+                                     </tr>
+                                  </tbody>
+                               </table>
+                            </td>
+                         </tr>
+                      </thead>
+                   </table>
+                </div> 
+             </div>
+          </div>
+       </div>
+    </div>
+    <div class="Page_Footer">
+       <div class="text-right">
+          <button mat-raised-button class="Bg_warning" style="margin-right: 20px; color:#fff"> Cancel </button>
+          <button mat-raised-button color="primary"> Submit </button>
+       </div>
+    </div>
+ </div>
+  
+ 
+  -->

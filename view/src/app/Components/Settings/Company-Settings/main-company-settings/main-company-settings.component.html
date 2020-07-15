@@ -1,0 +1,39 @@
+<app-header></app-header>
+<div class="Page_Section">
+    <div class="container-fluid">
+       <div class="Page_Identity">
+       <div class="Page_Name">
+         <h5>COMPANY SETTINGS</h5>
+         </div>
+         <div class="Page_Track">
+           <ul >
+             <li class="HeaderName">Settings</li>
+             <li class="arrow">>></li>
+             <li>Company Settings</li>
+             </ul>
+           </div>
+        </div>
+       <div class="Page_Content Account_Settings">
+          <div class="Main_Section">
+             <div class="Left_Section">
+                <ul class="Tabs">
+                   <li class="Tab" [ngClass]="{'active':Active_Tab === 'Company_Info'}" (click)="Active_Tab_Change('Company_Info')"><span class="Tab_Content">Company Info</span></li>     
+                   <li class="Tab" [ngClass]="{'active':Active_Tab === 'Departments'}" (click)="Active_Tab_Change('Departments')"><span class="Tab_Content">Department</span></li> 
+                   <li class="Tab" [ngClass]="{'active':Active_Tab === 'Branch'}" (click)="Active_Tab_Change('Branch')"><span class="Tab_Content">Branch</span></li> 
+                </ul>
+             </div>
+             <div class="Right_Section">
+               <div *ngIf="Active_Tab === 'Company_Info'">
+                  <app-company-information></app-company-information>
+              </div>
+              <div *ngIf="Active_Tab === 'Departments'">
+               <app-department></app-department>
+           </div>
+           <div *ngIf="Active_Tab === 'Branch'">
+            <app-branch></app-branch>
+            </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>

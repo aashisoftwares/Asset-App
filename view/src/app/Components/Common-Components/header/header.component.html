@@ -1,0 +1,132 @@
+<div class="Header_Page">
+    <!-- Header One -->
+    <div class="Header_One">
+       <img src="assets/images/basic/Insight360.png" alt="Logo" class="Header_Logo"> 
+       <!-- Header Button -->
+       <!-- <span class="Header_Button">
+          <button mat-button color="primary" [matMenuTriggerFor] = "Action"> + Create </button>
+       </span> -->
+       <!-- User -->
+       <span class="User" [matMenuTriggerFor] = "Action1">
+          <i class="material-icons person">person</i>
+       </span>
+       <!-- Notification -->
+       <span class="notification">
+          <a><i class="material-icons notify" [matMenuTriggerFor]="notification" > notifications</i></a>
+          <span class="badge">5</span>
+       </span>
+    </div>
+    <!-- Header Two -->
+    <div class="Header_Two">
+       <ul class="Menus">
+          <!-- DashBoard -->
+          <li [routerLinkActive]="'active'" class="Menu_List">
+             <span class="Menu">
+                <i class="material-icons">dashboard</i>
+                <span [routerLink]="['/dashboard']"> Dashboard </span>
+             </span>
+          </li>
+          <!-- Asset -->
+          <li [routerLinkActive]="'active'" class="Menu_List">
+            <span class="Menu">
+               <i class="material-icons">people</i>
+               <span [routerLink]="['/asset']"> &nbsp; Asset </span> 
+            </span>
+         </li>
+          <!-- Asset History-->
+          <li [routerLinkActive]="'active'" class="Menu_List">
+            <span class="Menu">
+               <i class="material-icons">people</i>
+               <span [routerLink]="['/asset']"> &nbsp; Asset History </span> 
+            </span>
+         </li>
+          <!-- Service -->
+          <li [routerLinkActive]="'active'" class="Menu_List">
+            <span class="Menu">
+               <i class="material-icons">people</i>
+               <span [routerLink]="['/service']"> &nbsp; Service </span> 
+            </span>
+         </li>
+          <!-- Reports -->
+          <li [routerLinkActive]="'active'" class="Menu_List">
+            <span class="Menu">
+               <i class="material-icons">people</i>
+               <span [routerLink]="['/reports']"> &nbsp; Reports </span> 
+            </span>
+         </li>
+          <!-- settings -->
+          <li [routerLinkActive]="'active'" class="Menu_List">
+            <span class="Menu_Tree">
+               <span class="Menu">
+                  <i class="material-icons">people</i>
+                  <span> &nbsp; Settings </span> 
+               </span>
+               <ul class="Menu_Tree_View">
+                  <li [routerLinkActive]="'active'" class="Menu_Tree_List"><a [routerLink]="['/csettings']"> Company Settings </a></li>
+                  <li [routerLinkActive]="'active'" class="Menu_Tree_List"><a [routerLink]="['/asettings']"> Asset Settings </a></li>
+                  <li [routerLinkActive]="'active'" class="Menu_Tree_List"><a [routerLink]="['/usettings']"> Users </a></li>
+                  <!-- <li [routerLinkActive]="'active'" class="Menu_Tree_List"><a [routerLink]="['/User_Permissions']"> User Permissions </a></li> -->
+               </ul>
+            </span>
+          </li>
+       </ul>
+    </div>
+ </div>
+ 
+ <!-- Dropdown menus -->
+ <mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
+    <button mat-menu-item [routerLink]="['/']">
+       <span>Leads</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/']">
+       <span>Customer</span>
+    </button>
+    <button mat-menu-item >
+       <span> Customer Contact</span>
+    </button>
+    <button mat-menu-item >
+       <span>Activity</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/']">
+       <span>Quote</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/']">
+       <span>Vendor</span>
+    </button>
+    <button mat-menu-item >
+       <span>Vendor Contact</span>
+    </button>
+    <button mat-menu-item >
+       <span>Purchase Order</span>
+    </button>
+    <button mat-menu-item >
+       <span>Product</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/']">
+       <span>Employee</span>
+    </button>
+ </mat-menu>
+ 
+ <!-- Dropdown menus -->
+ <mat-menu class="MenuStyleOne" #Action1="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
+    <button mat-menu-item>
+       <span>Profile</span>
+    </button>
+    <button mat-menu-item>
+       <span>LogOut</span>
+    </button>      
+ </mat-menu>
+ 
+ <!-- side notification content -->
+ <!-- <mat-drawer #notification class="sidecontent" mode="over" position="end">
+    <p>Auto-resizing sidenav</p>
+ </mat-drawer> -->
+ 
+ <mat-menu class="MenuStyleOne" #notification="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
+    <a mat-menu-item>
+       <!-- <span> The {{item?.Notification_Id?.User_Id?.User_Type?.User_Type}} {{item?.Notification_Id?.User_Id?.Name}} {{item?.Notification_Id?.Notification_Key}} {{item?.Notification_Id?.Reference_Id?.Company_Name}} {{item?.Notification_Id?.Reference_Key}}</span>    -->
+    </a>
+ </mat-menu>
+ 
+ 
+ 
