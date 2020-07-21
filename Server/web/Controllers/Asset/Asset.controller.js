@@ -88,3 +88,16 @@ exports.Asset_Create = (req, res) => {
         });
     }
 };
+
+
+//Asset List
+exports.Asset_List = (req, res) => {
+    AssetCreateModel.AssetSchema.find({})
+    .exec ((err, result) => {
+        if (err){
+            console.log ("Unable to Fetch Data");
+        }else {
+            res.json(result);
+        }
+    });
+};

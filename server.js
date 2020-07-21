@@ -4,8 +4,8 @@ const cors = require ('cors');
 const bodyParser = require ('body-parser');
 const path = require('path');
 
-const ErrorManagement = require('./server/handling/ErrorHandling.js');
-const LogManagement = require('./server/handling/LogHandling.js');
+const ErrorManagement = require('./Server/handling/ErrorHandling.js');
+const LogManagement = require('./Server/handling/LogHandling.js');
 //const AdminModel = require('./server/web/models/register.model');
 
 const port = process.env.PORT || 3000
@@ -70,9 +70,23 @@ const assetven = require('./Server/web/Routes/Settings/Asset/vendors.routes');
 const assettype = require ('./Server/web/Routes/Settings/Asset/Assettype.routes');
 const assetown = require ('./Server/web/Routes/Settings/Asset/Ownershiptype.routes');
 const assetms = require ('./Server/web/Routes/Settings/Asset/maintanencestratagy.routes');
+const assetgrpl = require('./Server/web/Routes/Settings/AssetList/Assetgroupl.routes');
+const assetsgrpl = require('./Server/web/Routes/Settings/AssetList/Assetsubgroupl.routes');
+const assetmanl = require('./Server/web/Routes/Settings/AssetList/Manufacturerl.routes');
+const assetmol = require('./Server/web/Routes/Settings/AssetList/Modell.routes');
+const assetsptl = require('./Server/web/Routes/Settings/AssetList/Sparetypesl.routes');
+const assetspl = require('./Server/web/Routes/Settings/AssetList/sparesl.routes');
+const assetvenl = require('./Server/web/Routes/Settings/AssetList/vendorsl.routes');
+const assettypel = require ('./Server/web/Routes/Settings/AssetList/Assettypel.routes');
+const assetownl = require ('./Server/web/Routes/Settings/AssetList/Ownershiptypel.routes');
+const assetmsl = require ('./Server/web/Routes/Settings/AssetList/maintanencestratagyl.routes');
 const location = require ('./Server/web/Routes/Settings/General/Location.routes');
 const employee = require ('./Server/web/Routes/Settings/General/Employee.routes');
+const locationl = require ('./Server/web/Routes/Settings/General/LocationList.routes');
+const employeel = require ('./Server/web/Routes/Settings/General/EmployeeList.routes');
 const asset = require ('./Server/web/Routes/Asset/Asset.routes');
+const assetl = require ('./Server/web/Routes/Asset/AssetList.routes');
+
 // Admin
 app.use('/api/company', company);
 app.use('/api/user', usrcreate);
@@ -87,9 +101,22 @@ app.use('/api/assetv', assetven);
 app.use('/api/assetty', assettype);
 app.use('/api/assetow', assetown);
 app.use('/api/assetms', assetms);
+app.use('/api/assetgl', assetgrpl);
+app.use('/api/assetsgl', assetsgrpl);
+app.use('/api/assetml', assetmanl);
+app.use('/api/assetmol', assetmol);
+app.use('/api/assetstl', assetsptl);
+app.use('/api/assetsl', assetspl);
+app.use('/api/assetvl', assetvenl);
+app.use('/api/assettyl', assettypel);
+app.use('/api/assetowl', assetownl);
+app.use('/api/assetmsl', assetmsl);
 app.use('/api/clocate', location);
 app.use('/api/employee', employee);
-app.use ('/api/asset' , asset)
+app.use('/api/clocatel', locationl);
+app.use('/api/employeel', employeel);
+app.use ('/api/asset' , asset);
+app.use ('/api/assetl' , assetl);
 
 // Routes
 app.get ('/' , (req, res) => {

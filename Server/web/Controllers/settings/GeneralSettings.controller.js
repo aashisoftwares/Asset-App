@@ -55,6 +55,18 @@ exports.Location_Create = (req, res) => {
 };
 
 
+//Location List
+exports.Location_List = (req, res) => {
+    GeneralSettingsModel.LocationSchema.find({})
+    .exec ((err, result) => {
+        if (err){
+            console.log ("Unable to Fetch Data");
+        }else {
+            res.json(result);
+        }
+    });
+};
+
 //Employee Group
 exports.Employee_Add = (req, res) => {
     const ReceivingData = req.body ;
@@ -105,4 +117,17 @@ exports.Employee_Add = (req, res) => {
 
         });
     }
+};
+
+
+//Employee List
+exports.Employee_List = (req, res) => {
+    GeneralSettingsModel.HrEmployeeSchema.find({})
+    .exec ((err, result) => {
+        if (err){
+            console.log ("Unable to Fetch Data");
+        }else {
+            res.json(result);
+        }
+    });
 };
