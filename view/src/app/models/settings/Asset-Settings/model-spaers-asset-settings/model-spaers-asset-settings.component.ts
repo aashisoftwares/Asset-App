@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { SparesComponent } from 'src/app/Components/Settings/Asset-Settings/SubComponents/spares/spares.component';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-model-spaers-asset-settings',
@@ -7,9 +10,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModelSpaersAssetSettingsComponent implements OnInit {
 
-  constructor() { }
+  Company_Id;
+  User_Id;
+  Form: FormGroup;
+
+  //Create, Edit, Save and Update button name change based on the place
+  headingDisplay : string;
+  displayButton: string;
+  spareTypeList: string[] = ['Accessories','Consumable'];
+
+  constructor(public dialogRef: MatDialogRef<SparesComponent>,
+    @Inject(MAT_DIALOG_DATA) private data) { 
+      this.Company_Id = "5ed8bc9eba679310987c12cd";
+      this.User_Id = "5ed8d69fc2b07e09dcd16828";
+      this.headingDisplay='Create';
+      this.displayButton='Submit';
+    }
 
   ngOnInit(): void {
+    this.Form = new FormGroup({
+      Spare_Name : new FormControl('',Validators.required),
+      Spare_Type : new FormControl('', [Validators.required]),
+      stockable : new FormControl(''),
+      purchaseable : new FormControl(''),
+      description : new FormControl(''),
+      Company_Id : new FormControl(this.Company_Id, Validators.required),
+      Created_By : new FormControl(this.User_Id, Validators.required)
+    })
+    
   }
+
+  closeModal(){
+    this.dialogRef.close();
+  }
+
+  onSubmit(){
+    
+  }
+
+
 
 }

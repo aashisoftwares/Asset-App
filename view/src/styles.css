@@ -138,3 +138,68 @@ transition: all 400ms linear;
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.close-icon-large {
+   float: right;
+   color: crimson !important;
+   cursor: pointer;
+   width: 2% !important;
+   margin-top: -2% !important;
+ }
+
+ .section_title {
+   font-size: 25px;
+   color: #445c8f;
+}
+
+.mat-table {
+   max-height: 500px;
+ }
+ 
+table {
+   width: 100%;
+ }
+
+ .example-label{
+   font-size: 15px;
+   font-family: Roboto,"Helvetica Neue",sans-serif;
+   color:#000000;
+}
+
+.form-group{  
+   margin-bottom: 0rem !important;               
+   font-size: 15px !important;
+   margin-top:2%;
+   font-weight: 400;
+ }
+
+ .font-style-combo{
+   font-family: Roboto, "Helvetica Neue", sans-serif;
+   font-weight: 480;
+   color: #616365 !important;
+   font-size: 12px !important;
+ }
+
+ .mandatory-style {
+   color: #f00 !important;
+ }
+
+ .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
+   padding-left: 0px !important;
+ }
+
+ .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+   background-color: #fff;
+   color: #333333;
+   padding: 5px 6px;
+   font-size: 12px;
+   font-weight: 500 !important;
+ }
+ 
+ .ng-select .ng-select-container .ng-value-container {
+   padding-left: 0px !important;
+ }
+ 
+ .ng-select.custom-dropdown {
+   margin-top: 0.2rem !important;
+ }

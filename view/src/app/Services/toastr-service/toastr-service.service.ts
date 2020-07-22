@@ -1,18 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ToastrServiceService {
 
-  constructor() { }
+  constructor(private toasterSer: ToastrService) { }
 
-  private ToastrMessage =  new Subject<any>();
+ successMessage(msg){
+    this.toasterSer.success(msg);
+  }
 
-   WaitingToastr = this.ToastrMessage.asObservable();
+ errorMessage(msg){ 
+    this.toasterSer.error(msg);
+ }
 
-   NewToastrMessage(Message) {
-      this.ToastrMessage.next(Message);
-   }
+ warningMessage(msg){
+    this.toasterSer.warning(msg);
+ }
+
 }

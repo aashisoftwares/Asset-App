@@ -8,7 +8,7 @@
              <ul>
                 <li class="HeaderName">Asset</li>
                 <li class="arrow">>></li>
-                <li class="LinkName"><a [routerLink]="['/asset']">Customers</a></li>
+                <li class="LinkName"><a [routerLink]="['/asset']">Asset</a></li>
                 <li class="arrow">>></li>
                 <li>Create</li>
              </ul>
@@ -23,11 +23,7 @@
                       <div class="col-sm-12 text-center">
                          <img src="../../../../../assets/images/basic/company.png" alt="Company Image" style="width:150px; height:150px; margin-top:40px; box-shadow:0 1px 5px 1px rgba(0,0,0,.2);">
                       </div></div><br>
-                      <!-- <div class="col-sm-12 text-center file_Section"> -->
-                         <!-- <button type="button" class="change_button"> Choose Picture </button> -->
-                         <!-- <input type="file">
-                      </div><br><br> -->
-                      <div class="row">
+                      <!-- <div class="row">
                       <div class="col-sm-12 Form_Input" style="margin-bottom: 30px" >
                          <input type="text" formControlName="Asset_Nick_Name" placeholder="Asset Nick Name" style="width:90%;margin-left:15px;margin-bottom: 0px;">
                          <p class="error" *ngIf="Form.controls['Asset_Nick_Name'].errors && !Form.controls['Asset_Nick_Name'].pristine">
@@ -46,6 +42,41 @@
                            <span *ngIf="Form.controls['Asset_Code'].errors.required">Asset Group is required</span>
                         </p>
                       </div>
+                   </div> -->
+                   <div class="row">
+                     <div class="col-sm-12 form-group">
+                        <mat-form-field class="example-full-width" [floatLabel]="'always'">
+                           <mat-label class="example-label"> Asset Nick Name </mat-label>
+                           <input matInput autofocus formControlName="Asset_Nick_Name" required tabindex="1"
+                              oninput="this.value = this.value.toUpperCase()">
+                           <mat-error
+                              *ngIf="Form.controls.Asset_Nick_Name.errors && Form.controls.Asset_Nick_Name.touched">
+                              <div *ngIf="Form.controls.Asset_Nick_Name.errors.required"> Asset Nick Name is Required </div>
+                           </mat-error>
+                        </mat-form-field>
+                     </div>
+                     <div class="col-sm-12 form-group">
+                        <mat-form-field class="example-full-width" [floatLabel]="'always'">
+                           <mat-label class="example-label"> Serial Number </mat-label>
+                           <input matInput autofocus formControlName="Serial_Number" required tabindex="2"
+                              oninput="this.value = this.value.toUpperCase()">
+                           <mat-error
+                              *ngIf="Form.controls.Serial_Number.errors && Form.controls.Serial_Number.touched">
+                              <div *ngIf="Form.controls.Serial_Number.errors.required"> Serial Number is Required </div>
+                           </mat-error>
+                        </mat-form-field>
+                     </div>
+                     <div class="col-sm-12 form-group">
+                        <mat-form-field class="example-full-width" [floatLabel]="'always'">
+                           <mat-label class="example-label"> Asset Code </mat-label>
+                           <input matInput autofocus formControlName="Asset_Code" required tabindex="3"
+                              oninput="this.value = this.value.toUpperCase()">
+                           <mat-error
+                              *ngIf="Form.controls.Asset_Code.errors && Form.controls.Asset_Code.touched">
+                              <div *ngIf="Form.controls.Asset_Code.errors.required"> Asset Code is Required </div>
+                           </mat-error>
+                        </mat-form-field>
+                     </div>
                    </div>
                 </div>
              </div>

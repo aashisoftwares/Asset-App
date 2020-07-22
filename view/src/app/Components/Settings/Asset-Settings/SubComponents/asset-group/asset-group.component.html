@@ -1,22 +1,9 @@
-<!-- <div class="DataLoaderStyle_1">
-     <div class="Loading">
-       <div class="spinner">
-          <div class="rect1"></div>
-          <div class="rect2"></div>
-          <div class="rect3"></div>
-          <div class="rect4"></div>
-          <div class="rect5"></div>
-          <div class="rect6"></div>
-       </div>
-    </div> 
-  </div> -->
-  <div>
+<div>
     <div class="row header_part">
-      <div class="col-sm-6">
-       <button class="Create_Button" mat-raised-button (click)="CreateAssetGroup()"> + Create </button>
+      <div class="col-sm-3">
+       <button class="Create_Button" mat-raised-button (click)="CreateAssetGroup(null)"> + Create </button>
       </div>
-      <div class="col-sm-6">
-          <div class="Table_Activities">
+      <div class="col-sm-5">    
              <div class="Search_Section">
                 <input type="text" placeholder="Search..">
                 <i class="material-icons">search</i>
@@ -26,95 +13,49 @@
                    </ul>
                 </div>
              </div>
-             <button mat-raised-button [matMenuTriggerFor]="Short"> 5 </button>
-             <mat-menu class="PaginationShort" #Short="matMenu" [overlapTrigger]="false">
-                <button mat-menu-item> 5 </button>
-                <button mat-menu-item> 10 </button>
-                <button mat-menu-item> 20 </button>
-                <button mat-menu-item> 50 </button>
-             </mat-menu>
-          </div>
+      </div>
+      <div class="col-sm-4">
+         <mat-paginator #paginatorUsers [pageSizeOptions]="[5, 10, 25, 50, 100]"
+         [length]="length" [pageIndex]="pageIndex"
+         [pageSize]="pageSize" (page)="getServerData($event)"></mat-paginator>
       </div>
     </div>
-    <div class="Table_Section">
-      <table #TableSection>
-        <thead #TableHeaderSection>
-          <tr>
-            <th>S.no</th>
-            <th>Asset Group Name</th>
-            <th>Created By</th>
-            <th>Modified By</th>
-            <th style="width:130px">Action</th>
-          </tr>
-        </thead>
-        <tbody #TableBodySection>
-          <tr>
-            <td>
-              <span class="S_no"> 1 </span>
-            </td>
-            <td>
-              <span class="Style_1">IT Assets</span>
-            </td>
-            <td>
-            <span class="Style_1">Createdby Name</span>
-                
-                <br> 
-                <span class="Time"> createdat date</span>
-            
-            </td>
-            <td>
-              <span class="Style_1"> Modified By</span>
-                
-                  <br> 
-                  <span class="Time">updatedat date</span>
-              
-            </td>
-              <td>
-              <button class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                  <i class="material-icons">zoom_in</i>
-              </button>
-              <button class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                  <i class="material-icons">edit</i>
-              </button>
-              <button class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                  <i class="material-icons">delete_forever</i>
-              </button>
-            </td>
-          </tr>
-          <tr class="TableLoader" #TableLoaderSection >
-            <td colspan="100%" class="Tr_Loader">  Loading<span class="dot">.</span><span class="dot-2">.</span><span class="dot-3">.</span> </td>
-         </tr>
-       </tbody>
-       <tfoot #TableFooterSection>
-        <tr>
-           <td colspan="100">
-              <div class="Table_Footer_Section">
-                 <div class="Footer_Left">
-                    <p> </p>
-                 </div>
-                 <div class="Footer_Right">
-                    <div class="Pagination">
-                       <ul>
-                          <li>
-                             <span class="arrow"> << </span>
-                             <span> Previous </span>
-                          </li>
-                          <li> 
-                             <span> 1 </span>
-                          </li> 
-                          <li>
-                             <span> Next </span>
-                             <span class="arrow"> >> </span>
-                          </li>
-                       </ul>
-                    </div>
-                 </div>
-              </div>
-           </td>
-        </tr>
-     </tfoot>
-      </table>
-      </div>
-      </div>
+
+ <table mat-table [dataSource]="assetGroupdataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="sno">
+          <th mat-header-cell *matHeaderCellDef> S.No </th>
+          <td mat-cell *matCellDef="let element; let i=index;"> {{i+1}} </td>
+      </ng-container>
+      <ng-container matColumnDef="assetGroup">
+        <th mat-header-cell *matHeaderCellDef> Asset Group Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="created">
+        <th mat-header-cell *matHeaderCellDef> Created By/Dt</th>
+        <td mat-cell *matCellDef="let element">{{element.weight}}</td>
+        </ng-container>
+      <ng-container matColumnDef="updated">
+        <th mat-header-cell *matHeaderCellDef> Updated By/Dt </th>
+        <td mat-cell *matCellDef="let element">{{element.symbol}} </td>
+        </ng-container>
+      <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element">
+            <button class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+               <i class="material-icons">zoom_in</i>
+           </button>
+           <button class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+               <i class="material-icons">edit</i>
+           </button>
+           <button class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+               <i class="material-icons">delete_forever</i>
+           </button>
+          </td>
+        </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let element; columns: displayedColumns;">
+      </tr>
+    </table> 
+  </div>
     
     

@@ -40,3 +40,18 @@
     font-weight: 600;
     cursor: pointer;
  }
+
+ ::ng-deep .mat-paginator
+{
+  margin-top:-16px !important;
+  background: transparent;
+}
+
+::ng-deep .mat-paginator-page-size-label
+{
+  font-size: 0px !important;
+}
+::ng-deep .mat-paginator-page-size-label
+{
+  font-size: 0px !important;
+}

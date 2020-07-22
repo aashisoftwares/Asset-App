@@ -1,67 +1,32 @@
-<!-- If Create Or Edit The Activity Priority-->
-<div class="Modal_Content" *ngIf="Type === 'Create' ">
-   <div class="Modal_Header">
-      <p> {{Type}} Asset Group</p>
-      <button type="button" class="close pull-right" *ngIf="!Uploading" aria-label="Close" (click)="bsModalRef.hide()">
-         <span aria-hidden="true">&times;</span>
-       </button>
-      <!-- <span  data-dismiss="modal" (click)="modalRef.hide()">&times;</span> -->
-   </div>
-   <form [formGroup]="Form" (ngSubmit)="onSubmit()">
-      <div class="Model_Body">
-         <div class="row">
-            <div class="col-sm-10 Form_Input">
-               <label>Asset Group:</label>
-               <input type="text" formControlName="Asset_Group" name="Asset_Group">
-               <p class="error" *ngIf="Form.controls['Asset_Group'].errors && !Form.controls['Asset_Group'].pristine">
-                  <span *ngIf="Form.controls['Asset_Group'].errors.required">Asset Group is required</span>
-               </p>
-            </div>
-            <mat-checkbox class="Form_checkbox" [checked]= "true">Spares</mat-checkbox>
-         </div>
-      </div>
-      <div class="Model_Footer">
-         <button type="submit"   mat-raised-button color="primary">
-            <span>Submit</span>
-            <!-- <span *ngIf="Type === 'Edit' && !Uploading">Update</span>
-            <span class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span> -->
-         </button>
-      </div>
-   </form>
-</div>
-
-
-<!-- If View The Activity Priority -->
-<!-- <div class="Modal_Content" *ngIf=" Type && Type === 'View'">
-   <div class="Modal_Header">
-      <p>View Activity Priority</p>
-      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+<mat-icon class="close-icon-large" (click)="closeModal()">highlight_off</mat-icon>
+<form [formGroup]="Form">
+   <div class="row">
+      <div class="col-md-10">
+         <h4 class="section_title">{{headingDisplay}}</h4>
+       </div>
    </div>
    <div class="Model_Body">
-      <div class="view_item">
-         <div class="Static">Activity Priority </div>
-         <div class="dots"> : </div>
-         <div class="Data"> {{Data.Activity_Priority}}</div>
+
+      <div class="row">
+         <div class="col-sm-12 form-group">
+            <mat-form-field class="example-full-width" [floatLabel]="'always'">
+               <mat-label class="example-label"> Asset Group </mat-label>
+                 <input matInput formControlName="Asset_Group" required 
+                  oninput="this.value = this.value.toUpperCase()">
+                 <mat-error *ngIf="Form.controls.Asset_Group.errors && Form.controls.Asset_Group.touched">
+                   <div *ngIf="Form.controls.Asset_Group.errors.required">  Asset Group  is Required </div>
+                 </mat-error>
+               </mat-form-field>  
+         </div>
+         <div class="col-md-10">
+            <mat-checkbox formControlName="Spares" [checked]= "true">Spares</mat-checkbox>
+         </div>
       </div>
-      <div class="view_item">
-         <div class="Static">Created By </div>
-         <div class="dots"> : </div>
-         <div class="Data"> {{Data.Created_By.Name}} </div>
-      </div>
-      <div class="view_item">
-         <div class="Static">Last Modified By </div>
-         <div class="dots"> : </div>
-         <div class="Data"> {{Data.Last_Modified_By.Name}}</div>
-      </div>
-      <div class="view_item">
-         <div class="Static"> Created Date </div>
-         <div class="dots"> : </div>
-         <div class="Data"> {{Data.createdAt | date:'medium'}}</div>
-      </div>
-      <div class="view_item">
-         <div class="Static">Last Modified Date  </div>
-         <div class="dots"> : </div>
-         <div class="Data"> {{Data.updatedAt | date:'medium'}}</div>
-      </div>
+
    </div>
-</div> -->
+   <div class="Model_Footer">
+      <button type="submit" (click)="onSubmit()" mat-raised-button color="primary">
+         <span>{{displayButton}}</span>
+       </button>
+   </div>
+</form>

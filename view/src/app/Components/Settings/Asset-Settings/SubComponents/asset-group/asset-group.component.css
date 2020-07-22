@@ -40,3 +40,26 @@
     font-weight: 600;
     cursor: pointer;
  }
+
+ ::ng-deep .mat-paginator
+{
+  margin-top:-16px !important;
+  background: transparent;
+}
+
+::ng-deep .mat-paginator-page-size-label
+{
+  font-size: 0px !important;
+}
+::ng-deep .mat-paginator-page-size-label
+{
+  font-size: 0px !important;
+}
+
+.no_records_found {
+   text-align: center !important;
+   background-color: white !important;
+   font-size: 16px !important;
+   font-weight: 500 !important;
+   color: black;
+ }

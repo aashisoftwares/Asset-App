@@ -1,1 +1,59 @@
-<p>model-model-asset-settings works!</p>
+<mat-icon class="close-icon-large" (click)="closeModal()">highlight_off</mat-icon>
+<form [formGroup]="Form" (ngSubmit)="onSubmit()">
+    <div class="row">
+       <div class="col-md-10">
+          <h4 class="section_title">{{headingDisplay}}</h4>
+       </div>
+    </div>
+    <div class="Model_Body">
+       <div class="row">
+          <div class="col-sm-12 form-group">
+             <mat-form-field class="example-full-width" [floatLabel]="'always'">
+                <mat-label class="example-label"> Model Name </mat-label>
+                <input matInput autofocus formControlName="Model_Name" required tabindex="1"
+                   oninput="this.value = this.value.toUpperCase()">
+                <mat-error
+                   *ngIf="Form.controls.Model_Name.errors && Form.controls.Model_Name.touched">
+                   <div *ngIf="Form.controls.Model_Name.errors.required"> Model Name is Required </div>
+                </mat-error>
+             </mat-form-field>
+          </div>
+          <div class="col-sm-12 form-group">
+            <mat-form-field class="example-full-width" [floatLabel]="'always'">
+               <mat-label class="example-label"> Asset Group </mat-label>
+               <mat-select formControlName="Asset_Group">
+                  <mat-option *ngFor="let assetGroup of assetGroupList" [value]="assetGroup">
+                     {{assetGroup}}
+                  </mat-option>
+               </mat-select>
+            </mat-form-field>
+         </div>
+          <div class="col-sm-12 form-group">
+             <mat-form-field class="example-full-width" [floatLabel]="'always'">
+                <mat-label class="example-label"> Manufacturer </mat-label>
+                <mat-select formControlName="Manufacturer">
+                   <mat-option *ngFor="let manufacturer of manufacturerList" [value]="manufacturer">
+                      {{manufacturer}}
+                   </mat-option>
+                </mat-select>
+             </mat-form-field>
+          </div>
+          <div class="col-sm-12 form-group">
+            <mat-form-field class="example-full-width" [floatLabel]="'always'">
+               <mat-label class="example-label"> Sub Group </mat-label>
+               <mat-select formControlName="Asset_subGroup">
+                  <mat-option *ngFor="let subGroup of assetSubGroupList" [value]="subGroup">
+                     {{subGroup}}
+                  </mat-option>
+               </mat-select>
+            </mat-form-field>
+         </div>
+       </div>
+    </div>
+ 
+    <div class="Model_Footer">
+       <button mat-raised-button color="primary">
+          <span>{{displayButton}}</span>
+       </button>
+    </div>
+ </form>

@@ -5,3 +5,11 @@
     color:#fff;
     outline:none;
  }
+
+ .form-group input{
+    font-size: 12px;
+ }
+
+ .example-full-width {
+   width: 90%;
+ }

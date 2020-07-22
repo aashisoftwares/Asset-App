@@ -1,1 +1,72 @@
-<p>model-vendors-asset-settings works!</p>
+<mat-icon class="close-icon-large" (click)="closeModal()">highlight_off</mat-icon>
+<form [formGroup]="Form">
+    <div class="row">
+        <div class="col-md-10">
+            <h4 class="section_title">{{headingDisplay}}</h4>
+        </div>
+    </div>
+    <div class="Model_Body">
+        <div class="row">
+            <div class="col-sm-12 form-group">
+                <mat-form-field class="example-full-width" [floatLabel]="'always'">
+                    <mat-label class="example-label"> Vendor Name </mat-label>
+                    <input matInput formControlName="Vendor_Name" required
+                        oninput="this.value = this.value.toUpperCase()">
+                    <mat-error *ngIf="Form.controls.Vendor_Name.errors && Form.controls.Vendor_Name.touched">
+                        <div *ngIf="Form.controls.Vendor_Name.errors.required"> Vendor Name is Required </div>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-12 form-group">
+                <mat-form-field class="example-full-width" [floatLabel]="'always'">
+                    <mat-label class="example-label"> Address </mat-label>
+                    <input matInput formControlName="Address" required
+                        oninput="this.value = this.value.toUpperCase()">
+                    <mat-error *ngIf="Form.controls.Address.errors && Form.controls.Address.touched">
+                        <div *ngIf="Form.controls.Address.errors.required"> Address is Required </div>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-12 form-group">
+                <mat-form-field class="example-full-width" [floatLabel]="'always'">
+                    <mat-label class="example-label"> Phone Number </mat-label>
+                    <input matInput formControlName="Phone_Number"
+                        oninput="this.value = this.value.toUpperCase()">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-12 form-group">
+                <mat-form-field class="example-full-width" [floatLabel]="'always'">
+                    <mat-label class="example-label"> Email Id </mat-label>
+                    <input matInput formControlName="Vendor_Email"
+                        oninput="this.value = this.value.toUpperCase()">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-12 form-group">
+                <mat-form-field class="example-full-width" [floatLabel]="'always'">
+                    <mat-label class="example-label"> Website </mat-label>
+                    <input matInput formControlName="Vendor_Website"
+                        oninput="this.value = this.value.toUpperCase()">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-12 form-group">
+                <mat-form-field class="example-full-width" [floatLabel]="'always'">
+                    <mat-label class="example-label"> GSTN </mat-label>
+                    <input matInput formControlName="GSTN"
+                        oninput="this.value = this.value.toUpperCase()">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-12 form-group">
+                <mat-form-field class="example-full-width" [floatLabel]="'always'">
+                    <mat-label class="example-label"> Notes </mat-label>
+                    <textarea matInput formControlName="Notes"
+                        oninput="this.value = this.value.toUpperCase()"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="Model_Footer">
+        <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="Form.invalid">
+            <span>{{displayButton}}</span>
+        </button>
+    </div>
+</form>

@@ -9,18 +9,16 @@ import { map, catchError } from 'rxjs/operators';
 })
 export class AssetSettingServiceService {
 
-  baseUri:string = 'http://localhost:3000/api/assetg/';
+  baseUri:string = 'http://localhost:3000/api';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-  constructor(
-    private http: HttpClient
-  ) {}
+  constructor(private http: HttpClient) {}
 
-  CreateAssetGroup (data): Observable<any> {
-    let url = `${this.baseUri}/Asset_Group_Create`;
-    return this.http.post(url, data)
+  commonCreateMethod(serviceName:string,data): Observable<any> {
+    let url= this.baseUri+ '/' +serviceName;
+    return this.http.post(url, data);
     catchError(this.handleError) 
-  }
+  }  
 
   //Error Handling 
   handleError(error: HttpErrorResponse) {
