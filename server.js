@@ -87,7 +87,7 @@ const employeel = require ('./Server/web/Routes/Settings/General/EmployeeList.ro
 const asset = require ('./Server/web/Routes/Asset/Asset.routes');
 const assetl = require ('./Server/web/Routes/Asset/AssetList.routes');
 
-// Admin
+// Route URLS
 app.use('/api/company', company);
 app.use('/api/user', usrcreate);
 app.use('/api/userlgn', loginusr);
