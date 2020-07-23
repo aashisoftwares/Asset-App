@@ -21,18 +21,14 @@ export class ModelAssetsubgroupAssetSettingsComponent implements OnInit {
   //Create, Edit, Save and Update button name change based on the place
   headingDisplay : string;
   displayButton: string;
+  disableSubmitButton: boolean=false;
+
   Company_Id;
   User_Id;
 
   subGroupForm: FormGroup;
 
-  assetGroupList = [
-    {Asset_Group_Id: '5ee89fc04e9176180c96ca72', Asset_Group_Name: 'Hydrogen'},
-    {Asset_Group_Id: '5ee89fc04e9176180c96ca72', Asset_Group_Name: 'Helium'},
-    {Asset_Group_Id: '5ee89fc04e9176180c96ca72', Asset_Group_Name: 'Lithium'},
-    {Asset_Group_Id: '5ee89fc04e9176180c96ca72', Asset_Group_Name: 'Beryllium'},
-    {Asset_Group_Id: '5ee89fc04e9176180c96ca72', Asset_Group_Name: 'Boron'}
-  ];
+  assetGroupList = [];
     
   constructor(private modalService: BsModalService,
     public dialogRef: MatDialogRef<AssetSubGroupComponent>,
@@ -49,6 +45,7 @@ export class ModelAssetsubgroupAssetSettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.subGroupForm = new FormGroup({
+      _id: new FormControl(0),
       Asset_Sub_Group : new FormControl('', Validators.required),
       Asset_Group_Id : new FormControl('', Validators.required),
       Company_Id : new FormControl(this.Company_Id),
@@ -56,12 +53,23 @@ export class ModelAssetsubgroupAssetSettingsComponent implements OnInit {
       Last_Modified_By : new FormControl(''),
       Active_Status: new FormControl(true),
       If_Deleted: new FormControl(true)
-    })
+    });
+    this.fetchDataIntoForm();
   }
 
-  ngAfterviewInit(){
-    this.headingDisplay='Create';
-    this.displayButton='Submit';
+  fetchDataIntoForm(){
+    if(this.data.Mode=='add'){
+      this.headingDisplay='Create';
+      this.displayButton='Submit';
+    }else if(this.data.Mode=='view'){
+      this.disableSubmitButton=true;
+      this.headingDisplay='View';
+    }else if(this.data.Mode='edit'){
+      this.disableSubmitButton=false;
+      this.headingDisplay='Edit';
+      this.displayButton='Update';
+    }
+   // this.subGroupForm.patchValue(this.data.SubGroupModel);
   }
 
   closeModal(){
@@ -84,6 +92,14 @@ export class ModelAssetsubgroupAssetSettingsComponent implements OnInit {
           this.toastrService.errorMessage(this.constant.SERVER_ERROR);
         });
     }
+  }
+
+  getAssetGroupList(){
+    this.Service.commonGetListMethod(this.serviceName.asset_Group_List).subscribe(
+      data=>{
+        this.assetGroupList=data;
+      }
+    )
   }
   
 }

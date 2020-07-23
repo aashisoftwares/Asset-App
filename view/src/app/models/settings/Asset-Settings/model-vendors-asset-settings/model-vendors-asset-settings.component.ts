@@ -22,6 +22,7 @@ export class ModelVendorsAssetSettingsComponent implements OnInit {
   //Create, Edit, Save and Update button name change based on the place
   headingDisplay : string;
   displayButton: string;
+  disableSubmitButton: boolean=false;
 
   constructor(public dialogRef: MatDialogRef<VendorsComponent>,
               @Inject(MAT_DIALOG_DATA) private data,
@@ -37,6 +38,7 @@ export class ModelVendorsAssetSettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.Form = new FormGroup({
+      _id: new FormControl(0),
       Vendor_Name : new FormControl('',Validators.required),
       Address : new FormControl('',Validators.required),
       Phone_Number: new FormControl(''),
@@ -49,7 +51,23 @@ export class ModelVendorsAssetSettingsComponent implements OnInit {
       Last_Modified_By : new FormControl(''),
       Active_Status: new FormControl(true),
       If_Deleted: new FormControl(true)
-    })
+    });
+    this.fetchDataIntoForm();
+  }
+
+  fetchDataIntoForm(){
+    if(this.data.Mode=='add'){
+      this.headingDisplay='Create';
+      this.displayButton='Submit';
+    }else if(this.data.Mode=='view'){
+      this.disableSubmitButton=true;
+      this.headingDisplay='View';
+    }else if(this.data.Mode='edit'){
+      this.disableSubmitButton=false;
+      this.headingDisplay='Edit';
+      this.displayButton='Update';
+    };
+    this.Form.patchValue(this.data.vendorModel);
   }
 
   closeModal(){

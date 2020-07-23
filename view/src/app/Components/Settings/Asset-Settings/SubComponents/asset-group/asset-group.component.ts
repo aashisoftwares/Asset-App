@@ -4,14 +4,11 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { ModelAssetgroupAssetSettingsComponent } from "../../../../../models/settings/Asset-Settings/model-assetgroup-asset-settings/model-assetgroup-asset-settings.component";
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-
-const ELEMENT_DATA = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'}
-];
+import { AssetSettingServiceService } from 'src/app/Services/Asset-Settings/asset-setting-service.service';
+import { ConstantFile } from 'src/app/Services/constantFile';
+import { ServiceNames } from 'src/app/Services/serviceNames';
+import { ToastrService } from 'ngx-toastr';
+import { ToastrServiceService } from 'src/app/Services/toastr-service/toastr-service.service';
 
 @Component({
   selector: 'app-asset-group',
@@ -35,22 +32,28 @@ export class AssetGroupComponent implements OnInit {
   pageSize: String;   // records per page
 
   displayedColumns = ['sno', 'assetGroup','created','updated','action'];
-  assetGroupdataSource = ELEMENT_DATA ;
+  assetGroupdataSource = [];
 
   constructor(private modalService: BsModalService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private Service: AssetSettingServiceService,
+              private serviceName: ServiceNames,
+              private error: ConstantFile,
+              private toaster: ToastrServiceService ) { }
 
   ngOnInit(): void {
+    this.getListOfAssetGroup();
   }
 
   //CREATE ASSET GROUP
   dialogRef;
-  CreateAssetGroup(element) {
+  CreateAssetGroup(element,mode) {
    this.dialogRef = this.dialog.open(ModelAssetgroupAssetSettingsComponent, {
       height: 'auto',
       width: '500px',
       data: {
-        'AssetGroupModel' : element
+        'AssetGroupModel' : element,
+        'Mode': mode
       }
     });
     this.dialogRef.disableClose = true;
@@ -67,6 +70,16 @@ export class AssetGroupComponent implements OnInit {
 
   onSearchChange(event){
 
+  }
+
+  getListOfAssetGroup(){
+    this.Service.commonGetListMethod(this.serviceName.asset_Group_List).subscribe(
+      data => {
+        this.assetGroupdataSource=data;
+      },error =>{
+        this.toaster.errorMessage(this.error.SERVER_ERROR)
+      }
+    )
   }
 
 }

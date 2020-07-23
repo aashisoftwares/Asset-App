@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ModelSpaersAssetSettingsComponent } from 'src/app/models/settings/Asset-Settings/model-spaers-asset-settings/model-spaers-asset-settings.component';
+import { AssetSettingServiceService } from 'src/app/Services/Asset-Settings/asset-setting-service.service';
+import { ServiceNames } from 'src/app/Services/serviceNames';
+import { ConstantFile } from 'src/app/Services/constantFile';
+import { ToastrServiceService } from 'src/app/Services/toastr-service/toastr-service.service';
 
 @Component({
   selector: 'app-spares',
@@ -18,9 +22,14 @@ export class SparesComponent implements OnInit {
   displayedColumns = ['sno','spareName','spareType','created','updated','action'];
   spareDataSource = new MatTableDataSource<SparesComponent>() ;
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog,
+    private Service: AssetSettingServiceService,
+    private serviceName: ServiceNames,
+    private error: ConstantFile,
+    private toaster: ToastrServiceService) { }
 
   ngOnInit(): void {
+    this.getListOfSpare();
   }
 
   getServerData(event){
@@ -29,12 +38,13 @@ export class SparesComponent implements OnInit {
 
   //CREATE ASSET GROUP
   dialogRef;
-  CreateSpare(element) {
+  CreateSpare(element,mode) {
     this.dialogRef = this.dialog.open(ModelSpaersAssetSettingsComponent, {
       height: 'auto',
       width: '500px',
       data: {
-        'spareModel' : element
+        'spareModel' : element,
+        'Mode':mode
       }
     });
     this.dialogRef.disableClose = true;
@@ -42,6 +52,17 @@ export class SparesComponent implements OnInit {
       data => {
           this.ngOnInit();
       });
+  }
+
+  getListOfSpare(){
+    this.Service.commonGetListMethod(this.serviceName.spare_List).subscribe(
+      data =>{
+        this.spareDataSource = data; 
+        console.log(data);       
+      },error=>{
+        this.toaster.errorMessage(this.error.SERVER_ERROR);
+      }
+      );
   }
 
 }

@@ -29,7 +29,7 @@
                <mat-error *ngIf="Form.controls.Spare_Type.errors && Form.controls.Spare_Type.touched">
                   <div *ngIf="Form.controls.Spare_Type.errors.required"> Spare Type is Required </div>
                </mat-error>
-            </mat-form-field>
+         </mat-form-field>
          </div>
          <div class="col-md-12">
             <mat-checkbox [checked]= "true" formControlName="stockable">Stockable</mat-checkbox>
@@ -49,7 +49,7 @@
  
     </div>
     <div class="Model_Footer">
-       <button type="submit" (click)="onSubmit()" mat-raised-button color="primary">
+       <button type="submit" (click)="onSubmit()" [disabled]="disableSubmitButton"  mat-raised-button color="primary">
           <span>{{displayButton}}</span>
         </button>
     </div>

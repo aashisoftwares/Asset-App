@@ -1,7 +1,7 @@
 <div>
    <div class="row header_part">
       <div class="col-sm-3">
-         <button class="Create_Button" mat-raised-button (click)="CreateVendor(null)"> + Create </button>
+         <button class="Create_Button" mat-raised-button (click)="CreateVendor(null,'add')"> + Create </button>
       </div>
       <div class="col-sm-5">
          <div class="Search_Section">
@@ -27,31 +27,31 @@
       </ng-container>
       <ng-container matColumnDef="vendorName">
          <th mat-header-cell *matHeaderCellDef> Vendor Name </th>
-         <td mat-cell *matCellDef="let element"> </td>
+         <td mat-cell *matCellDef="let element">{{element.Vendor_Name}} </td>
       </ng-container>
-      <ng-container matColumnDef="address">
-         <th mat-header-cell *matHeaderCellDef> Address </th>
-         <td mat-cell *matCellDef="let element"> </td>
+      <ng-container matColumnDef="email">
+         <th mat-header-cell *matHeaderCellDef> Email Id </th>
+         <td mat-cell *matCellDef="let element">{{element.Vendor_Email}} </td>
       </ng-container>
       <ng-container matColumnDef="phoneNo">
          <th mat-header-cell *matHeaderCellDef> Phone No </th>
-         <td mat-cell *matCellDef="let element"> </td>
+         <td mat-cell *matCellDef="let element">{{element.Phone_Number}}</td>
       </ng-container>
       <ng-container matColumnDef="created">
          <th mat-header-cell *matHeaderCellDef> Created By/Dt</th>
-         <td mat-cell *matCellDef="let element"></td>
+         <td mat-cell *matCellDef="let element">{{element.Created_By}}<br/>{{element.createdAt|date:'dd-MM-yyyy'}}</td>
       </ng-container>
       <ng-container matColumnDef="updated">
          <th mat-header-cell *matHeaderCellDef> Updated By/Dt </th>
-         <td mat-cell *matCellDef="let element"> </td>
+         <td mat-cell *matCellDef="let element">{{element.Last_Modified_By}}<br/>{{element.updatedAt|date:'dd-MM-yyyy'}} </td>
       </ng-container>
       <ng-container matColumnDef="action">
          <th mat-header-cell *matHeaderCellDef> Action </th>
          <td mat-cell *matCellDef="let element">
-            <button class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+            <button class="Table_Action_mini Bg_Info" mat-mini-fab color="primary" (click)="CreateVendor(element,'view')">
                <i class="material-icons">zoom_in</i>
             </button>
-            <button class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+            <button class="Table_Action_mini Bg_warning" mat-mini-fab color="primary" (click)="CreateVendor(element,'edit')">
                <i class="material-icons">edit</i>
             </button>
             <button class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">

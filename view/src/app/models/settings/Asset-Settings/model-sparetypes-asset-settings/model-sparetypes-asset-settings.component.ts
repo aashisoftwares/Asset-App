@@ -21,6 +21,7 @@ export class ModelSparetypesAssetSettingsComponent implements OnInit {
   //Create, Edit, Save and Update button name change based on the place
   headingDisplay : string;
   displayButton: string;
+  disableSubmitButton: boolean=false;
   
   constructor(public dialogRef: MatDialogRef<SpareTypesComponent>,
     @Inject(MAT_DIALOG_DATA) private data,
@@ -36,13 +37,29 @@ export class ModelSparetypesAssetSettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.Form = new FormGroup({
+      _id: new FormControl(0),
       Spare_Type : new FormControl('', [Validators.required]),
       Company_Id : new FormControl(this.Company_Id),
       Created_By : new FormControl(this.User_Id),
       Last_Modified_By : new FormControl(''),
       Active_Status: new FormControl(true),
       If_Deleted: new FormControl(true)
-    })
+    });
+    this.fetchDataIntoForm();
+  }
+
+  fetchDataIntoForm(){
+    if(this.data.Mode=='add'){
+      this.headingDisplay='Create';
+      this.displayButton='Submit';
+    }else if(this.data.Mode=='view'){
+      this.disableSubmitButton=true;
+      this.headingDisplay='View';
+    }else if(this.data.Mode='edit'){
+      this.disableSubmitButton=false;
+      this.headingDisplay='Edit';
+      this.displayButton='Update';
+    };
   }
 
   closeModal(){

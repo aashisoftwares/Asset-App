@@ -81,26 +81,36 @@ exports.User_Create = (req, res) => {
 
 //User Login
 exports.User_Login = (req, res) => {
-    const usrlgn = req.body;
-    if(!usrlgn.User_Name || usrlgn.User_Name === ''){
-        res.status(400).send({Status: false, Message: "User Name can not be empty" });
-    }else if (!usrlgn.User_Password || usrlgn.User_Password === ''){
-        res.status(400).send({Status: false, Message: "Password can not be empty" });
-     } else {
-            RegisterModel.User_Management.findOne({ User_Name : {$regex : new RegExp ("^" + usrlgn.User_Name + "$" ,"i" )} , 
-                                                    User_Password : usrlgn.User_Password , 
-                                                    Active_status : true 
-                                                } , {User_Password : 0} , (err, result) => {
-             if(err){
-                ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'User Details Validate Query Error', 'register.controller.js', err);
-                res.status(417).send({status: false, Error:err, Message: "Some error occurred while Validating User Details!."});
-             }else {
-                if (result !== null){
-                    res.status(200).send({Status: true, Response: result });
-                    } else {
-                        res.status(200).send({Status: false, Message: 'User Details Not Valid!' });
-                     }
-                    }
-                });
-             }
-          };
+    const ReceivedData = req.body;
+    if(!ReceivedData.User_Name || ReceivedData.User_Name === '' ) {
+        res.status(400).send({Status: false, Message: "User_Name can not be empty" });
+     } else if (!ReceivedData.User_Password || ReceivedData.User_Password === ''  ) {
+        res.status(400).send({Status: false, Message: "User Password can not be empty" });
+     }else {
+        RegisterModel.User_Management.findOne({'User_Name': ReceivedData.User_Name.toLowerCase(),'User_Password': ReceivedData.User_Password, 'Active_Status': 'true'}, { Password: 0 }, {}, (err, result) => {
+            if(err) {
+                ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'User Validate Query Error', 'SignIn_SignUp.controller.js - 134', err);
+                res.status(500).send({Status:"False", Error:err, Message: "Some error occurred while User Validate"});           
+            }else {
+                if (result === null){
+                    RegisterModel.User_Management.findOne({'User_Name': ReceivedData.User_Name.toLowerCase()},{ User_Password: 0 },  {}, (err_check, result_check) => {
+                        if(err_check) {
+                            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'User Email Validate Query Error', 'SignIn_SignUp.controller.js - 140', err_check);
+                            res.status(500).send({Status:"False", Error:err_check, Message: "Some error occurred while User Email Validate"});           
+                        }else {
+                            if (result_check === null) {
+                                res.status(200).send({ Status:"True", Output:"False", Message: "Invalid account details!" });
+                            }else{
+                                res.status(200).send({ Status:"True", Output:"False",  Message: "Email and password do not match!" });
+                            }
+                        }
+                    });
+                }else {
+                    let payload = { subject : result._id }
+                    let token = jwt.sign(payload, 'MealAllyKey')
+                    res.status(200).send({ Status:"True", Output:'True', Response: result, Message: 'Sign In Success' , token });
+                }
+            }
+        });
+     }
+};

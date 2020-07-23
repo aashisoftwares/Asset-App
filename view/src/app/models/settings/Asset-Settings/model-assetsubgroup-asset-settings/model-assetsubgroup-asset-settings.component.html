@@ -1,5 +1,5 @@
 <mat-icon class="close-icon-large" (click)="closeModal()">highlight_off</mat-icon>
-<form [formGroup]="subGroupForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="subGroupForm">
    <div class="row">
       <div class="col-md-10">
          <h4 class="section_title">{{headingDisplay}}</h4>
@@ -21,9 +21,9 @@
          <div class="col-sm-12 form-group">
             <mat-form-field class="example-full-width" [floatLabel]="'always'">
                <mat-label class="example-label"> Asset Group </mat-label>
-               <mat-select formControlName="Asset_Group_Id">
-                  <mat-option *ngFor="let assetGroup of assetGroupList" [value]="assetGroup.Asset_Group_Id">
-                     {{assetGroup.Asset_Group_Name}}
+               <mat-select (click)="getAssetGroupList()" formControlName="Asset_Group_Id">
+                  <mat-option *ngFor="let assetGroup of assetGroupList" [value]="assetGroup._id">
+                     {{assetGroup.Asset_Group}}
                   </mat-option>
                </mat-select>
                <mat-error *ngIf="subGroupForm.controls.Asset_Group_Id.errors && subGroupForm.controls.Asset_Group_Id.touched">
@@ -31,19 +31,11 @@
                </mat-error>
             </mat-form-field>
          </div>
-         <!-- <div class="col-sm-12 form-group">
-            <div class="example-full-width">
-               <span class="font-style-combo">Asset Group<span class="mandatory-style">*</span></span>
-               <ng-select class="custom-dropdown" formControlName="Asset_Group" [items]="assetGroupList"
-                bindLabel="name" bindValue="name" id="assetgroup">
-             </ng-select>
-            </div>
-         </div> -->
       </div>
    </div>
 
    <div class="Model_Footer">
-      <button mat-raised-button color="primary">
+      <button mat-raised-button [disabled]="disableSubmitButton" (click)="onSubmit()" color="primary">
          <span>{{displayButton}}</span>
       </button>
    </div>

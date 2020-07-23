@@ -13,6 +13,8 @@ export class ModelManufacturerAssetSettingsComponent implements OnInit {
   //Create, Edit, Save and Update button name change based on the place
   headingDisplay : string;
   displayButton: string;
+  disableSubmitButton: boolean=false;
+
   Company_Id;
   User_Id;
 
@@ -30,15 +32,31 @@ export class ModelManufacturerAssetSettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.Form = new FormGroup({
+      _id: new FormControl(0),
       Manufacturer : new FormControl('', Validators.required),
       Asset_Group : new FormControl('', Validators.required),
       Company_Id : new FormControl(this.Company_Id, Validators.required),
       Created_By : new FormControl(this.User_Id, Validators.required)
-    })
+    });
+    this.fetchDataIntoForm();
   }
 
   closeModal(){
     this.dialogRef.close();
+  }
+
+  fetchDataIntoForm(){
+    if(this.data.Mode=='add'){
+      this.headingDisplay='Create';
+      this.displayButton='Submit';
+    }else if(this.data.Mode=='view'){
+      this.disableSubmitButton=true;
+      this.headingDisplay='View';
+    }else if(this.data.Mode='edit'){
+      this.disableSubmitButton=false;
+      this.headingDisplay='Edit';
+      this.displayButton='Update';
+    };
   }
 
   onSubmit(){

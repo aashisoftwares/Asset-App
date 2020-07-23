@@ -17,6 +17,8 @@ export class ModelSpaersAssetSettingsComponent implements OnInit {
   //Create, Edit, Save and Update button name change based on the place
   headingDisplay : string;
   displayButton: string;
+  disableSubmitButton: boolean=false;
+
   spareTypeList: string[] = ['Accessories','Consumable'];
 
   constructor(public dialogRef: MatDialogRef<SparesComponent>,
@@ -29,6 +31,7 @@ export class ModelSpaersAssetSettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.Form = new FormGroup({
+      _id: new FormControl(0),
       Spare_Name : new FormControl('',Validators.required),
       Spare_Type : new FormControl('', [Validators.required]),
       stockable : new FormControl(''),
@@ -36,8 +39,22 @@ export class ModelSpaersAssetSettingsComponent implements OnInit {
       description : new FormControl(''),
       Company_Id : new FormControl(this.Company_Id, Validators.required),
       Created_By : new FormControl(this.User_Id, Validators.required)
-    })
-    
+    });
+    this.fetchDataIntoForm(); 
+  }
+
+  fetchDataIntoForm(){
+    if(this.data.Mode=='add'){
+      this.headingDisplay='Create';
+      this.displayButton='Submit';
+    }else if(this.data.Mode=='view'){
+      this.disableSubmitButton=true;
+      this.headingDisplay='View';
+    }else if(this.data.Mode='edit'){
+      this.disableSubmitButton=false;
+      this.headingDisplay='Edit';
+      this.displayButton='Update';
+    };
   }
 
   closeModal(){

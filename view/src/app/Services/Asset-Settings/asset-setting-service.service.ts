@@ -20,6 +20,11 @@ export class AssetSettingServiceService {
     catchError(this.handleError) 
   }  
 
+  commonGetListMethod(serviceName:string): Observable<any>{
+    let url = this.baseUri+ '/' +serviceName;
+    return this.http.get(url);
+  }
+
   //Error Handling 
   handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';

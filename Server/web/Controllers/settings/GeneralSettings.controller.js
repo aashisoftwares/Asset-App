@@ -67,6 +67,27 @@ exports.Location_List = (req, res) => {
     });
 };
 
+//Location Simple List
+exports.Location_SList = (req, res) => {
+    const ReceivedData = req.body ;
+    if (!ReceivedData.Company_Id || ReceivedData.Company_Id === ' ') {
+        res.status(400).send({status: false, Message: "Company Name Can not be Empty"});
+    } else {
+        Promise.all([
+            GeneralSettingsModel.LocationSchema
+            .find({Company_Id: mongoose.Types.ObjectId(ReceivedData.Company_Id),If_Deleted: false}, { Location_Name : 1, Branch : 1, Department : 1, Description : 1},{sort: { updatedAt: -1 }})
+            .populate({ path: 'Created_By', select: ['Name']})
+            .exec(),
+        ]).then (result => {
+            const Result = (result[0]);
+            res.status(200).send({Status: true, Response: Result});
+        }).catch(err => {
+            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Asset Group Find Query Error', 'Activities.controller.js');
+            res.status(417).send({Status: false, Message: "Some error occurred while creating the Asset Group!."});
+         });
+    }
+};
+
 //Employee Group
 exports.Employee_Add = (req, res) => {
     const ReceivingData = req.body ;
@@ -130,4 +151,26 @@ exports.Employee_List = (req, res) => {
             res.json(result);
         }
     });
+};
+
+
+//Employee Simple List
+exports.Employee_SList = (req, res) => {
+    const ReceivedData = req.body ;
+    if (!ReceivedData.Company_Id || ReceivedData.Company_Id === ' ') {
+        res.status(400).send({status: false, Message: "Company Name Can not be Empty"});
+    } else {
+        Promise.all([
+            GeneralSettingsModel.HrEmployeeSchema
+            .find({Company_Id: mongoose.Types.ObjectId(ReceivedData.Company_Id),If_Deleted: false}, { Employee_Name : 1, Employee_Code : 1, Branch : 1, Department : 1, Designation : 1, Mobile_Number : 1, Email : 1 },{sort: { updatedAt: -1 }})
+            .populate({ path: 'Created_By', select: ['Name']})
+            .exec(),
+        ]).then (result => {
+            const Result = (result[0]);
+            res.status(200).send({Status: true, Response: Result});
+        }).catch(err => {
+            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Asset Group Find Query Error', 'Activities.controller.js');
+            res.status(417).send({Status: false, Message: "Some error occurred while creating the Asset Group!."});
+         });
+    }
 };
