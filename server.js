@@ -70,6 +70,18 @@ const assetven = require('./Server/web/Routes/Settings/Asset/vendors.routes');
 const assettype = require ('./Server/web/Routes/Settings/Asset/Assettype.routes');
 const assetown = require ('./Server/web/Routes/Settings/Asset/Ownershiptype.routes');
 const assetms = require ('./Server/web/Routes/Settings/Asset/maintanencestratagy.routes');
+
+const assetgrpe = require('./Server/web/Routes/Settings/AssetEdit/Assetgroupee.routes');
+const assetsgrpe = require('./Server/web/Routes/Settings/AssetEdit/Assetsubgroupe.routes');
+const assetmane = require('./Server/web/Routes/Settings/AssetEdit/Manufacturere.routes');
+const assetmoe = require('./Server/web/Routes/Settings/AssetEdit/Modele.routes');
+const assetspte = require('./Server/web/Routes/Settings/AssetEdit/Sparetypese.routes');
+const assetspe = require('./Server/web/Routes/Settings/AssetEdit/sparese.routes');
+const assetvene = require('./Server/web/Routes/Settings/AssetEdit/vendorse.routes');
+const assettypee = require ('./Server/web/Routes/Settings/AssetEdit/Assettypee.routes');
+const assetowne = require ('./Server/web/Routes/Settings/AssetEdit/Ownershiptypee.routes');
+const assetmse = require ('./Server/web/Routes/Settings/AssetEdit/maintanencestratagye.routes');
+
 const assetgrpl = require('./Server/web/Routes/Settings/AssetList/Assetgroupl.routes');
 const assetsgrpl = require('./Server/web/Routes/Settings/AssetList/Assetsubgroupl.routes');
 const assetmanl = require('./Server/web/Routes/Settings/AssetList/Manufacturerl.routes');
@@ -103,6 +115,7 @@ const assetl = require ('./Server/web/Routes/Asset/AssetList.routes');
 app.use('/api/company', company);
 app.use('/api/user', usrcreate);
 app.use('/api/userlgn', loginusr);
+
 app.use('/api/assetg', assetgrp);
 app.use('/api/assetsg', assetsgrp);
 app.use('/api/assetm', assetman);
@@ -113,6 +126,18 @@ app.use('/api/assetv', assetven);
 app.use('/api/assetty', assettype);
 app.use('/api/assetow', assetown);
 app.use('/api/assetms', assetms);
+
+app.use('/api/assetge', assetgrpe);
+app.use('/api/assetsge', assetsgrpe);
+app.use('/api/assetme', assetmane);
+app.use('/api/assetmoe', assetmoe);
+app.use('/api/assetste', assetspte);
+app.use('/api/assetse', assetspe);
+app.use('/api/assetve', assetvene);
+app.use('/api/assettye', assettypee);
+app.use('/api/assetowe', assetowne);
+app.use('/api/assetmse', assetmse);
+
 app.use('/api/assetgl', assetgrpl);
 app.use('/api/assetsgl', assetsgrpl);
 app.use('/api/assetml', assetmanl);
@@ -123,6 +148,7 @@ app.use('/api/assetvl', assetvenl);
 app.use('/api/assettyl', assettypel);
 app.use('/api/assetowl', assetownl);
 app.use('/api/assetmsl', assetmsl);
+
 app.use('/api/assetgsl', assetgrpsl);
 app.use('/api/assetsgsl', assetsgrpsl);
 app.use('/api/assetmsl', assetmansl);
@@ -133,6 +159,7 @@ app.use('/api/assetvsl', assetvensl);
 app.use('/api/assettysl', assettypesl);
 app.use('/api/assetowsl', assetownsl);
 app.use('/api/assetmssl', assetmssl);
+
 app.use('/api/clocate', location);
 app.use('/api/employee', employee);
 app.use('/api/clocatel', locationl);
