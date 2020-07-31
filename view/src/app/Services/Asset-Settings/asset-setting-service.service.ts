@@ -3,6 +3,8 @@ import { HttpClient } from "@angular/common/http";
 import { HttpHeaders, HttpErrorResponse } from "@angular/common/http";
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { LoginService } from '../Login/login.service';
+import { ServiceNames } from '../serviceNames';
 
 @Injectable({
   providedIn: 'root'
@@ -10,19 +12,35 @@ import { map, catchError } from 'rxjs/operators';
 export class AssetSettingServiceService {
 
   baseUri:string = 'http://localhost:3000/api';
-  headers = new HttpHeaders().set('Content-Type', 'application/json');
+  headers = new HttpHeaders().set('Content-Type', 'application/json').set('Access','application/json');
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+              private loginService: LoginService,
+              private serviceName: ServiceNames) {}
 
   commonCreateMethod(serviceName:string,data): Observable<any> {
-    let url= this.baseUri+ '/' +serviceName;
+    let url= this.serviceName.baseUrl+ serviceName;
     return this.http.post(url, data);
-    catchError(this.handleError) 
+    catchError(this.handleError) ;
   }  
 
   commonGetListMethod(serviceName:string): Observable<any>{
-    let url = this.baseUri+ '/' +serviceName;
+    let url = this.serviceName.baseUrl+ serviceName;
     return this.http.get(url);
+  }
+
+  commonPostListMethod(serviceName:string): Observable<any>{
+    let url = this.serviceName.baseUrl+ serviceName;    
+    let data={"Company_Id":this.loginService.getcompanyId()}
+    return this.http.post(url,data,{headers:this.headers});
+    catchError(this.handleError);
+  }
+
+  commonPostListMethodTest(serviceName:string,data): Observable<any>{
+    let url = this.serviceName.baseUrl+ serviceName;    
+    let httpOption = {withcredentials:true}
+    return this.http.post(url,data,{headers:this.headers});
+    catchError(this.handleError);
   }
 
   //Error Handling 

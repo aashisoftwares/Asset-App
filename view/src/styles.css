@@ -203,3 +203,7 @@ table {
  .ng-select.custom-dropdown {
    margin-top: 0.2rem !important;
  }
+
+ .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
+   padding-left: 0px !important;
+ }

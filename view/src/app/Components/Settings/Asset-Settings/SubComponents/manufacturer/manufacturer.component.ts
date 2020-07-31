@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ModelManufacturerAssetSettingsComponent } from 'src/app/models/settings/Asset-Settings/model-manufacturer-asset-settings/model-manufacturer-asset-settings.component';
@@ -6,6 +6,7 @@ import { AssetSettingServiceService } from 'src/app/Services/Asset-Settings/asse
 import { ServiceNames } from 'src/app/Services/serviceNames';
 import { ConstantFile } from 'src/app/Services/constantFile';
 import { ToastrServiceService } from 'src/app/Services/toastr-service/toastr-service.service';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-manufacturer',
@@ -19,8 +20,10 @@ export class ManufacturerComponent implements OnInit {
   pageIndex: String;  //set page number starts with zeroo
   pageSize: String;   // records per page
 
-  displayedColumns = ['sno','manufacturer','assetGroup','created','updated','action'];
-  manufacturerdataSource = new MatTableDataSource<ManufacturerComponent>() ;
+  displayedColumns = ['sno','manufacturer','assetGroup','created','action'];
+  manufacturerdataSource = [] ;
+  dataSource: MatTableDataSource<any>;
+  @ViewChild(MatPaginator) pagination: MatPaginator;
 
   constructor(private dialog: MatDialog,
     private Service: AssetSettingServiceService,
@@ -30,10 +33,6 @@ export class ManufacturerComponent implements OnInit {
 
   ngOnInit(): void {
     this.getListOfManufacturerList();
-  }
-
-  getServerData(event){
-
   }
 
   //CREATE ASSET GROUP
@@ -55,9 +54,13 @@ export class ManufacturerComponent implements OnInit {
   }
 
   getListOfManufacturerList(){
-    this.Service.commonGetListMethod(this.serviceName.manufacturer_List).subscribe(
+    this.Service.commonPostListMethod(this.serviceName.manufacturer_List).subscribe(
       data =>{
-        this.manufacturerdataSource = data;       
+         this.manufacturerdataSource = data.Response;     
+         this.dataSource=new MatTableDataSource<any>(this.manufacturerdataSource);
+         setTimeout(() => {
+           this.dataSource.paginator=this.pagination;
+         }, 0);  
       },error=>{
         this.toaster.errorMessage(this.error.SERVER_ERROR);
       }

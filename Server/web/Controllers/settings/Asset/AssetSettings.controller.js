@@ -23,7 +23,7 @@ exports.Asset_Group_Create = (req, res) => {
             Created_By : mongoose.Types.ObjectId(ReceivingData.Created_By),
             Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
             Active_Status: true,
-            If_Deleted: true
+            If_Deleted: false
         });
         Create_AssetGroup.save ((err , result) => {
             if (err) {
@@ -69,7 +69,7 @@ exports.Asset_Sub_Group_Create = (req, res) => {
             Created_By : mongoose.Types.ObjectId(ReceivingData.Created_By),
             Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
             Active_Status: true,
-            If_Deleted: true
+            If_Deleted: false
         });
         Create_AssetSubGroup.save ((err , result) => {
             if (err) {
@@ -116,7 +116,7 @@ exports.Manufac_Create = (req, res) => {
             Created_By : mongoose.Types.ObjectId(ReceivingData.Created_By),
             Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
             Active_Status: true,
-            If_Deleted: true
+            If_Deleted: false
         });
         Create_Manufacturer.save ((err , result) => {
             if (err) {
@@ -160,7 +160,7 @@ exports.Spare_Type_Create = (req, res) => {
             Created_By : mongoose.Types.ObjectId(ReceivingData.Created_By),
             Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
             Active_Status: true,
-            If_Deleted: true
+            If_Deleted: false
         });
         Create_SpareType.save ((err , result) => {
             if (err) {
@@ -210,7 +210,7 @@ exports.Model_Create = (req, res) => {
             Created_By : mongoose.Types.ObjectId(ReceivingData.Created_By),
             Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
             Active_Status: true,
-            If_Deleted: true
+            If_Deleted: false
         });
         Create_Model.save ((err , result) => {
             if (err) {
@@ -260,7 +260,7 @@ exports.Spares_Create = (req, res) => {
             Created_By : mongoose.Types.ObjectId(ReceivingData.Created_By),
             Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
             Active_Status: true,
-            If_Deleted: true
+            If_Deleted: false
         });
         Create_Spares.save ((err , result) => {
             if (err) {
@@ -316,7 +316,7 @@ exports.Vendors_Create = (req, res) => {
             Created_By : mongoose.Types.ObjectId(ReceivingData.Created_By),
             Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
             Active_Status: true,
-            If_Deleted: true
+            If_Deleted: false
         });
         Create_Vendors.save ((err , result) => {
             if (err) {
@@ -358,7 +358,7 @@ exports.Asset_Type_Create = (req, res) => {
             Created_By : mongoose.Types.ObjectId(ReceivingData.Created_By),
             Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
             Active_Status: true,
-            If_Deleted: true
+            If_Deleted: false
         });
         Create_AssetType.save ((err , result) => {
             if (err) {
@@ -401,7 +401,7 @@ exports.Ownership_Type_Create = (req, res) => {
             Created_By : mongoose.Types.ObjectId(ReceivingData.Created_By),
             Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
             Active_Status: true,
-            If_Deleted: true
+            If_Deleted: false
         });
         Create_OwnershipType.save ((err , result) => {
             if (err) {
@@ -444,7 +444,7 @@ exports.Maintain_Stratagy_Create = (req, res) => {
             Created_By : mongoose.Types.ObjectId(ReceivingData.Created_By),
             Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
             Active_Status: true,
-            If_Deleted: true
+            If_Deleted: false
         });
         Create_Maintain_Stratagy.save ((err , result) => {
             if (err) {

@@ -9,6 +9,7 @@ import { ConstantFile } from 'src/app/Services/constantFile';
 import { ServiceNames } from 'src/app/Services/serviceNames';
 import { ToastrService } from 'ngx-toastr';
 import { ToastrServiceService } from 'src/app/Services/toastr-service/toastr-service.service';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-asset-group',
@@ -31,8 +32,10 @@ export class AssetGroupComponent implements OnInit {
   pageIndex: String;  //set page number starts with zeroo
   pageSize: String;   // records per page
 
-  displayedColumns = ['sno', 'assetGroup','created','updated','action'];
+  displayedColumns = ['sno', 'assetGroup','created','action'];
   assetGroupdataSource = [];
+  dataSource: MatTableDataSource<any>;
+  @ViewChild(MatPaginator) pagination: MatPaginator;
 
   constructor(private modalService: BsModalService,
               private dialog: MatDialog,
@@ -62,20 +65,15 @@ export class AssetGroupComponent implements OnInit {
           this.ngOnInit();
       });
   }
-
-  getServerData(event){
-    console.log(event);
-    
-  }
-
-  onSearchChange(event){
-
-  }
-
+ 
   getListOfAssetGroup(){
-    this.Service.commonGetListMethod(this.serviceName.asset_Group_List).subscribe(
+    this.Service.commonPostListMethod(this.serviceName.asset_Group_List).subscribe(
       data => {
-        this.assetGroupdataSource=data;
+        this.assetGroupdataSource=data.Response;
+        this.dataSource=new MatTableDataSource<any>(this.assetGroupdataSource);
+        setTimeout(() => {
+          this.dataSource.paginator=this.pagination;
+        }, 0);
       },error =>{
         this.toaster.errorMessage(this.error.SERVER_ERROR)
       }

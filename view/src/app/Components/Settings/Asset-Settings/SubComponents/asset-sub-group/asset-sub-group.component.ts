@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { ModelAssetsubgroupAssetSettingsComponent } from "../../../../../models/settings/Asset-Settings/model-assetsubgroup-asset-settings/model-assetsubgroup-asset-settings.component";
@@ -8,6 +8,7 @@ import { ToastrServiceService } from 'src/app/Services/toastr-service/toastr-ser
 import { ConstantFile } from 'src/app/Services/constantFile';
 import { ServiceNames } from 'src/app/Services/serviceNames';
 import { AssetSettingServiceService } from 'src/app/Services/Asset-Settings/asset-setting-service.service';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-asset-sub-group',
@@ -22,8 +23,10 @@ export class AssetSubGroupComponent implements OnInit {
   pageIndex: String;  //set page number starts with zeroo
   pageSize: String;   // records per page
 
-  displayedColumns = ['sno','subGroup','assetGroup','created','updated','action'];
-  assetSubGroupdataSource = new MatTableDataSource<AssetSubGroupComponent>() ;
+  displayedColumns = ['sno','subGroup','assetGroup','created','action'];
+  assetSubGroupdataSource = [];
+  dataSource: MatTableDataSource<any>;
+  @ViewChild(MatPaginator) pagination: MatPaginator;
   
   constructor(private modalService: BsModalService,
               private dialog: MatDialog,
@@ -54,15 +57,15 @@ export class AssetSubGroupComponent implements OnInit {
       });
   }
 
-  getServerData(event){
-
-  }
-
   getListOfAssetSubGroup(){
-    this.Service.commonGetListMethod(this.serviceName.asset_subGroup_List).subscribe(
+    this.Service.commonPostListMethod(this.serviceName.asset_subGroup_List).subscribe(
       data =>{
-        this.assetSubGroupdataSource = data;
-      },error=>{
+        this.assetSubGroupdataSource = data.Response;
+        this.dataSource=new MatTableDataSource<any>(this.assetSubGroupdataSource);
+        setTimeout(() => {
+          this.dataSource.paginator=this.pagination;
+        }, 0);
+      },error=>{    
         this.toaster.errorMessage(this.error.SERVER_ERROR);
       }
       )

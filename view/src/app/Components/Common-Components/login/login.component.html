@@ -30,7 +30,7 @@
                                 <input type="password" formControlName="User_Password" placeholder="Password">
                             </div>
                             <div class="Submit_Btn">
-                                <button type="submit" [routerLink]="['dashboard']" mat-raised-button color="primary"> Submit </button>
+                                <button type="submit" (click)="submit()" mat-raised-button color="primary"> Submit </button>
                             </div>
                          </form>
                      </div>

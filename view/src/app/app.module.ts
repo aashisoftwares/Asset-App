@@ -147,10 +147,8 @@ import { ConstantFile } from './Services/constantFile';
     CUSTOM_ELEMENTS_SCHEMA,
     NO_ERRORS_SCHEMA
   ],
-  exports: [MatInputModule,
-            MatIconModule],
   entryComponents: [
-                    
+        ModelAssetsubgroupAssetSettingsComponent  
                     ]
 })
 export class AppModule { }

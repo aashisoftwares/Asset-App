@@ -18,23 +18,24 @@
                </mat-error>
             </mat-form-field>
          </div>
-         <div class="col-sm-12 form-group">
-            <mat-form-field class="example-full-width" [floatLabel]="'always'">
-               <mat-label class="example-label"> Asset Group </mat-label>
-               <mat-select (click)="getAssetGroupList()" formControlName="Asset_Group_Id">
-                  <mat-option *ngFor="let assetGroup of assetGroupList" [value]="assetGroup._id">
-                     {{assetGroup.Asset_Group}}
-                  </mat-option>
-               </mat-select>
-               <mat-error *ngIf="subGroupForm.controls.Asset_Group_Id.errors && subGroupForm.controls.Asset_Group_Id.touched">
-                  <div *ngIf="subGroupForm.controls.Asset_Group_Id.errors.required"> Asset Group is Required </div>
-               </mat-error>
-            </mat-form-field>
+         <div class="col-sm-12 form-group" style="padding-bottom: 30px;">
+            <div class="example-full-width">
+               <span class="font-style-combo">Asset Group<span class="mandatory-style">*</span></span>
+               <ng-select class="custom-dropdown" [items]="assetGroupList" [bindLabel]="'Asset_Group'"
+                  formControlName="Asset_Group_Name" [searchable]="true" placeholder="Asset Group"
+                  (click)="getAssetGroupList()" (change)="setAssetGroupValue($event)">
+               </ng-select>
+               <mat-error
+               *ngIf="subGroupForm.controls.Asset_Group_Name.invalid && subGroupForm.controls.Asset_Group_Name.touched">
+               <div style="font-size: 11px " *ngIf="subGroupForm.controls.Asset_Group_Name.errors.required">
+                  Asset Group is Required </div>
+             </mat-error>
+            </div>
          </div>
       </div>
    </div>
 
-   <div class="Model_Footer">
+   <div class="Model_Footer" style="padding-top: 5px;">
       <button mat-raised-button [disabled]="disableSubmitButton" (click)="onSubmit()" color="primary">
          <span>{{displayButton}}</span>
       </button>

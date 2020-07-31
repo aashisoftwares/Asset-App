@@ -9,6 +9,7 @@ import { AssetGroupComponent } from 'src/app/Components/Settings/Asset-Settings/
 import { ToastrServiceService } from 'src/app/Services/toastr-service/toastr-service.service';
 import { ServiceNames } from 'src/app/Services/serviceNames';
 import { ConstantFile } from 'src/app/Services/constantFile';
+import { LoginService } from 'src/app/Services/Login/login.service';
 
 // import { map } from 'rxjs/operators';
 
@@ -33,6 +34,7 @@ export class ModelAssetgroupAssetSettingsComponent implements OnInit {
   headingDisplay : string;
   displayButton: string;
   disableSubmitButton: boolean=false;
+  setValueToForm: boolean=false;
 
   constructor(
     private modalService: BsModalService,
@@ -43,10 +45,11 @@ export class ModelAssetgroupAssetSettingsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) private data,
     private toastrService: ToastrServiceService,
     private serviceName: ServiceNames,
-    private error: ConstantFile
+    private error: ConstantFile,
+    private loginService: LoginService
   ) {  
-     this.Company_Id = "5ed8bc9eba679310987c12cd";
-     this.User_Id = "5ed8d69fc2b07e09dcd16828";
+     this.Company_Id = this.loginService.getcompanyId();
+     this.User_Id = this.loginService.getUserId();
    }
 
   ngOnInit(): void {
@@ -58,9 +61,7 @@ export class ModelAssetgroupAssetSettingsComponent implements OnInit {
       Created_By : new FormControl(this.User_Id),
       Last_Modified_By : new FormControl(''),
       Active_Status: new FormControl(true),
-      If_Deleted: new FormControl(true),
-      createdAt: new FormControl(''),
-      updatedAt: new FormControl(''),
+      If_Deleted: new FormControl(false)
     });
     this.fetchDataIntoForm();
   }
@@ -69,22 +70,29 @@ export class ModelAssetgroupAssetSettingsComponent implements OnInit {
     if(this.data.Mode=='add'){
       this.headingDisplay='Create';
       this.displayButton='Submit';
+      this.setValueToForm=false;
     }else if(this.data.Mode=='view'){
       this.disableSubmitButton=true;
       this.headingDisplay='View';
+      this.setValueToForm=true;
     }else if(this.data.Mode='edit'){
       this.disableSubmitButton=false;
       this.headingDisplay='Edit';
       this.displayButton='Update';
+      this.setValueToForm=true;
     }
-    this.Form.patchValue(this.data.AssetGroupModel);
-    
+    if(this.setValueToForm){
+      this.Form.patchValue(this.data.AssetGroupModel);
+      this.Form.controls.Created_By.setValue(this.data.AssetGroupModel.Created_By._id);
+      this.Form.controls.Last_Modified_By.setValue(this.User_Id);
+    }
+
   }
 
 
   closeModal(){
     this.dialogRef.close();
-  }
+  }  
 
   onSubmit() {
     if (!this.Form.valid) {

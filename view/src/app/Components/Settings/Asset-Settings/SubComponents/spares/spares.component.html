@@ -16,11 +16,10 @@
          </div>
       </div>
       <div class="col-sm-4">
-         <mat-paginator #paginatorUsers [pageSizeOptions]="[5, 10, 25, 50, 100]" [length]="length"
-            [pageIndex]="pageIndex" [pageSize]="pageSize" (page)="getServerData($event)"></mat-paginator>
+         <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]"></mat-paginator>
       </div>
    </div>
-   <table mat-table [dataSource]="spareDataSource" class="mat-elevation-z8">
+   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="sno">
          <th mat-header-cell *matHeaderCellDef> S.No </th>
          <td mat-cell *matCellDef="let element; let i=index;"> {{i+1}} </td>
@@ -31,15 +30,11 @@
       </ng-container>
       <ng-container matColumnDef="spareType">
          <th mat-header-cell *matHeaderCellDef> Spare Type </th>
-         <td mat-cell *matCellDef="let element"> </td>
+         <td mat-cell *matCellDef="let element">{{element.Spare_Type_Id.Spare_Type}} </td>
       </ng-container>
       <ng-container matColumnDef="created">
-         <th mat-header-cell *matHeaderCellDef> Created By/Dt</th>
-         <td mat-cell *matCellDef="let element">{{element.Created_By}}<br/>{{element.createdAt|date:'dd-MM-yyyy'}}</td>
-      </ng-container>
-      <ng-container matColumnDef="updated">
-         <th mat-header-cell *matHeaderCellDef> Updated By/Dt </th>
-         <td mat-cell *matCellDef="let element">{{element.Last_Modified_By}}<br/>{{element.updatedAt|date:'dd-MM-yyyy'}} </td>
+         <th mat-header-cell *matHeaderCellDef> Created By</th>
+         <td mat-cell *matCellDef="let element">{{element.Created_By.Name}}</td>
       </ng-container>
       <ng-container matColumnDef="action">
          <th mat-header-cell *matHeaderCellDef> Action </th>

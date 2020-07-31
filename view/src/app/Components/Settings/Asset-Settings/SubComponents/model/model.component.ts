@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ModelModelAssetSettingsComponent } from 'src/app/models/settings/Asset-Settings/model-model-asset-settings/model-model-asset-settings.component';
@@ -6,6 +6,7 @@ import { AssetSettingServiceService } from 'src/app/Services/Asset-Settings/asse
 import { ServiceNames } from 'src/app/Services/serviceNames';
 import { ConstantFile } from 'src/app/Services/constantFile';
 import { ToastrServiceService } from 'src/app/Services/toastr-service/toastr-service.service';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-model',
@@ -19,8 +20,10 @@ export class ModelComponent implements OnInit {
   pageIndex: String;  //set page number starts with zeroo
   pageSize: String;   // records per page
 
-  displayedColumns = ['sno','model','manufacturer','created','updated','action'];
-  modeldataSource = new MatTableDataSource<ModelComponent>() ;
+  displayedColumns = ['sno','model','manufacturer','assetGroup','created','action'];
+  modeldataSource = [];
+  dataSource: MatTableDataSource<any>;
+  @ViewChild(MatPaginator) pagination: MatPaginator;
 
   constructor(private dialog: MatDialog,
     private Service: AssetSettingServiceService,
@@ -31,11 +34,7 @@ export class ModelComponent implements OnInit {
   ngOnInit(): void {
     this.getListForModel();
   }
-
-  getServerData(event){
-
-  }
-
+  
   //CREATE ASSET GROUP
   dialogRef;
   CreateModel(element,mode) {
@@ -55,9 +54,13 @@ export class ModelComponent implements OnInit {
   }
 
   getListForModel(){
-    this.Service.commonGetListMethod(this.serviceName.model_List).subscribe(
+    this.Service.commonPostListMethod(this.serviceName.model_List).subscribe(
       data =>{
-        this.modeldataSource = data;        
+        this.modeldataSource = data.Response;     
+        this.dataSource=new MatTableDataSource<any>(this.modeldataSource);
+        setTimeout(() => {
+          this.dataSource.paginator=this.pagination;
+        }, 0);    
       },error=>{
         this.toaster.errorMessage(this.error.SERVER_ERROR);
       }

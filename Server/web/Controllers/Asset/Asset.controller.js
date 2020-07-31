@@ -54,7 +54,7 @@ exports.Asset_Create = (req, res) => {
             Created_By : mongoose.Types.ObjectId(ReceivingData.Created_By),
             Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
             Active_Status: true,
-            If_Deleted: true
+            If_Deleted: false
         });
         Create_AssetAdd.save ((err , result) => {
             if (err) {

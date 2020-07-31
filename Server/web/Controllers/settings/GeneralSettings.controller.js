@@ -29,7 +29,7 @@ exports.Location_Create = (req, res) => {
             Created_By : mongoose.Types.ObjectId(ReceivingData.Created_By),
             Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
             Active_Status: true,
-            If_Deleted: true
+            If_Deleted: false
         });
         Create_LocationCreate.save ((err , result) => {
             if (err) {
@@ -115,7 +115,7 @@ exports.Employee_Add = (req, res) => {
             Created_By : mongoose.Types.ObjectId(ReceivingData.Created_By),
             Last_Modified_By : mongoose.Types.ObjectId(ReceivingData.Created_By),
             Active_Status : true,
-            If_Deleted : true
+            If_Deleted : false
         });
         Create_EmployeeAdd.save ((err , result) => {
             if (err) {
