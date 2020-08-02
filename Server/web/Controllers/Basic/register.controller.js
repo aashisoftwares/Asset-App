@@ -87,7 +87,7 @@ exports.User_Login = (req, res) => {
      } else if (!ReceivedData.User_Password || ReceivedData.User_Password === ''  ) {
         res.status(400).send({Status: false, Message: "User Password can not be empty" });
      }else {
-        ResRegisterModel.RestaurantUsersSchema.findOne({'User_Name': ReceivedData.User_Name.toLowerCase(),'Active_Status': 'true'},{ Password: 0 }, {},(err, result) => {
+        RegisterModel.User_Management.findOne({'User_Name': ReceivedData.User_Name.toLowerCase(),'Active_Status': 'true'},{ Password: 0 }, {},(err, result) => {
             if(err) {
                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'User Validate Query Error', 'Res_controller.js - 134', err);
                 res.status(500).send({Status:"False", Error:err, Message: "Some error occurred while User Validate"});           

@@ -15,7 +15,7 @@ exports.Asset_Group_Remove = (req, res) => {
         AssetModel.AssetGroupSchema.findOne({'_id': ReceivedData.Asset_Group_Id},{},{}, (err, result)=> {
             if(err){
                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Asset Group Find Query Error', 'AssetSettingsEdit.controller.js', err);
-                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find Asset Group!."});
+                  res.status(417).send({Status: false, Error:err, Message: "Some error occurred while Find Asset Group!."});
             }else {
                 if(result !== null){
                     result.If_Deleted = true;
@@ -48,7 +48,7 @@ exports.Asset_Sub_Group_Remove = (req, res) => {
         AssetModel.AssetSubGroupSchema.findOne({'_id': ReceivedData.Asset_Sub_Group_Id},{},{}, (err, result)=> {
             if(err){
                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Asset Sub Group Find Query Error', 'AssetSettingsEdit.controller.js', err);
-                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find Asset Sub Group!."});
+                  res.status(417).send({Status: false, Error:err, Message: "Some error occurred while Find Asset Sub Group!."});
             }else {
                 if(result !== null){
                     result.If_Deleted = true;
@@ -81,7 +81,7 @@ exports.Manufac_Remove = (req, res) => {
         AssetModel.ManufacturerSchema.findOne({'_id': ReceivedData.Manufacturer_Id},{},{}, (err, result)=> {
             if(err){
                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Manufacturer Find Query Error', 'AssetSettingsEdit.controller.js', err);
-                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find Manufacturer!."});
+                  res.status(417).send({Status: false, Error:err, Message: "Some error occurred while Find Manufacturer!."});
             }else {
                 if(result !== null){
                     result.If_Deleted = true;
@@ -114,7 +114,7 @@ exports.Spare_Type_Remove = (req, res) => {
         AssetModel.SpareTypeSchema.findOne({'_id': ReceivedData.Spare_Type_Id},{},{}, (err, result)=> {
             if(err){
                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Spare_Type Find Query Error', 'AssetSettingsEdit.controller.js', err);
-                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find Spare_Type!."});
+                  res.status(417).send({Status: false, Error:err, Message: "Some error occurred while Find Spare_Type!."});
             }else {
                 if(result !== null){
                     result.If_Deleted = true;
@@ -147,7 +147,7 @@ exports.Model_Remove = (req, res) => {
         AssetModel.ModelSchema.findOne({'_id': ReceivedData.Model_Name_Id},{},{}, (err, result)=> {
             if(err){
                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Model_Name Find Query Error', 'AssetSettingsEdit.controller.js', err);
-                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find Model_Name!."});
+                  res.status(417).send({Status: false, Error:err, Message: "Some error occurred while Find Model_Name!."});
             }else {
                 if(result !== null){
                     result.If_Deleted = true;
@@ -180,7 +180,7 @@ exports.Spares_Remove= (req, res) => {
         AssetModel.SparesSchema.findOne({'_id': ReceivedData.Spare_Name_Id},{},{}, (err, result)=> {
             if(err){
                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Spare_Name Find Query Error', 'AssetSettingsEdit.controller.js', err);
-                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find Spare_Name!."});
+                  res.status(417).send({Status: false, Error:err, Message: "Some error occurred while Find Spare_Name!."});
             }else {
                 if(result !== null){
                     result.If_Deleted = true;
@@ -213,7 +213,7 @@ exports.Vendors_Remove = (req, res) => {
         AssetModel.VendorsSchema.findOne({'_id': ReceivedData.Vendor_Name_Id},{},{}, (err, result)=> {
             if(err){
                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Vendor_Name Find Query Error', 'AssetSettingsEdit.controller.js', err);
-                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find Vendor_Name!."});
+                  res.status(417).send({Status: false, Error:err, Message: "Some error occurred while Find Vendor_Name!."});
             }else {
                 if(result !== null){
                     result.If_Deleted = true;
@@ -245,7 +245,7 @@ exports.Asset_Type_Remove = (req, res) => {
         AssetModel.AssetTypeSchema.findOne({'_id': ReceivedData.Asset_Type_Id},{},{}, (err, result)=> {
             if(err){
                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Asset_Type Find Query Error', 'AssetSettingsEdit.controller.js', err);
-                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find Asset_Type!."});
+                  res.status(417).send({Status: false, Error:err, Message: "Some error occurred while Find Asset_Type!."});
             }else {
                 if(result !== null){
                     result.If_Deleted = true;
@@ -278,7 +278,7 @@ exports.Ownership_Type_Remove= (req, res) => {
         AssetModel.OwnershipTypeSchema.findOne({'_id': ReceivedData.Ownership_Type_Id},{},{}, (err, result)=> {
             if(err){
                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'OwnershipType Find Query Error', 'AssetSettingsEdit.controller.js', err);
-                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find OwnershipType!."});
+                  res.status(417).send({Status: false, Error:err, Message: "Some error occurred while Find OwnershipType!."});
             }else {
                 if(result !== null){
                     result.If_Deleted = true;
@@ -311,7 +311,7 @@ exports.Maintain_Stratagy_Remove = (req, res) => {
         AssetModel.MaintainStratagySchema.findOne({'_id': ReceivedData.Mainatanance_Stratagy_Id},{},{}, (err, result)=> {
             if(err){
                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Mainatanance_Stratagy Find Query Error', 'AssetSettingsEdit.controller.js', err);
-                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find Mainatanance_Stratagy!."});
+                  res.status(417).send({Status: false, Error:err, Message: "Some error occurred while Find Mainatanance_Stratagy!."});
             }else {
                 if(result !== null){
                     result.If_Deleted = true;

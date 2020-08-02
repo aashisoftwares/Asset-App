@@ -17,7 +17,7 @@ exports.Asset_Group_Edit = (req, res) => {
         AssetModel.AssetGroupSchema.findOne({'_id': ReceivedData.Asset_Group_Id},{},{}, (err, result)=> {
             if(err){
                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Asset Group Find Query Error', 'AssetSettingsEdit.controller.js', err);
-                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find Asset Group!."});
+                  res.status(417).send({Status: false, Error:err, Message: "Some error occurred while Find Asset Group!."});
             }else {
                 if(result !== null){
                     result.Asset_Group = ReceivedData.Asset_Group;
@@ -34,7 +34,7 @@ exports.Asset_Group_Edit = (req, res) => {
                             .exec((err2,result2) => {
                                 if(err2) {
                                     ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Asset Group Find Query Error', 'AssetSettingsEdit.controller.js', err2);
-                                    res.status(417).send({status: false, Message: "Some error occurred while Find Asset Group!."});
+                                    res.status(417).send({Status: false, Message: "Some error occurred while Find Asset Group!."});
                                 }else {
                                     var Result = (result2);
                                     res.status(200).send({Status: true, Response: Result });
@@ -64,7 +64,7 @@ exports.Asset_Sub_Group_Edit = (req, res) => {
         AssetModel.AssetSubGroupSchema.findOne({'_id': ReceivedData.Asset_Sub_Group_Id},{},{}, (err, result)=> {
             if(err){
                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Asset Sub Group Find Query Error', 'AssetSettingsEdit.controller.js', err);
-                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find Asset Sub Group!."});
+                  res.status(417).send({Status: false, Error:err, Message: "Some error occurred while Find Asset Sub Group!."});
             }else {
                 if(result !== null){
                     result.Asset_Sub_Group = ReceivedData.Asset_Sub_Group;
@@ -81,7 +81,7 @@ exports.Asset_Sub_Group_Edit = (req, res) => {
                             .exec((err2,result2) => {
                                 if(err2) {
                                     ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Asset Sub Group Find Query Error', 'AssetSettingsEdit.controller.js', err2);
-                                    res.status(417).send({status: false, Message: "Some error occurred while Find Asset Sub Group!."});
+                                    res.status(417).send({Status: false, Message: "Some error occurred while Find Asset Sub Group!."});
                                 }else {
                                     var Result = (result2);
                                     res.status(200).send({Status: true, Response: Result });
@@ -111,7 +111,7 @@ exports.Manufac_Edit = (req, res) => {
         AssetModel.ManufacturerSchema.findOne({'_id': ReceivedData.Manufacturer_Id},{},{}, (err, result)=> {
             if(err){
                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Manufacturer Find Query Error', 'AssetSettingsEdit.controller.js', err);
-                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find Manufacturer!."});
+                  res.status(417).send({Status: false, Error:err, Message: "Some error occurred while Find Manufacturer!."});
             }else {
                 if(result !== null){
                     result.Manufacturer = ReceivedData.Manufacturer;
@@ -128,7 +128,7 @@ exports.Manufac_Edit = (req, res) => {
                             .exec((err2,result2) => {
                                 if(err2) {
                                     ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'ManufacturerFind Query Error', 'AssetSettingsEdit.controller.js', err2);
-                                    res.status(417).send({status: false, Message: "Some error occurred while Find Manufacturer!."});
+                                    res.status(417).send({Status: false, Message: "Some error occurred while Find Manufacturer!."});
                                 }else {
                                     var Result = (result2);
                                     res.status(200).send({Status: true, Response: Result });
@@ -158,7 +158,7 @@ exports.Spare_Type_Edit = (req, res) => {
         AssetModel.SpareTypeSchema.findOne({'_id': ReceivedData.Spare_Type_Id},{},{}, (err, result)=> {
             if(err){
                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Spare_Type Find Query Error', 'AssetSettingsEdit.controller.js', err);
-                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find Spare_Type!."});
+                  res.status(417).send({Status: false, Error:err, Message: "Some error occurred while Find Spare_Type!."});
             }else {
                 if(result !== null){
                     result.Spare_Type = ReceivedData.Spare_Type;
@@ -175,7 +175,7 @@ exports.Spare_Type_Edit = (req, res) => {
                             .exec((err2,result2) => {
                                 if(err2) {
                                     ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Spare_TypeFind Query Error', 'AssetSettingsEdit.controller.js', err2);
-                                    res.status(417).send({status: false, Message: "Some error occurred while Find Spare_Type!."});
+                                    res.status(417).send({Status: false, Message: "Some error occurred while Find Spare_Type!."});
                                 }else {
                                     var Result = (result2);
                                     res.status(200).send({Status: true, Response: Result });
@@ -205,7 +205,7 @@ exports.Model_Edit = (req, res) => {
         AssetModel.ModelSchema.findOne({'_id': ReceivedData.Model_Name_Id},{},{}, (err, result)=> {
             if(err){
                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Model_Name Find Query Error', 'AssetSettingsEdit.controller.js', err);
-                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find Model_Name!."});
+                  res.status(417).send({Status: false, Error:err, Message: "Some error occurred while Find Model_Name!."});
             }else {
                 if(result !== null){
                     result.Model_Name = ReceivedData.Model_Name;
@@ -222,7 +222,7 @@ exports.Model_Edit = (req, res) => {
                             .exec((err2,result2) => {
                                 if(err2) {
                                     ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Model_Name Find Query Error', 'AssetSettingsEdit.controller.js', err2);
-                                    res.status(417).send({status: false, Message: "Some error occurred while Find Model_Name!."});
+                                    res.status(417).send({Status: false, Message: "Some error occurred while Find Model_Name!."});
                                 }else {
                                     var Result = (result2);
                                     res.status(200).send({Status: true, Response: Result });
@@ -252,7 +252,7 @@ exports.Spares_Edit = (req, res) => {
         AssetModel.SparesSchema.findOne({'_id': ReceivedData.Spare_Name_Id},{},{}, (err, result)=> {
             if(err){
                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Spare_Name Find Query Error', 'AssetSettingsEdit.controller.js', err);
-                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find Spare_Name!."});
+                  res.status(417).send({Status: false, Error:err, Message: "Some error occurred while Find Spare_Name!."});
             }else {
                 if(result !== null){
                     result.Spare_Name = ReceivedData.Spare_Name;
@@ -269,7 +269,7 @@ exports.Spares_Edit = (req, res) => {
                             .exec((err2,result2) => {
                                 if(err2) {
                                     ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Spare_Name Find Query Error', 'AssetSettingsEdit.controller.js', err2);
-                                    res.status(417).send({status: false, Message: "Some error occurred while Find Spare_Name!."});
+                                    res.status(417).send({Status: false, Message: "Some error occurred while Find Spare_Name!."});
                                 }else {
                                     var Result = (result2);
                                     res.status(200).send({Status: true, Response: Result });
@@ -316,7 +316,7 @@ exports.Vendors_Edit = (req, res) => {
                             .exec((err2,result2) => {
                                 if(err2) {
                                     ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Vendor_Name Find Query Error', 'AssetSettingsEdit.controller.js', err2);
-                                    res.status(417).send({status: false, Message: "Some error occurred while Find Vendor_Name!."});
+                                    res.status(417).send({Status: false, Message: "Some error occurred while Find Vendor_Name!."});
                                 }else {
                                     var Result = (result2);
                                     res.status(200).send({Status: true, Response: Result });
@@ -345,7 +345,7 @@ exports.Asset_Type_Edit = (req, res) => {
         AssetModel.AssetTypeSchema.findOne({'_id': ReceivedData.Asset_Type_Id},{},{}, (err, result)=> {
             if(err){
                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Asset_Type Find Query Error', 'AssetSettingsEdit.controller.js', err);
-                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find Asset_Type!."});
+                  res.status(417).send({Status: false, Error:err, Message: "Some error occurred while Find Asset_Type!."});
             }else {
                 if(result !== null){
                     result.Asset_Type = ReceivedData.Asset_Type;
@@ -362,7 +362,7 @@ exports.Asset_Type_Edit = (req, res) => {
                             .exec((err2,result2) => {
                                 if(err2) {
                                     ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Asset_Type Find Query Error', 'AssetSettingsEdit.controller.js', err2);
-                                    res.status(417).send({status: false, Message: "Some error occurred while Find Asset_Type."});
+                                    res.status(417).send({Status: false, Message: "Some error occurred while Find Asset_Type."});
                                 }else {
                                     var Result = (result2);
                                     res.status(200).send({Status: true, Response: Result });
@@ -392,7 +392,7 @@ exports.Ownership_Type_Edit = (req, res) => {
         AssetModel.OwnershipTypeSchema.findOne({'_id': ReceivedData.Ownership_Type_Id},{},{}, (err, result)=> {
             if(err){
                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'OwnershipType Find Query Error', 'AssetSettingsEdit.controller.js', err);
-                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find OwnershipType!."});
+                  res.status(417).send({Status: false, Error:err, Message: "Some error occurred while Find OwnershipType!."});
             }else {
                 if(result !== null){
                     result.Ownership_Type_Name  = ReceivedData.Ownership_Type_Name ;
@@ -409,7 +409,7 @@ exports.Ownership_Type_Edit = (req, res) => {
                             .exec((err2,result2) => {
                                 if(err2) {
                                     ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'OwnershipType Find Query Error', 'AssetSettingsEdit.controller.js', err2);
-                                    res.status(417).send({status: false, Message: "Some error occurred while Find OwnershipType!."});
+                                    res.status(417).send({Status: false, Message: "Some error occurred while Find OwnershipType!."});
                                 }else {
                                     var Result = (result2);
                                     res.status(200).send({Status: true, Response: Result });
@@ -439,7 +439,7 @@ exports.Maintain_Stratagy_Edit = (req, res) => {
         AssetModel.MaintainStratagySchema.findOne({'_id': ReceivedData.Mainatanance_Stratagy_Id},{},{}, (err, result)=> {
             if(err){
                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Mainatanance_Stratagy Find Query Error', 'AssetSettingsEdit.controller.js', err);
-                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find Mainatanance_Stratagy!."});
+                  res.status(417).send({Status: false, Error:err, Message: "Some error occurred while Find Mainatanance_Stratagy!."});
             }else {
                 if(result !== null){
                     result.Mainatanance_Stratagy = ReceivedData.Mainatanance_Stratagy;
@@ -456,7 +456,7 @@ exports.Maintain_Stratagy_Edit = (req, res) => {
                             .exec((err2,result2) => {
                                 if(err2) {
                                     ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Mainatanance_Stratagy Find Query Error', 'AssetSettingsEdit.controller.js', err2);
-                                    res.status(417).send({status: false, Message: "Some error occurred while Find Mainatanance_Stratagy!."});
+                                    res.status(417).send({Status: false, Message: "Some error occurred while Find Mainatanance_Stratagy!."});
                                 }else {
                                     var Result = (result2);
                                     res.status(200).send({Status: true, Response: Result });

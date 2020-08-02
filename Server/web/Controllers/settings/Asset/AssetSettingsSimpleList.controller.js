@@ -8,7 +8,7 @@ const CryptoJS = require("crypto-js");
 exports.Asset_Group_SList = (req, res) => {
     const ReceivedData = req.body ;
     if (!ReceivedData.Company_Id || ReceivedData.Company_Id === ' ') {
-        res.status(400).send({status: false, Message: "Company Name Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Company Name Can not be Empty"});
     } else {
         Promise.all([
             AssetModel.AssetGroupSchema
@@ -29,7 +29,7 @@ exports.Asset_Group_SList = (req, res) => {
 exports.Asset_Sub_Group_SList = (req, res) => {
     const ReceivedData = req.body ;
     if (!ReceivedData.Company_Id || ReceivedData.Company_Id === ' ') {
-        res.status(400).send({status: false, Message: "Company Name Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Company Name Can not be Empty"});
     } else {
         Promise.all([
             AssetModel.AssetSubGroupSchema
@@ -52,7 +52,7 @@ exports.Asset_Sub_Group_SList = (req, res) => {
 exports.Manufac_SList = (req, res) => {
     const ReceivedData = req.body ;
     if (!ReceivedData.Company_Id || ReceivedData.Company_Id === ' ') {
-        res.status(400).send({status: false, Message: "Company Name Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Company Name Can not be Empty"});
     } else {
         Promise.all([
             AssetModel.ManufacturerSchema
@@ -75,7 +75,7 @@ exports.Manufac_SList = (req, res) => {
 exports.Spare_Type_SList = (req, res) => {
     const ReceivedData = req.body ;
     if (!ReceivedData.Company_Id || ReceivedData.Company_Id === ' ') {
-        res.status(400).send({status: false, Message: "Company Name Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Company Name Can not be Empty"});
     } else {
         Promise.all([
             AssetModel.SpareTypeSchema
@@ -96,7 +96,7 @@ exports.Spare_Type_SList = (req, res) => {
 exports.Model_SList = (req, res) => {
     const ReceivedData = req.body ;
     if (!ReceivedData.Company_Id || ReceivedData.Company_Id === ' ') {
-        res.status(400).send({status: false, Message: "Company Name Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Company Name Can not be Empty"});
     } else {
         Promise.all([
             AssetModel.ModelSchema
@@ -120,7 +120,7 @@ exports.Model_SList = (req, res) => {
 exports.Spares_SList = (req, res) => {
     const ReceivedData = req.body ;
     if (!ReceivedData.Company_Id || ReceivedData.Company_Id === ' ') {
-        res.status(400).send({status: false, Message: "Company Name Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Company Name Can not be Empty"});
     } else {
         Promise.all([
             AssetModel.SparesSchema
@@ -143,7 +143,7 @@ exports.Spares_SList = (req, res) => {
 exports.Vendors_SList = (req, res) => {
     const ReceivedData = req.body ;
     if (!ReceivedData.Company_Id || ReceivedData.Company_Id === ' ') {
-        res.status(400).send({status: false, Message: "Company Name Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Company Name Can not be Empty"});
     } else {
         Promise.all([
             AssetModel.VendorsSchema
@@ -164,7 +164,7 @@ exports.Vendors_SList = (req, res) => {
 exports.Asset_Type_SList = (req, res) => {
     const ReceivedData = req.body ;
     if (!ReceivedData.Company_Id || ReceivedData.Company_Id === ' ') {
-        res.status(400).send({status: false, Message: "Company Name Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Company Name Can not be Empty"});
     } else {
         Promise.all([
             AssetModel.AssetTypeSchema
@@ -187,7 +187,7 @@ exports.Asset_Type_SList = (req, res) => {
 exports.Ownership_Type_SList = (req, res) => {
     const ReceivedData = req.body ;
     if (!ReceivedData.Company_Id || ReceivedData.Company_Id === ' ') {
-        res.status(400).send({status: false, Message: "Company Name Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Company Name Can not be Empty"});
     } else {
         Promise.all([
             AssetModel.OwnershipTypeSchema
@@ -209,7 +209,7 @@ exports.Ownership_Type_SList = (req, res) => {
 exports.Maintain_Stratagy_SList = (req, res) => {
     const ReceivedData = req.body ;
     if (!ReceivedData.Company_Id || ReceivedData.Company_Id === ' ') {
-        res.status(400).send({status: false, Message: "Company Name Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Company Name Can not be Empty"});
     } else {
         Promise.all([
             AssetModel.MaintainStratagySchema

@@ -10,15 +10,15 @@ exports.Location_Create = (req, res) => {
     const ReceivingData = req.body ;
 
     if (!ReceivingData.Location_Name || ReceivingData.Location_Name === ' ') {        
-        res.status(400).send({status: false, Message: "Location Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Location Can not be Empty"});
     } else if (!ReceivingData.Branch || ReceivingData.Branch === ' ') {        
-        res.status(400).send({status: false, Message: "Branch Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Branch Can not be Empty"});
     } else if (!ReceivingData.Department || ReceivingData.Department === ' ') {        
-        res.status(400).send({status: false, Message: "Department Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Department Can not be Empty"});
     } else if (!ReceivingData.Company_Id || ReceivingData.Company_Id === ' ') {
-        res.status(400).send({status: false, Message: "Company ID Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Company ID Can not be Empty"});
     } else if (!ReceivingData.Created_By || ReceivingData.Created_By === ' ') {
-        res.status(400).send({status: false, Message: "User Details Can not be Empty"});
+        res.status(400).send({Status: false, Message: "User Details Can not be Empty"});
     } else {
         const Create_LocationCreate = new GeneralSettingsModel.LocationSchema({
             Location_Name: ReceivingData.Location_Name,
@@ -43,7 +43,7 @@ exports.Location_Create = (req, res) => {
                 .exec (function (err1, result1) {
                     if (err1) {
                         ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Employee Find Query Error', 'GeneralSettings.controller.js', err1);
-                        res.status(417).send({status: false, Message: "Some error occurred while Find Employee!."});
+                        res.status(417).send({Status: false, Message: "Some error occurred while Find Employee!."});
                     } else {
                         res.status(200).send({Status: true, Response: result1 });
                     }         
@@ -71,7 +71,7 @@ exports.Location_List = (req, res) => {
 exports.Location_SList = (req, res) => {
     const ReceivedData = req.body ;
     if (!ReceivedData.Company_Id || ReceivedData.Company_Id === ' ') {
-        res.status(400).send({status: false, Message: "Company Name Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Company Name Can not be Empty"});
     } else {
         Promise.all([
             GeneralSettingsModel.LocationSchema
@@ -93,15 +93,15 @@ exports.Employee_Add = (req, res) => {
     const ReceivingData = req.body ;
 
     if (!ReceivingData.Employee_Name || ReceivingData.Employee_Name === ' ') {        
-        res.status(400).send({status: false, Message: "Location Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Location Can not be Empty"});
     } else if (!ReceivingData.Branch || ReceivingData.Branch === ' ') {        
-        res.status(400).send({status: false, Message: "Branch Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Branch Can not be Empty"});
     } else if (!ReceivingData.Department || ReceivingData.Department === ' ') {        
-        res.status(400).send({status: false, Message: "Department Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Department Can not be Empty"});
     } else if (!ReceivingData.Company_Id || ReceivingData.Company_Id === ' ') {
-        res.status(400).send({status: false, Message: "Company ID Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Company ID Can not be Empty"});
     } else if (!ReceivingData.Created_By || ReceivingData.Created_By === ' ') {
-        res.status(400).send({status: false, Message: "User Details Can not be Empty"});
+        res.status(400).send({Status: false, Message: "User Details Can not be Empty"});
     } else {
         const Create_EmployeeAdd = new GeneralSettingsModel.HrEmployeeSchema({
             Employee_Name : ReceivingData.Employee_Name,
@@ -129,7 +129,7 @@ exports.Employee_Add = (req, res) => {
                 .exec (function (err1, result1) {
                     if (err1) {
                         ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Location Find Query Error', 'GeneralSettings.controller.js', err1);
-                        res.status(417).send({status: false, Message: "Some error occurred while Find Location!."});
+                        res.status(417).send({Status: false, Message: "Some error occurred while Find Location!."});
                     } else {
                         res.status(200).send({Status: true, Response: result1 });
                     }         
@@ -158,7 +158,7 @@ exports.Employee_List = (req, res) => {
 exports.Employee_SList = (req, res) => {
     const ReceivedData = req.body ;
     if (!ReceivedData.Company_Id || ReceivedData.Company_Id === ' ') {
-        res.status(400).send({status: false, Message: "Company Name Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Company Name Can not be Empty"});
     } else {
         Promise.all([
             GeneralSettingsModel.HrEmployeeSchema

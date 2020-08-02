@@ -9,25 +9,25 @@ exports.Asset_Create = (req, res) => {
     const ReceivingData = req.body ;
 
     if (!ReceivingData.Asset_Nick_Name || ReceivingData.Asset_Nick_Name === ' ') {        
-        res.status(400).send({status: false, Message: "Asset Name Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Asset Name Can not be Empty"});
     } else if (!ReceivingData.Serial_Number || ReceivingData.Serial_Number === ' ') {
-        res.status(400).send({status: false, Message: "Serial NUmber Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Serial NUmber Can not be Empty"});
     } else if (!ReceivingData.Asset_Code || ReceivingData.Asset_Code === ' ') {
-        res.status(400).send({status: false, Message: "Asset Code Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Asset Code Can not be Empty"});
     } else if (!ReceivingData.Model_Id || ReceivingData.Model_Id === ' ') {
-        res.status(400).send({status: false, Message: "Asset Model Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Asset Model Can not be Empty"});
     } else if (!ReceivingData.Asset_Group_Id || ReceivingData.Asset_Group_Id === ' ') {
-        res.status(400).send({status: false, Message: "Asset Group Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Asset Group Can not be Empty"});
     } else if (!ReceivingData.Asset_Sub_Group_Id || ReceivingData.Asset_Sub_Group_Id === ' ') {
-        res.status(400).send({status: false, Message: "Asset Sub Group Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Asset Sub Group Can not be Empty"});
     } else if (!ReceivingData.AssManufacturer__Id || ReceivingData.AssManufacturer__Id === ' ') {
-        res.status(400).send({status: false, Message: "Manufacturer Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Manufacturer Can not be Empty"});
     } else if (!ReceivingData.Location_Id || ReceivingData.Location_Id === ' ') {
-        res.status(400).send({status: false, Message: "Asset Location Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Asset Location Can not be Empty"});
     } else if (!ReceivingData.Company_Id || ReceivingData.Company_Id === ' ') {
-        res.status(400).send({status: false, Message: "Company ID Can not be Empty"});
+        res.status(400).send({Status: false, Message: "Company ID Can not be Empty"});
     } else if (!ReceivingData.Created_By || ReceivingData.Created_By === ' ') {
-        res.status(400).send({status: false, Message: "User Details Can not be Empty"});
+        res.status(400).send({Status: false, Message: "User Details Can not be Empty"});
     } else {
         const Create_AssetAdd = new AssetCreateModel.AssetSchema({
             Asset_Nick_Name: ReceivingData.Asset_Nick_Name,
@@ -78,7 +78,7 @@ exports.Asset_Create = (req, res) => {
                 .exec (function (err1, result1) {
                     if (err1) {
                         ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Asset Find Query Error', 'AssetSettings.controller.js', err1);
-                        res.status(417).send({status: false, Message: "Some error occurred while Find Asset!."});
+                        res.status(417).send({Status: false, Message: "Some error occurred while Find Asset!."});
                     } else {
                         res.status(200).send({Status: true, Response: result1 });
                     }         
