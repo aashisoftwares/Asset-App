@@ -71,7 +71,7 @@ const assettype = require ('./Server/web/Routes/Settings/Asset/Assettype.routes'
 const assetown = require ('./Server/web/Routes/Settings/Asset/Ownershiptype.routes');
 const assetms = require ('./Server/web/Routes/Settings/Asset/maintanencestratagy.routes');
 
-const assetgrpe = require('./Server/web/Routes/Settings/AssetEdit/Assetgroupee.routes');
+const assetgrpe = require('./Server/web/Routes/Settings/AssetEdit/Assetgroupe.routes');
 const assetsgrpe = require('./Server/web/Routes/Settings/AssetEdit/Assetsubgroupe.routes');
 const assetmane = require('./Server/web/Routes/Settings/AssetEdit/Manufacturere.routes');
 const assetmoe = require('./Server/web/Routes/Settings/AssetEdit/Modele.routes');
@@ -81,6 +81,17 @@ const assetvene = require('./Server/web/Routes/Settings/AssetEdit/vendorse.route
 const assettypee = require ('./Server/web/Routes/Settings/AssetEdit/Assettypee.routes');
 const assetowne = require ('./Server/web/Routes/Settings/AssetEdit/Ownershiptypee.routes');
 const assetmse = require ('./Server/web/Routes/Settings/AssetEdit/maintanencestratagye.routes');
+
+const assetgrpr = require('./Server/web/Routes/Settings/AssetRemove/Assetgroupr.routes');
+const assetsgrpr = require('./Server/web/Routes/Settings/AssetRemove/Assetsubgroupr.routes');
+const assetmanr = require('./Server/web/Routes/Settings/AssetRemove/Manufacturerr.routes');
+const assetmor = require('./Server/web/Routes/Settings/AssetRemove/Modelr.routes');
+const assetsptr = require('./Server/web/Routes/Settings/AssetRemove/Sparetypesr.routes');
+const assetspr = require('./Server/web/Routes/Settings/AssetRemove/sparesr.routes');
+const assetvenr = require('./Server/web/Routes/Settings/AssetRemove/vendorsr.routes');
+const assettyper = require ('./Server/web/Routes/Settings/AssetRemove/Assettyper.routes');
+const assetownr = require ('./Server/web/Routes/Settings/AssetRemove/Ownershiptyper.routes');
+const assetmsr= require ('./Server/web/Routes/Settings/AssetRemove/maintanencestratagyr.routes');
 
 const assetgrpl = require('./Server/web/Routes/Settings/AssetList/Assetgroupl.routes');
 const assetsgrpl = require('./Server/web/Routes/Settings/AssetList/Assetsubgroupl.routes');
@@ -137,6 +148,17 @@ app.use('/api/assetve', assetvene);
 app.use('/api/assettye', assettypee);
 app.use('/api/assetowe', assetowne);
 app.use('/api/assetmse', assetmse);
+
+app.use('/api/assetgr', assetgrpr);
+app.use('/api/assetsgr', assetsgrpr);
+app.use('/api/assetmr', assetmanr);
+app.use('/api/assetmor', assetmor);
+app.use('/api/assetstr', assetsptr);
+app.use('/api/assetsr', assetspr);
+app.use('/api/assetvr', assetvenr);
+app.use('/api/assettyr', assettyper);
+app.use('/api/assetowr', assetownr);
+app.use('/api/assetmsr', assetmsr);
 
 app.use('/api/assetgl', assetgrpl);
 app.use('/api/assetsgl', assetsgrpl);

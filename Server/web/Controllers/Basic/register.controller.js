@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const RegisterModel = require('../../Models/register.model');
 const ErrorManagement = require('../../../handling/ErrorHandling');
-const CryptoJS = require("crypto-js");
+const bcrypt = require("bcrypt");
 
 // company_register
 exports.company_register = (req, res) => {
@@ -54,9 +54,10 @@ exports.User_Create = (req, res) => {
     }else if(!UserCreate.User_Password || UserCreate.User_Password === '' ){
         res.status(400).send({Status: false, Message: "User Password can not be empty" });
     }else {
+        bcrypt.hash(UserCreate.User_Password, 10).then((hash) => {
         const CreateUser_Management = new RegisterModel.User_Management({
          User_Name : UserCreate.User_Name,
-         User_Password : UserCreate.User_Password,
+         User_Password : hash,
          Name : UserCreate.Name,
          Phone : UserCreate.Phone,
          Email : UserCreate.Email,
@@ -68,13 +69,12 @@ exports.User_Create = (req, res) => {
             if (err){
                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'User Creation Query Error', 'register.controller.js', err);
                 res.status(400).send({Status: false, Message: "Some error occurred while creating the User!."});
-                console.log (err);
             }
             else {
-                console.log (result);
                 res.status(200).send({Status: true, Response: result , Message : "User Registered Successfully"});
             }
         });
+      });
     }
 }
 
@@ -87,30 +87,20 @@ exports.User_Login = (req, res) => {
      } else if (!ReceivedData.User_Password || ReceivedData.User_Password === ''  ) {
         res.status(400).send({Status: false, Message: "User Password can not be empty" });
      }else {
-        RegisterModel.User_Management.findOne({'User_Name': ReceivedData.User_Name.toLowerCase(),'User_Password': ReceivedData.User_Password, 'Active_Status': 'true'}, { Password: 0 }, {}, (err, result) => {
+        ResRegisterModel.RestaurantUsersSchema.findOne({'User_Name': ReceivedData.User_Name.toLowerCase(),'Active_Status': 'true'},{ Password: 0 }, {},(err, result) => {
             if(err) {
-                ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'User Validate Query Error', 'SignIn_SignUp.controller.js - 134', err);
+                ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'User Validate Query Error', 'Res_controller.js - 134', err);
                 res.status(500).send({Status:"False", Error:err, Message: "Some error occurred while User Validate"});           
             }else {
-                if (result === null){
-                    RegisterModel.User_Management.findOne({'User_Name': ReceivedData.User_Name.toLowerCase()},{ User_Password: 0 },  {}, (err_check, result_check) => {
-                        if(err_check) {
-                            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'User Email Validate Query Error', 'SignIn_SignUp.controller.js - 140', err_check);
-                            res.status(500).send({Status:"False", Error:err_check, Message: "Some error occurred while User Email Validate"});           
-                        }else {
-                            if (result_check === null) {
-                                res.status(200).send({ Status:"True", Output:"False", Message: "Invalid account details!" });
-                            }else{
-                                res.status(200).send({ Status:"True", Output:"False",  Message: "Email and password do not match!" });
-                            }
-                        }
-                    });
-                }else {
-                    let payload = { subject : result._id }
-                    let token = jwt.sign(payload, 'MealAllyKey')
-                    res.status(200).send({ Status:"True", Output:'True', Response: result, Message: 'Sign In Success' , token });
-                }
+                bcrypt.compare(ReceivedData.User_Password,result.User_Password, (err1, result1) => {
+                    if(err1) {
+                        console.log('Comparison error: ', err1);
+                    }
+                })
+                let payload = { subject : result._id }
+                let token = jwt.sign(payload, 'MealAllyKey')
+                res.status(200).send({ Status:"True", Output:'True', Response: result, Message: 'Sign In Success' , token });
             }
-        });
-     }
+    });
+  }
 };
