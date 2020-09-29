@@ -64,8 +64,8 @@
             </div>
         </div>
     </div>
-    <div class="Model_Footer">
-        <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="Form.invalid">
+    <div class="Model_Footer" *ngIf="!disableSubmitButton">
+        <button mat-raised-button color="primary" (click)="onSubmit(displayButton)" [disabled]="Form.invalid">
             <span>{{displayButton}}</span>
         </button>
     </div>

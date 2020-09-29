@@ -32,7 +32,7 @@ const appRoutes: Routes = [
     component : AssetListComponent,
   },
   {
-    path : 'asset_create',
+    path : 'asset_create/:pId',
     component : AssetComponent,
   },
   {

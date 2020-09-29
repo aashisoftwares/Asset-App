@@ -25,7 +25,7 @@
 
    </div>
    <div class="Model_Footer">
-      <button type="submit" [disabled]="disableSubmitButton" (click)="onSubmit()" mat-raised-button color="primary">
+      <button type="submit" [disabled]="Form.invalid" (click)="onSubmit(displayButton)" mat-raised-button color="primary">
          <span>{{displayButton}} </span>
        </button>
    </div>

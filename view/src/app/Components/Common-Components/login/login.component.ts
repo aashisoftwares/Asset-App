@@ -41,5 +41,9 @@ export class LoginComponent implements OnInit {
      }
    });
  }
+
+ submit1(){
+  this.router.navigate(['/dashboard']);
+ }
   
 }

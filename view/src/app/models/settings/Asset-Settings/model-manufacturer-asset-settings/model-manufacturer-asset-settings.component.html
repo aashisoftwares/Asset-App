@@ -1,5 +1,5 @@
 <mat-icon class="close-icon-large" (click)="closeModal()">highlight_off</mat-icon>
-<form [formGroup]="Form" (ngSubmit)="onSubmit()">
+<form [formGroup]="Form">
    <div class="row">
       <div class="col-md-10">
          <h4 class="section_title">{{headingDisplay}}</h4>
@@ -18,24 +18,27 @@
                </mat-error>
             </mat-form-field>
          </div>
-         <div class="col-sm-12 form-group">
-            <mat-form-field class="example-full-width" [floatLabel]="'always'">
-               <mat-label class="example-label"> Asset Group </mat-label>
-               <mat-select formControlName="Asset_Group" multiple>
-                  <mat-option *ngFor="let assetGroup of assetGroupList" [value]="assetGroup">
-                     {{assetGroup}}
-                  </mat-option>
-               </mat-select>
-               <mat-error *ngIf="Form.controls.Asset_Group.errors && Form.controls.Asset_Group.touched">
-                  <div *ngIf="Form.controls.Asset_Group.errors.required"> Asset Group is Required </div>
-               </mat-error>
-            </mat-form-field>
+
+         <div class="col-sm-12 form-group" style="padding-bottom: 30px;">
+            <div class="example-full-width">
+               <span class="font-style-combo">Asset Group<span class="mandatory-style">*</span></span>
+               <ng-select class="custom-dropdown" [items]="assetGroupList" [bindLabel]="'Asset_Group'"
+                  formControlName="Asset_Group_Name" [searchable]="true" placeholder="Asset Group"
+                  (click)="getAssetGroupList()" (change)="setAssetGroupValue($event)">
+               </ng-select>
+               <mat-error
+               *ngIf="Form.controls.Asset_Group_Name.invalid && Form.controls.Asset_Group_Name.touched">
+               <div style="font-size: 11px " *ngIf="Form.controls.Asset_Group_Name.errors.required">
+                  Asset Group is Required </div>
+             </mat-error>
+            </div>
          </div>
+
       </div>
    </div>
 
-   <div class="Model_Footer">
-      <button mat-raised-button color="primary" [disabled]="disableSubmitButton">
+   <div class="Model_Footer" *ngIf="!disableSubmitButton">
+      <button mat-raised-button color="primary" [disabled]="Form.invalid" (click)="onSubmit(displayButton)" >
          <span>{{displayButton}}</span>
       </button>
    </div>

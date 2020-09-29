@@ -6,6 +6,7 @@ import { ToastrServiceService } from 'src/app/Services/toastr-service/toastr-ser
 import { ServiceNames } from 'src/app/Services/serviceNames';
 import { ConstantFile } from 'src/app/Services/constantFile';
 import { AssetSettingServiceService } from 'src/app/Services/Asset-Settings/asset-setting-service.service';
+import { LoginService } from 'src/app/Services/Login/login.service';
 
 @Component({
   selector: 'app-model-vendors-asset-settings',
@@ -23,15 +24,18 @@ export class ModelVendorsAssetSettingsComponent implements OnInit {
   headingDisplay : string;
   displayButton: string;
   disableSubmitButton: boolean=false;
+  methodName:string='';
+  setValueToForm: boolean=false;
 
   constructor(public dialogRef: MatDialogRef<VendorsComponent>,
               @Inject(MAT_DIALOG_DATA) private data,
               private toastrService: ToastrServiceService,
               private serviceName: ServiceNames,
               private constant: ConstantFile,
-              private Service:AssetSettingServiceService) { 
-     this.Company_Id = "5ed8bc9eba679310987c12cd";
-     this.User_Id = "5ed8d69fc2b07e09dcd16828";
+              private Service:AssetSettingServiceService,
+              private loginService: LoginService) { 
+     this.Company_Id = this.loginService.getcompanyId();
+     this.User_Id = this.loginService.getUserId();
      this.headingDisplay='Create';
      this.displayButton='Submit';
   }
@@ -39,6 +43,7 @@ export class ModelVendorsAssetSettingsComponent implements OnInit {
   ngOnInit(): void {
     this.Form = new FormGroup({
       _id: new FormControl(0),
+      Vendor_Name_Id: new FormControl(0),
       Vendor_Name : new FormControl('',Validators.required),
       Address : new FormControl('',Validators.required),
       Phone_Number: new FormControl(''),
@@ -59,31 +64,41 @@ export class ModelVendorsAssetSettingsComponent implements OnInit {
     if(this.data.Mode=='add'){
       this.headingDisplay='Create';
       this.displayButton='Submit';
+      this.setValueToForm=false;
     }else if(this.data.Mode=='view'){
       this.disableSubmitButton=true;
       this.headingDisplay='View';
+      this.setValueToForm=true;
     }else if(this.data.Mode='edit'){
       this.disableSubmitButton=false;
       this.headingDisplay='Edit';
       this.displayButton='Update';
+      this.setValueToForm=true;
     };
-    this.Form.patchValue(this.data.vendorModel);
+    if(this.setValueToForm){
+      this.Form.patchValue(this.data.vendorModel);
+      this.Form.controls.Last_Modified_By.setValue(this.User_Id);
+    }
   }
 
   closeModal(){
     this.dialogRef.close();
   }
 
-  onSubmit() {
-    if (!this.Form.valid) {
-      return false;
-    } else {
-      this.Service.commonCreateMethod(this.serviceName.vendor_Create,this.Form.value).subscribe(
+  onSubmit(mode) {
+    if(mode=='Submit'){
+      this.methodName=this.serviceName.vendor_Create;
+    }else{
+      this.methodName=this.serviceName.vendor_Edit;
+      this.Form.controls.Vendor_Name_Id.setValue(this.data.vendorModel._id);
+    }
+    if(this.methodName!=''&& this.methodName!=null&&this.methodName!=undefined){
+      this.Service.commonCreateMethod(this.methodName, this.Form.value).subscribe(
         (res) => {
-          if(res.Status){
+          if (res.Status) {
             this.toastrService.successMessage(this.constant.SUCCESS_MSG)
             this.closeModal();
-          }else{
+          } else {
             this.toastrService.errorMessage(this.constant.ERROR_MSG);
           }
         }, (error) => {

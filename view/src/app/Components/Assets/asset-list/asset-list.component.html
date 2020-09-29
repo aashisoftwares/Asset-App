@@ -15,28 +15,24 @@
           </div>
           <!-- Header Part -->
           <div class="row header_part">
-             <div class="col-sm-6">
-                <a [routerLink]="['/asset_create']"><button class="Create_Button" mat-raised-button>+ Create</button></a>
+             <div class="col-sm-2">
+                <a (click)="navigateToUrl()"><button class="Create_Button" mat-raised-button>+ Create</button></a>
              </div>
              <div class="col-sm-6">
-                <div class="Table_Activities">
-                   <div class="Search_Section">
-                      <input type="text" placeholder="Search..">
-                      <i class="material-icons">search</i>
-                      <div class="SearchDropDown" dropdown #dropdown="bs-dropdown" [autoClose]="true">
-                         <ul *dropdownMenu class="dropdown-menu" role="menu">
-                            <li role="menuitem"><a class="dropdown-item" >Search Word <span style="font-size: 12px; color: #afafaf">search as Company Name </span></a></li>
-                         </ul>
-                      </div>
-                   </div>
-                   <button mat-raised-button [matMenuTriggerFor]="Short"> Limit </button>
-                   <mat-menu class="PaginationShort" #Short="matMenu" [overlapTrigger]="false">
-                      <button mat-menu-item> 5 </button>
-                      <button mat-menu-item> 10 </button>
-                      <button mat-menu-item> 20 </button>
-                      <button mat-menu-item> 50 </button>
-                   </mat-menu>
-                </div>
+               <div class="Table_Activities">
+                  <div class="Search_Section">
+                     <input type="text" placeholder="Search..">
+                     <i class="material-icons">search</i>
+                     <div class="SearchDropDown" dropdown #dropdown="bs-dropdown" [autoClose]="true">
+                        <ul *dropdownMenu class="dropdown-menu" role="menu">
+                           <li role="menuitem"><a class="dropdown-item" >Search Word <span style="font-size: 12px; color: #afafaf">search as Company Name </span></a></li>
+                        </ul>
+                     </div>
+                  </div>
+                  </div>
+             </div>
+             <div class="col-sm-4">
+                   <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]"></mat-paginator>
              </div>
           </div>
     <!-- content style -->
@@ -105,19 +101,7 @@
                    </div>
                    <div class="Footer_Right">
                       <div class="Pagination">
-                         <!-- <ul>
-                            <li>
-                               <span class="arrow"> << </span>
-                               <span> Previous </span>
-                            </li>
-                            <li > 
-                               <span> Text </span>
-                            </li> 
-                            <li>
-                               <span> Next </span>
-                               <span class="arrow"> >> </span>
-                            </li>
-                         </ul> -->
+                        
                       </div>
                    </div>
                 </div>

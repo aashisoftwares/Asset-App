@@ -4,7 +4,7 @@
          <button class="Create_Button" mat-raised-button (click)="CreateManufacturer(null,'add')"> + Create </button>
       </div>
       <div class="col-sm-5">
-         <div class="Search_Section">
+         <!-- <div class="Search_Section">
             <input type="text" placeholder="Search..">
             <i class="material-icons">search</i>
             <div class="SearchDropDown" dropdown #dropdown="bs-dropdown" [autoClose]="true">
@@ -13,7 +13,7 @@
                            style="font-size: 12px; color: #afafaf">search as Department Name </span></a></li>
                </ul>
             </div>
-         </div>
+         </div> -->
       </div>
       <div class="col-sm-4">
          <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]"></mat-paginator>
@@ -45,7 +45,7 @@
             <button class="Table_Action_mini Bg_warning" mat-mini-fab color="primary" (click)="CreateManufacturer(element,'edit')">
                <i class="material-icons">edit</i>
             </button>
-            <button class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+            <button class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary" (click)="deleteManufacturer(element)">
                <i class="material-icons">delete_forever</i>
             </button>
          </td>

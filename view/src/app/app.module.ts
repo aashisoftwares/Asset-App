@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA, Injectable } from '@angular/core';
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,6 +29,8 @@ import { CKEditorModule } from 'ng2-ckeditor';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule} from '@angular/material/table';
+import { MatNativeDateModule, NativeDateAdapter,DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
 
 import { LoginComponent } from './Components/Common-Components/login/login.component';
 import { HeaderComponent } from './Components/Common-Components/header/header.component';
@@ -65,7 +67,41 @@ import { ModelManufacturerAssetSettingsComponent } from './models/settings/Asset
 import { ModelModelAssetSettingsComponent } from './models/settings/Asset-Settings/model-model-asset-settings/model-model-asset-settings.component';
 import { ServiceNames } from './Services/serviceNames';
 import { ConstantFile } from './Services/constantFile';
+import { AssetTypesComponent } from './Components/Settings/Asset-Settings/SubComponents/asset-types/asset-types.component';
+import { OwnershipTypesComponent } from './Components/Settings/Asset-Settings/SubComponents/ownership-types/ownership-types.component';
+import { MaintenanceStrategyComponent } from './Components/Settings/Asset-Settings/SubComponents/maintenance-strategy/maintenance-strategy.component';
+import { ModelAssetTypeAssetSettingsComponent } from './models/settings/Asset-Settings/model-asset-type-asset-settings/model-asset-type-asset-settings.component';
+import { ModelOwnershipTypeAssetSettingsComponent } from './models/settings/Asset-Settings/model-ownership-type-asset-settings/model-ownership-type-asset-settings.component';
+import { ModelMaintenanceStrategyAssetSettingsComponent } from './models/settings/Asset-Settings/model-maintenance-strategy-asset-settings/model-maintenance-strategy-asset-settings.component';
+import { CommonService } from './Services/CommonService/common.service';
 
+export class AppDateAdapter extends NativeDateAdapter {
+
+  format(date: Date, displayFormat: Object): string {
+
+      if (displayFormat === 'input') {
+
+          const day = date.getDate() <= 9 ? '0' + date.getDate() : date.getDate();
+          const month = (date.getMonth() + 1) <= 9 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1);
+          const year = date.getFullYear();
+
+          return `${day}-${month}-${year}`;
+      }
+
+      return date.toDateString();
+  }
+}
+const MY_DATE_FORMATS = {
+  parse: {
+      dateInput: { month: 'short', year: 'numeric', day: 'numeric' }
+  },
+  display: {
+      dateInput: 'input',
+      monthYearLabel: { year: 'numeric', month: 'short' },
+      dateA11yLabel: { year: 'numeric', month: 'long', day: 'numeric' },
+      monthYearA11yLabel: { year: 'numeric', month: 'long' },
+  }
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,7 +136,13 @@ import { ConstantFile } from './Services/constantFile';
     ModelVendorsAssetSettingsComponent,
     ModelSpaersAssetSettingsComponent,
     ModelModelAssetSettingsComponent,
-    ModelManufacturerAssetSettingsComponent
+    ModelManufacturerAssetSettingsComponent,
+    AssetTypesComponent,
+    OwnershipTypesComponent,
+    MaintenanceStrategyComponent,
+    ModelAssetTypeAssetSettingsComponent,
+    ModelOwnershipTypeAssetSettingsComponent,
+    ModelMaintenanceStrategyAssetSettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -134,6 +176,8 @@ import { ConstantFile } from './Services/constantFile';
     CKEditorModule,
     MatPaginatorModule,
     MatTableModule,
+    MatNativeDateModule,
+    MatMomentDateModule,
     ToastrModule.forRoot({ 
       timeOut: 3000,
       positionClass: 'toast-top-center',
@@ -141,7 +185,10 @@ import { ConstantFile } from './Services/constantFile';
       closeButton: true,
       }),
   ],
-  providers: [ServiceNames,ConstantFile],
+  providers: [ServiceNames,ConstantFile,CommonService,
+    { provide: DateAdapter, useClass: AppDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },MatDatepickerModule
+    ],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

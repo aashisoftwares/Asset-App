@@ -21,7 +21,6 @@ export class AssetSettingServiceService {
   commonCreateMethod(serviceName:string,data): Observable<any> {
     let url= this.serviceName.baseUrl+ serviceName;
     return this.http.post(url, data);
-    catchError(this.handleError) ;
   }  
 
   commonGetListMethod(serviceName:string): Observable<any>{
@@ -33,14 +32,16 @@ export class AssetSettingServiceService {
     let url = this.serviceName.baseUrl+ serviceName;    
     let data={"Company_Id":this.loginService.getcompanyId()}
     return this.http.post(url,data,{headers:this.headers});
-    catchError(this.handleError);
   }
 
   commonPostListMethodTest(serviceName:string,data): Observable<any>{
     let url = this.serviceName.baseUrl+ serviceName;    
-    let httpOption = {withcredentials:true}
     return this.http.post(url,data,{headers:this.headers});
-    catchError(this.handleError);
+  }
+
+  commonDeleteMethod(serviceName:string,data): Observable<any>{
+    let url = this.serviceName.baseUrl+ serviceName;    
+    return this.http.post(url,data,{headers:this.headers});
   }
 
   //Error Handling 

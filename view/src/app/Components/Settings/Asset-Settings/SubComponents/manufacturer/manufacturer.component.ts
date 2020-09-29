@@ -7,6 +7,7 @@ import { ServiceNames } from 'src/app/Services/serviceNames';
 import { ConstantFile } from 'src/app/Services/constantFile';
 import { ToastrServiceService } from 'src/app/Services/toastr-service/toastr-service.service';
 import { MatPaginator } from '@angular/material/paginator';
+import { LoginService } from 'src/app/Services/Login/login.service';
 
 @Component({
   selector: 'app-manufacturer',
@@ -29,7 +30,8 @@ export class ManufacturerComponent implements OnInit {
     private Service: AssetSettingServiceService,
     private serviceName: ServiceNames,
     private error: ConstantFile,
-    private toaster: ToastrServiceService) { }
+    private toaster: ToastrServiceService,
+    private login: LoginService) { }
 
   ngOnInit(): void {
     this.getListOfManufacturerList();
@@ -65,5 +67,22 @@ export class ManufacturerComponent implements OnInit {
         this.toaster.errorMessage(this.error.SERVER_ERROR);
       }
       )
+  }
+
+  deleteManufacturer(element){
+    element.Manufacturer_Id=element._id;
+    element.Last_Modified_By=this.login.getUserId();
+    this.Service.commonDeleteMethod(this.serviceName.manufacturer_Delete, element).subscribe(
+      data => {
+        if (data.Status) {
+          this.toaster.successMessage(data.Message);
+          this.getListOfManufacturerList();
+        } else {
+          this.toaster.errorMessage(data.Message);
+        }
+      }, error => {
+        this.toaster.errorMessage(this.error.SERVER_ERROR);
+      }
+    );
   }
 }

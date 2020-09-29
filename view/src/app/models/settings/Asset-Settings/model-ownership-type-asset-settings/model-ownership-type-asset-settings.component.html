@@ -1,0 +1,29 @@
+<mat-icon class="close-icon-large" (click)="closeModal()">highlight_off</mat-icon>
+<form [formGroup]="Form">
+    <div class="row">
+       <div class="col-md-10">
+          <h4 class="section_title">{{headingDisplay}}</h4>
+        </div>
+    </div>
+    <div class="Model_Body">
+ 
+       <div class="row">
+          <div class="col-sm-12 form-group">
+             <mat-form-field class="example-full-width" [floatLabel]="'always'">
+                <mat-label class="example-label"> Ownership Type </mat-label>
+                  <input matInput formControlName="Ownership_Type_Name" required 
+                   oninput="this.value = this.value.toUpperCase()">
+                  <mat-error *ngIf="Form.controls.Ownership_Type_Name.errors && Form.controls.Ownership_Type_Name.touched">
+                    <div *ngIf="Form.controls.Ownership_Type_Name.errors.required"> Ownership Type is Required </div>
+                  </mat-error>
+                </mat-form-field>  
+          </div>
+       </div>
+ 
+    </div>
+    <div class="Model_Footer" *ngIf="!disableSubmitButton">
+       <button type="submit" (click)="onSubmit(displayButton)" mat-raised-button color="primary">
+          <span>{{displayButton}}</span>
+        </button>
+    </div>
+ </form>
