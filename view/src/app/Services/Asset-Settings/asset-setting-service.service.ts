@@ -5,18 +5,20 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { LoginService } from '../Login/login.service';
 import { ServiceNames } from '../serviceNames';
+import { EnviroinmentService } from '../enviroinments/enviroinment.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AssetSettingServiceService {
 
-  baseUri:string = 'http://localhost:3000/api';
+  baseUri = this.environment.baseUrl;
   headers = new HttpHeaders().set('Content-Type', 'application/json').set('Access','application/json');
 
   constructor(private http: HttpClient,
               private loginService: LoginService,
-              private serviceName: ServiceNames) {}
+              private serviceName: ServiceNames,
+              private environment : EnviroinmentService) {}
 
   commonCreateMethod(serviceName:string,data): Observable<any> {
     let url= this.serviceName.baseUrl+ serviceName;

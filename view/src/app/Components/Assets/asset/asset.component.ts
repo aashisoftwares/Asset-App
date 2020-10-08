@@ -21,22 +21,9 @@ export class AssetComponent implements OnInit {
   Data;
   Company_Id;
   User_Id;
-  Model_Id;
-  AssManufacturer__Id;
-  Asset_Group_Id;
-  Asset_Sub_Group_Id; 
-  Location_Id; 
-  Purchase_Date; 
-  Vendor_Name_Id; 
-  Warranty_Start_Date;
-  Warranty_End_Date; 
-  Warranty_Coverage_Type; 
-  Ownership_Type_Id; 
-  Asset_Type_Id; 
-  Maintanance_Stratagy_Id; 
-  Asset_Allocated_Id;
   Warranty_period;
 
+  Uploading: Boolean = false;
   modelComboList: any[]=[];
   assetGroupList: any[]=[];
   assetSubGroupList: any[]=[];
@@ -49,11 +36,6 @@ export class AssetComponent implements OnInit {
   allocatedToList: any[]=[];
 
   Form: FormGroup;
-
-  Asset = [
-      {id: 1, name: 'Saravabakumar'},
-      {id: 2, name: 'Kathir'},
-    ];
 
     months = [
       {id: 1, name: '1 months'},
@@ -71,9 +53,9 @@ export class AssetComponent implements OnInit {
     ];
 
     WarrantyCoverageType = [
-      {id: 1, name: 'CONTRACT'},
-      {id: 2, name: 'WARRANTY'},
-      {id: 3, name: 'EXTENDED WARRANTY'}
+      {id: 'CONTRACT', name: 'CONTRACT'},
+      {id: 'WARRANTY', name: 'WARRANTY'},
+      {id: 'EXTENDED WARRANTY', name: 'EXTENDED WARRANTY'}
     ];
 
   constructor(
@@ -96,59 +78,58 @@ export class AssetComponent implements OnInit {
       Asset_Nick_Name : new FormControl('', Validators.required),
       Serial_Number : new FormControl('', Validators.required),
       Asset_Code : new FormControl('', Validators.required),
-      Model_Id : new FormControl(''),
-      Model_Name : new FormControl('',[Validators.required]),
-      AssManufacturer__Id : new FormControl(''),
-      Ass_Manufacturer_Name : new FormControl('',[Validators.required]),
-      Asset_Group_Id : new FormControl(''),
-      Asset_Group_Name : new FormControl('',[Validators.required]),
-      Asset_Sub_Group_Id : new FormControl(''),
-      Asset_Sub_Group_Name : new FormControl('',[Validators.required]),
-      Location_Id : new FormControl(''),
-      Location_Name : new FormControl('', [Validators.required]),
+      Ass_RFID:new FormControl('') ,
+      Model_Id : new FormControl('', Validators.required),
+      AssManufacturer_Id : new FormControl('', Validators.required),
+      Asset_Group_Id : new FormControl('', Validators.required),
+      Asset_Sub_Group_Id : new FormControl('', Validators.required),
+      Location_Id : new FormControl('', Validators.required),
       Purchase_Date : new FormControl('', Validators.required),
-      Purchase_Date_Disp : new FormControl('', Validators.required),
       Price : new FormControl('', Validators.required),
       Invoice_Number : new FormControl('', Validators.required),
-      Vendor_Name_Id : new FormControl(''),
-      Vendor_Name : new FormControl('', Validators.required),
+      Vendor_Name_Id : new FormControl('', Validators.required),
       Warranty_period : new FormControl('', Validators.required),
       Warranty_Start_Date : new FormControl('', Validators.required),
-      Warranty_Start_Date_Disp : new FormControl('', Validators.required),
       Warranty_End_Date : new FormControl('', Validators.required),
-      Warranty_End_Date_Disp : new FormControl('', Validators.required),
       Warranty_Coverage_Type : new FormControl('', Validators.required),
-      Ownership_Type_Id : new FormControl(''),
-      Ownership_Type_Name: new FormControl('', Validators.required),
-      Asset_Type_Id : new FormControl(''),
-      Asset_Type_Name: new FormControl('', Validators.required),
-      Maintanance_Stratagy_Id : new FormControl(''),
-      Maintanance_Stratagy_Name : new FormControl('', Validators.required),
-      Asset_Allocated_Id : new FormControl(''),
-      Asset_Allocated_Name: new FormControl(this.Asset_Allocated_Id, Validators.required),
+      Ownership_Type_Id : new FormControl('', Validators.required),
+      Asset_Type_Id : new FormControl('', Validators.required),
+      Maintanance_Stratagy_Id : new FormControl('', Validators.required),
+      Asset_Allocated_Id : new FormControl('', Validators.required),
       Company_Id : new FormControl(this.Company_Id, Validators.required),
       Created_By : new FormControl(this.User_Id, Validators.required),
       Last_Modified_By : new FormControl(this.User_Id),
       Active_Status: new FormControl(true),
-      If_Deleted : new FormControl(false)
+      If_Deleted : new FormControl(false),
+      Rfid_Status : new FormControl(false)
     })
   }
 
-  dateValidationinstall(event){
-    return false;
-  }
+  /*Purchase Date */
+  formatDateone(e) {
+    let selectedDate = new Date(e.target.value);
+    var convertedDate = `${selectedDate.getMonth() + 1}/${selectedDate.getDate()}/${selectedDate.getFullYear()}`;
+   this.Form.controls.Purchase_Date.setValue(convertedDate);
+}
+
+/*Start Date */
+formatDatetwo(e) {
+  let selectedDate = new Date(e.target.value);
+  var convertedDate = `${selectedDate.getMonth() + 1}/${selectedDate.getDate()}/${selectedDate.getFullYear()}`;
+ this.Form.controls.Warranty_Start_Date.setValue(convertedDate);
+}
+
+/*End Date */
+formatDatethree(e) {
+  let selectedDate = new Date(e.target.value);
+  var convertedDate = `${selectedDate.getMonth() + 1}/${selectedDate.getDate()}/${selectedDate.getFullYear()}`;
+  this.Form.controls.Warranty_End_Date.setValue(convertedDate);
+}
+
 
   submit() {
-    this.Form.controls.Purchase_Date.setValue(this.CommonService.convertToDateStringdd_mm_yyyy(this.Form.controls.Purchase_Date_Disp.value))
-    this.Form.controls.Warranty_Start_Date.setValue(this.CommonService.convertToDateStringdd_mm_yyyy(this.Form.controls.Warranty_Start_Date_Disp.value))
-    this.Form.controls.Warranty_End_Date.setValue(this.CommonService.convertToDateStringdd_mm_yyyy(this.Form.controls.Warranty_End_Date_Disp.value))
-
     console.log(this.Form.value);
-    
-    this.submitted = true;
-    if (!this.Form.valid) {
-      return false;
-    } else {
+      this.Uploading = true;
       this.Service.CreateAssets(this.Form.value).subscribe(
         (res) => {
           if(res.Status){
@@ -157,10 +138,10 @@ export class AssetComponent implements OnInit {
           }else{
             this.toaster.errorMessage("Record Added Failed")
           }
+          this.Uploading = false;
         }, (error) => {
           this.toaster.errorMessage(this.error.SERVER_ERROR);
         });
-    }
   }
 
   getModelList(){
@@ -171,10 +152,6 @@ export class AssetComponent implements OnInit {
     )
   }
 
-  setModelValue(event){
-    this.Form.controls.Model_Id.setValue(event._id);
-    this.Form.controls.Model_Name.setValue(event.Model_Name);
-  }
 
   getAssetGroupList() {   
     this.ComboService.commonGetListMethod(this.serviceName.asset_Group_Combo).subscribe(
@@ -184,11 +161,6 @@ export class AssetComponent implements OnInit {
     )
   };
 
-  setAssetGroupValue(event){
-    this.Form.controls.Asset_Group_Id.setValue(event._id);
-    this.Form.controls.Asset_Group_Name.setValue(event.Asset_Group);
-  }
-
   getAssetSubGroupList() {   
     this.ComboService.commonGetListMethod(this.serviceName.asset_subGroup_Combo).subscribe(
       data => {
@@ -197,10 +169,6 @@ export class AssetComponent implements OnInit {
     )
   };
 
-  setAssetSubGroupValue(event){
-    this.Form.controls.Asset_Sub_Group_Id.setValue(event._id);
-    this.Form.controls.Asset_Sub_Group_Name.setValue(event.Asset_Sub_Group);
-  }
 
   getManufacturerList(){
     this.ComboService.commonGetListMethod(this.serviceName.manufacturer_Combo).subscribe(
@@ -210,10 +178,6 @@ export class AssetComponent implements OnInit {
     )
   }
 
-  setManufacturerValue(event){
-    this.Form.controls.AssManufacturer__Id.setValue(event._id);
-    this.Form.controls.Ass_Manufacturer_Name.setValue(event.Manufacturer);
-  }
 
   getLocationList(){
     this.ComboService.commonGetListMethod(this.serviceName.location_Combo).subscribe(
@@ -223,10 +187,6 @@ export class AssetComponent implements OnInit {
     )
   }
 
-  setLocationValue(event){
-    this.Form.controls.Location_Id.setValue(event._id);
-    this.Form.controls.Location_Name.setValue(event.Location_Name);
-  }
 
   getOwnershipTypeList(){
     this.ComboService.commonGetListMethod(this.serviceName.ownership_Combo).subscribe(
@@ -236,10 +196,6 @@ export class AssetComponent implements OnInit {
     )
   }
 
-  setOwnershipValue(event){
-    this.Form.controls.Ownership_Type_Id.setValue(event._id);
-    this.Form.controls.Ownership_Type_Name.setValue(event.Ownership_Type_Name);
-  }
 
   getMaintenanceTypeList(){
     this.ComboService.commonGetListMethod(this.serviceName.maintenance_Combo).subscribe(
@@ -249,10 +205,6 @@ export class AssetComponent implements OnInit {
     )
   }
 
-  setMaintenanceValue(event){
-    this.Form.controls.Maintanance_Stratagy_Id.setValue(event._id);
-    this.Form.controls.Maintanance_Stratagy_Name.setValue(event.Mainatanance_Stratagy);
-  }
 
   getAssetTypeList(){
     this.ComboService.commonGetListMethod(this.serviceName.asset_type_Combo).subscribe(
@@ -262,10 +214,6 @@ export class AssetComponent implements OnInit {
     )
   }
 
-  setAssetTypeValue(event){
-    this.Form.controls.Asset_Type_Id.setValue(event._id);
-    this.Form.controls.Asset_Type_Name.setValue(event.Asset_Type);
-  }
 
   getVendorValue(){
     this.ComboService.commonGetListMethod(this.serviceName.vendor_Combo).subscribe(
@@ -273,23 +221,6 @@ export class AssetComponent implements OnInit {
         this.VendorList = data;
       }
     )
-  }
-
-  setVendorValue(event){
-    this.Form.controls.Vendor_Name_Id.setValue(event._id);
-    this.Form.controls.Vendor_Name.setValue(event.Vendor_Name);
-  }
-
-  clear(){
-    
-  }
-
-  setWarrantyPeriod(event){
-    this.Form.controls.Warranty_period.setValue(event.name);
-  }
-
-  setWarrantyCovergeType(event){
-    this.Form.controls.Warranty_Coverage_Type.setValue(event.name);
   }
 
   getAllocatedList(){
@@ -300,8 +231,4 @@ export class AssetComponent implements OnInit {
     )
   }
 
-  setAllocatedValue(event){
-    this.Form.controls.Asset_Allocated_Id.setValue(event._id);
-    this.Form.controls.Asset_Allocated_Name.setValue(event.Employee_Name);
-  }
 }

@@ -1,233 +1,106 @@
 <app-header></app-header>
 <!-- Main Section -->
 <div class="Main_Section">
-   <div class="container-fluid">
-      <!-- page Section -->
-      <div class="Page_Section">
-         <!-- Page Identity -->
-         <div class="Page_Identity">
-            <div class="Page_Track">
-               <ul>
-                  <li class="HeaderName">CRM</li>
-                  <li class="arrow">>></li>
-                  <li class="LinkName"><a [routerLink]="['/asset_list']">Assets</a></li>
-                  <li class="arrow">>></li>
-                  <li>Company Name</li>
-               </ul>
+    <div class="container-fluid">
+        <!-- page Section -->
+        <div class="Page_Section">
+            <!-- Page Identity -->
+            <div class="Page_Identity">
+                <div class="Page_Track">
+                    <ul>
+                        <li class="HeaderName">CRM</li>
+                        <li class="arrow">>></li>
+                        <li class="LinkName"><a [routerLink]="['/asset_list']">Assets</a></li>
+                        <li class="arrow">>></li>
+                        <li>Company Name</li>
+                    </ul>
+                </div>
             </div>
-         </div>
-         <div class="row">
-            <div class="col-sm-9">
-               <div class="row">
-                  <!-- Image section -->
-                  <div class="col-sm-2 Image_Section">
-                     <img src="../../../../../assets/images/basic/company.png">
-                  </div>
-                  <div class="col-sm-10 ">
-                     <div class="row">
-                        <div class="col-sm-12">
-                           <h5 class="customer_name"> Company_Name <span ><i class="material-icons" [routerLink]="['/asset_create']"> border_color</i></span>
-                           <span class="Create_Button" > +Create </span></h5>
-                        </div>
-                        <div class="col-sm-3">
-                           <div class="Card card_bg_Liner_1">
-                              <div class="Card_Body">
-                                 <div class="Card_Left">
-                                       <i class="material-icons assignment"> assignment </i>
-                                 </div>
-                                 <div class="Card_Right">
-                                    <h5 class="card_color_1"> Quotation </h5>
-                                    <h6> Rs.2,00,00,000.00 </h6>
-                                 </div>
-                              </div>
-                              <div class="Card_Footer card_bg_1">
-                                 <span class="Card_Info"> Rs.5,000.00 Last Added </span>
-                              </div>
+            <div class="row">
+                <div class="col-sm-12" *ngFor="let item of Assetdetail">
+                    <div class="row">
+                        <!-- Image section -->
+                        <div class="col-sm-2 Image_Section" style=" background-color:#fff; margin-left: 30px; margin-bottom:150px; box-shadow: 1px 1px 10px #d4d4d4;">
+                           <div class="row btngroup">
+                             <button class="btnstyle">
+                                 <span class="material-icons" style="color: #1e3a56; line-height: 1.5;">create</span>
+                             </button>
+                             <button class="btnstyle">
+                                 <span class="material-icons" style="color: #1e3a56; line-height: 1.5;">delete</span>
+                             </button>
+                           </div>
+                           <img src="../../../../../assets/images/basic/company.png" />
+                            <div style="margin-top: 15px;">
+                              <p>Asset Owner : {{item.Asset_Allocated_Id.Employee_Name}}</p>
+                              <p>Asset Type : {{item.Asset_Type_Id.Asset_Type}}</p>
+                              <p>Ownership Type : {{item.Ownership_Type_Id.Ownership_Type_Name}}</p>
+                              <p>Create By : {{item.Created_By.Name}}</p>
                            </div>
                         </div>
-                        <div class="col-sm-3">
-                           <div class="Card card_bg_Liner_2">
-                              <div class="Card_Body">
-                                 <div class="Card_Left">
-                                    <!-- <i class="material-icons assignment"> assignment</i> -->
-                                 </div>
-                                 <div class="Card_Right">
-                                    <h5 class="card_color_2 "> Sale Order </h5>
-                                    <h6>25 Orders</h6>
-                                 </div>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="Company_Details" style="margin-left: 25px;" >
+                                    <div class="row">
+                                        <div class="col-sm-12 Form_Select" style="margin-bottom: 15px;">
+                                            <h1>Asset Details</h1>
+                                            <div class="row">
+                                                <p class="col-sm-4" style="margin-left: 15px;">Asset Nick Name : {{item.Asset_Nick_Name}}</p>
+                                                <p class="col-sm-4" style="margin-left: 15px;">Serial Number : {{item.Serial_Number}}</p>
+                                                <p class="col-sm-3" style="margin-left: 15px;">Asset Code : {{item.Asset_Code}}</p>
+                                            </div>
+                                            <div class="row">
+                                                <p class="col-sm-4" style="margin-left: 15px;">Model : {{item.Model_Id.Model_Name}}</p>
+                                                <p class="col-sm-4" style="margin-left: 15px;">Asset Group : {{item.Asset_Group_Id.Asset_Group}}</p>
+                                                <p class="col-sm-3" style="margin-left: 15px;">Asset Sub Group : {{item.Asset_Sub_Group_Id.Asset_Sub_Group}}</p>
+                                            </div>
+                                            <div class="row">
+                                                <p class="col-sm-4" style="margin-left: 15px;">Manufacuturer : {{item.AssManufacturer_Id.Manufacturer}}</p>
+                                                <p class="col-sm-4" style="margin-left: 15px;">Asset Location : {{item.Location_Id.Location_Name}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                              <div class="Company_Details" style="margin-left: 25px;" *ngFor="let item of Assetdetail">
+                                  <div class="row">
+                                      <div class="col-sm-12 Form_Select" style="margin-bottom: 15px;">
+                                          <h1>Purchase Details</h1>
+                                          <div class="row">
+                                              <p class="col-sm-4" style="margin-left: 15px;">Price : {{item.Price}}</p>
+                                              <p class="col-sm-4" style="margin-left: 15px;">Invoice Number : {{item.Invoice_Number}}</p>
+                                              <p class="col-sm-3" style="margin-left: 15px;">Purchase Date : {{item.Purchase_Date | date: 'dd/MM/yyyy'}}</p>
+                                          </div>
+                                          <div class="row">
+                                              <p class="col-sm-4" style="margin-left: 15px;">Vendor Name : {{item.Vendor_Name_Id.Vendor_Name}}</p>
+                                              <p class="col-sm-4" style="margin-left: 15px;">Vendor Address : {{item.Vendor_Name_Id.Address}}</p>
+                                          </div>
+                                      </div>
+                                  </div>
                               </div>
-                              <div class="Card_Footer card_bg_2">
-                                 <span class="Card_Info"> 45 Logs In last Day </span>
-                              </div>
+                          </div>
+                          <div class="row">
+                           <div class="Company_Details" style="margin-left: 25px;" *ngFor="let item of Assetdetail">
+                               <div class="row">
+                                   <div class="col-sm-12 Form_Select" style="margin-bottom: 15px;">
+                                       <h1>Warranty Details</h1>
+                                       <div class="row">
+                                           <p class="col-sm-4" style="margin-left: 15px;">Warranty period : {{item.Warranty_period}} Months</p>
+                                           <p class="col-sm-4" style="margin-left: 15px;">Warranty Start Date : {{item.Warranty_Start_Date | date: 'dd/MM/yyyy'}}</p>
+                                           <p class="col-sm-3" style="margin-left: 15px;">Warranty End Date : {{item.Warranty_End_Date | date: 'dd/MM/yyyy'}}</p>
+                                       </div>
+                                       <div class="row">
+                                           <p class="col-sm-4" style="margin-left: 15px;">Warranty Coverage Mode : {{item.Warranty_Coverage_Type}}</p>
+                                           <p class="col-sm-4" style="margin-left: 15px;">Maintanance Stratagy: {{item.Maintanance_Stratagy_Id.Mainatanance_Stratagy}}</p>
+                                       </div>
+                                   </div>
+                               </div>
                            </div>
+                       </div>
                         </div>
-                        <div class="col-sm-3">
-                           <div class="Card card_bg_Liner_3">
-                              <div class="Card_Body">
-                                 <div class="Card_Left">
-                                    <i class="material-icons account_balance">account_balance_wallet</i>
-                                 </div>
-                                 <div class="Card_Right">
-                                    <h5 class="card_color_3"> Opening Balance</h5>
-                                    <h6> Rs.2,00,00,000.00 </h6>
-                                 </div>
-                              </div>
-                              <div class="Card_Footer card_bg_3">
-                                 <span class="Card_Info"> Rs.5,000.00 Last Added </span>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-sm-3">
-                           <div class="Card card_bg_Liner_4">
-                              <div class="Card_Body">
-                                 <div class="Card_Left">
-                                    <i class="material-icons alarm"> alarm </i>
-                                 </div>
-                                 <div class="Card_Right">
-                                    <h5 class="card_color_4"> Remainders</h5>
-                                    <h6> 10 Remainders </h6>
-                                 </div>
-                              </div>
-                              <div class="Card_Footer card_bg_4">
-                                 <span class="Card_Info"> 10 Remainders In Last Day   </span>
-                              </div>
-                           </div>
-                        </div><br>
-                     </div>
-                  </div>
-               </div> <br>                
-               <div class="row">
-                  <div class="col-sm-12">
-                     <!-- Menu Bar -->
-                     <div class="Menu_Bar">
-                        <ul class="Menu">
-                           <li  [ngClass]="{'active': Active_Tab === 'Details' }" (click)="Active_Tab_Change('About')"><span class="Menu_List">Asset Details</span></li>
-                           <!-- <li  [ngClass]="{'active': Active_Tab === 'Contact' }" (click)="Active_Tab_Change('Contact')"><span class="Menu_List">Contacts</span></li>
-                           <li  [ngClass]="{'active': Active_Tab === 'Activity' }" (click)="Active_Tab_Change('Activity')"><span class="Menu_List">Activities</span></li>
-                           <li  [ngClass]="{'active': Active_Tab === 'Quote' }" (click)="Active_Tab_Change('Quote')"><span class="Menu_List">Quotes</span></li>
-                           <li  [ngClass]="{'active': Active_Tab === 'Sale_Order' }" (click)="Active_Tab_Change('Sale_Order')"><span class="Menu_List">Sale Orders</span></li>
-                           <li  [ngClass]="{'active': Active_Tab === 'Invoice' }" (click)="Active_Tab_Change('Invoice')"><span class="Menu_List">Invoices</span></li>
-                           <li  [ngClass]="{'active': Active_Tab === 'Payment' }" (click)="Active_Tab_Change('Payment')"><span class="Menu_List">Payments</span></li>
-                           <li  [ngClass]="{'active': Active_Tab === 'Remainder' }" (click)="Active_Tab_Change('Remainder')"><span class="Menu_List">Remainders</span></li>
-                           <li  [ngClass]="{'active': Active_Tab === 'Others' }" (click)="Active_Tab_Change('Others')"><span class="Menu_List">Others</span></li> -->
-                        </ul>
-                     </div>
-                  </div>
-               </div>
-               <div class="row" *ngIf=" Active_Tab === 'About' ">
-                  <div class="col-sm-12">
-                     <app-assets-details-view></app-assets-details-view>
-                  </div>
-               </div>
-               <!-- <div class="row" *ngIf=" Active_Tab === 'Contact' ">
-                  <div class="col-sm-12">
-                     <app-contact-crm-customers-view></app-contact-crm-customers-view>
-                  </div>
-               </div>
-               <div class="row" *ngIf=" Active_Tab === 'Activity' ">
-                  <div class="col-sm-12">
-                     <app-activity-crm-customers-view></app-activity-crm-customers-view>
-                  </div>
-               </div>
-               <div class="row" *ngIf=" Active_Tab === 'Quote' ">
-                  <div class="col-sm-12">
-                     <app-quote-crm-customers-view></app-quote-crm-customers-view>
-                  </div>
-               </div>
-               <div class="row" *ngIf=" Active_Tab === 'Sale_Order' ">
-                  <div class="col-sm-12">
-                     <app-saleorder-crm-customers-view></app-saleorder-crm-customers-view>
-                  </div>
-               </div>
-               <div class="row" *ngIf=" Active_Tab === 'Invoice' ">
-                  <div class="col-sm-12">
-                     <app-invoice-crm-customers-view></app-invoice-crm-customers-view>
-                  </div>
-               </div>
-               <div class="row" *ngIf=" Active_Tab === 'Payment' ">
-                  <div class="col-sm-12">
-                     <app-payment-crm-customers-view></app-payment-crm-customers-view>
-                  </div>
-               </div>
-               <div class="row" *ngIf=" Active_Tab === 'Remainder' ">
-                  <div class="col-sm-12">
-                     <app-remainder-crm-customers-view></app-remainder-crm-customers-view>
-                  </div>
-               </div>
-               <div class="row" *ngIf=" Active_Tab === 'Others' ">
-                  <div class="col-sm-12">
-                     <app-others-crm-customers-view></app-others-crm-customers-view>
-                  </div>
-               </div> -->
+                    </div>
+                </div>
             </div>
-            <div class="col-sm-3">
-               <div class="Calender">
-                  <p-calendar class="Custom_Calender_1" [inline]="true"></p-calendar> 
-               </div>
-               <br>
-               <!-- Log Section -->
-               <div class="Log_Section">
-                  <div class="Log_Header">
-                     <h5> Recent </h5>
-                  </div>
-                  <div class="Log_List">
-                     <ul>
-                     <li>
-                        <h5>New Location Added</h5>
-                        <h6> ( 27/05/2018 05:32-PM ) </h6>
-                     </li>
-                     <li>
-                        <h5>New Order Received</h5>
-                        <h6> ( 27/05/2018 05:22-PM ) </h6>
-                     </li>
-                     <li>
-                        <h5>New Food Item Added</h5>
-                        <h6> ( 27/05/2018 05:12-PM ) </h6>
-                     </li>
-                     <li>
-                        <h5>New Location Added</h5>
-                        <h6> ( 27/05/2018 05:12-PM ) </h6>
-                     </li>
-                     <li>
-                        <h5>One Promotion Used</h5>
-                        <h6> ( 27/05/2018 05:02-PM ) </h6>
-                     </li>
-                     <li>
-                        <h5>One Order Delivered</h5>
-                        <h6> ( 27/05/2018 05:02-PM ) </h6>
-                     </li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
+        </div>
+    </div>
 </div>
-<!-- Dropdown menus -->
-<!-- <mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
-   <button mat-menu-item (click)="CreateContact()">
-      <span>Contacts</span>
-   </button>
-   <button mat-menu-item (click)="CreateActivity()">
-      <span>Activities</span>
-   </button>
-   <button mat-menu-item [routerLink]="['/crm_quotations_create']">
-      <span>Quotes</span>
-   </button>
-   <button mat-menu-item [routerLink]="['/crm_saleorder_create']">
-      <span>Sale Order</span>
-   </button>
-   <button mat-menu-item [routerLink]="['/crm_invoice_create']">
-      <span>Invoices</span>
-   </button>
-   <button mat-menu-item (click)="CreatePayments()">
-      <span>Payments</span>
-   </button>
-</mat-menu> -->
-      
-
-  
-  
-   
-

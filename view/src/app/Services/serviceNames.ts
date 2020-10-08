@@ -1,3 +1,5 @@
+
+import { EnviroinmentService } from '../Services/enviroinments/enviroinment.service';
 export class ServiceNames{
 
     readonly baseUrl:string='http://localhost:3000/api/';

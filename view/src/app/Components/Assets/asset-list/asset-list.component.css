@@ -53,20 +53,52 @@
     padding: 0px 5px;
  }
 
- ::ng-deep .mat-paginator
- {
-   margin-top:-16px !important;
-   background: transparent;
+ .btnstyle{
+   outline: none;
+   border: none;
+   margin-top: -12px;
+   background-color: #ffffff;
+   height: 25px;
+   cursor: pointer;
  }
+
+
+ .mat-card{
+   width: 500px;
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #f0f2f3;
+    height: 200px;
+}
  
- ::ng-deep .mat-paginator-page-size-label
- {
-   font-size: 0px !important;
- }
- ::ng-deep .mat-paginator-page-size-label
- {
-   font-size: 0px !important;
- }
+.mat-card-image{
+   width: 150px;
+   height: 150px;
+   margin-left: 0px;
+   margin-right: 0px;
+   margin-bottom: 0px;
+} 
+
+.mat-card-header{
+   background-color: #ffffff;
+}
+.mat-card-title{
+   font-size: 18px;
+   color: #484848;
+   font-weight: 550;
+   padding-left: -12px;
+   margin-left: -45px;
+}
+
+.mat-card-content{
+   height: 50px;
+   position: absolute;
+   margin-top: -130px;
+   margin-left: 140px;
+
+}
 
 
 

@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { Component, OnInit, TemplateRef, NgZone,ElementRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AssetService } from '../../../Services/Asset/asset.service';
 
 @Component({
   selector: 'app-asset-view',
@@ -11,13 +10,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class AssetViewComponent implements OnInit {
 
   Active_Tab;
-  bsModalRef: BsModalRef;
+  Asset_Id;
+  Assetdetail: any= [];
 
   constructor(
-    private modalService: BsModalService,
-    public router: Router,
-    private active_route: ActivatedRoute
-  ) { }
+    private active_route: ActivatedRoute,
+    private router: Router,
+    private service : AssetService
+  ) { 
+    this.getAssetData();
+  }
 
   ngOnInit(): void {
   }
@@ -25,4 +27,17 @@ export class AssetViewComponent implements OnInit {
   Active_Tab_Change(name) {
     this.Active_Tab = name;
     }
+
+//Asset Data View
+getAssetData(){
+  this.active_route.url.subscribe(u => {
+    this.Asset_Id =  this.active_route.snapshot.params['_id'];
+    const Info = {'Asset_Id':this.Asset_Id}
+    this.service.Asset_View(Info).subscribe(res => {
+      const ResponseData = res;
+      console.log(ResponseData)
+      this.Assetdetail = ResponseData['Response'];
+       });
+  });
+}
 }

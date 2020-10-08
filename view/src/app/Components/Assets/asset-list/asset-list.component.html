@@ -1,127 +1,76 @@
 <app-header></app-header>
 <!-- Main Section -->
- <div class="Main_Section">
+<div class="Main_Section">
     <div class="Page_Section">
-       <div class="container-fluid">
-          <!-- page Identity -->
-          <div class="Page_Identity">
-             <div class="Page_Track">
-                <ul>
-                   <li class="HeaderName">Asset</li>
-                   <li class="arrow">>></li>
-                   <li>List</li>
-                </ul>
-             </div>
-          </div>
-          <!-- Header Part -->
-          <div class="row header_part">
-             <div class="col-sm-2">
-                <a (click)="navigateToUrl()"><button class="Create_Button" mat-raised-button>+ Create</button></a>
-             </div>
-             <div class="col-sm-6">
-               <div class="Table_Activities">
-                  <div class="Search_Section">
-                     <input type="text" placeholder="Search..">
-                     <i class="material-icons">search</i>
-                     <div class="SearchDropDown" dropdown #dropdown="bs-dropdown" [autoClose]="true">
-                        <ul *dropdownMenu class="dropdown-menu" role="menu">
-                           <li role="menuitem"><a class="dropdown-item" >Search Word <span style="font-size: 12px; color: #afafaf">search as Company Name </span></a></li>
-                        </ul>
-                     </div>
-                  </div>
-                  </div>
-             </div>
-             <div class="col-sm-4">
-                   <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]"></mat-paginator>
-             </div>
-          </div>
-    <!-- content style -->
-    <table #TableSection style="width: 100%">
-       <thead #TableHeaderSection>
-          <tr></tr>
-       </thead>
-       <tbody #TableBodySection>
-          <div class="row Content_Style">
-             <div class="col-sm-3 Page_Content">
-                <a >
-                   <div class="Sub_Content">
-                      <div class="image_section">
-                         <img src="../../../../assets/images/basic/company.png">
-                      </div>
-                      <div class="Content_Section" [routerLink]="['/asset_view']">
-                         <h5>Sam Laptop</h5>
-                         <h5>CE0001258fvg</h5>
-                         <h5>Saravanakumar</h5>
-                      </div>
-                      <!-- <a style="margin-bottom: 60px"><i class="material-icons View" >border_color</i></a>  -->
-                   </div>
-                   </a>
-             </div>
-             <div class="col-sm-3 Page_Content">
-               <a >
-                  <div class="Sub_Content">
-                     <div class="image_section">
-                        <img src="../../../../assets/images/basic/company.png">
-                     </div>
-                     <div class="Content_Section" [routerLink]="['/asset_view']">
-                        <h5>SAMS DESKTOP</h5>
-                        <h5>SDV123465489</h5>
-                        <h5>Saravanakumar</h5>
-                     </div>
-                     <!-- <a style="margin-bottom: 60px"><i class="material-icons View" >border_color</i></a>  -->
-                  </div>
-                  </a>
-            </div>
-            <div class="col-sm-3 Page_Content">
-               <a >
-                  <div class="Sub_Content">
-                     <div class="image_section">
-                        <img src="../../../../assets/images/basic/company.png">
-                     </div>
-                     <div class="Content_Section" [routerLink]="['/asset_view']">
-                        <h5>SARAS Laptop</h5>
-                        <h5>123456132</h5>
-                        <h5>Saravanakumar</h5>
-                     </div>
-                     <!-- <a style="margin-bottom: 60px"><i class="material-icons View" >border_color</i></a>  -->
-                  </div>
-                  </a>
-            </div>
-          </div>
-          <div class="row TableLoader" #TableLoaderSection>
-             <h5 colspan="100%" class="Tr_Loader">Loading<span class="dot">.</span><span class="dot-2">.</span><span class="dot-3">.</span> </h5>
-          </div>
-       </tbody>
-       <tfoot #TableFooterSection>
-          <tr>
-             <td colspan="100">
-                <div class="Table_Footer_Section">
-                   <div class="Footer_Left">
-                      <p> </p>
-                   </div>
-                   <div class="Footer_Right">
-                      <div class="Pagination">
-                        
-                      </div>
-                   </div>
+        <div class="container-fluid">
+            <!-- page Identity -->
+            <div class="Page_Identity">
+                <div class="Page_Track">
+                    <ul>
+                        <li class="HeaderName">Asset</li>
+                        <li class="arrow">>></li>
+                        <li>List</li>
+                    </ul>
                 </div>
-             </td>
-          </tr>
-       </tfoot>
-    </table>
+            </div>
+            <!-- Header Part -->
+            <div class="row header_part">
+                <div class="col-sm-2">
+                    <a [routerLink]="['/asset_create']"><button class="Create_Button" mat-raised-button>+ Create</button></a>
+                </div>
+                <div class="col-sm-6">
+                    <div class="Table_Activities">
+                        <div class="Search_Section">
+                            <input type="text" placeholder="Search.." />
+                            <i class="material-icons">search</i>
+                            <div class="SearchDropDown" dropdown #dropdown="bs-dropdown" [autoClose]="true">
+                                <ul *dropdownMenu class="dropdown-menu" role="menu">
+                                    <li role="menuitem">
+                                        <a class="dropdown-item">Search Word <span style="font-size: 12px; color: #afafaf;">search as Company Name </span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-sm-4">
+                   <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]"></mat-paginator>
+             </div> -->
+            </div>
+            <!-- content style -->
+            <div>
+                <mat-card *ngFor="let item of AssetDataList; let i = index">
+                    <mat-card-header>
+                       <div class="col-sm-7">
+                          <mat-card-title>{{item.Asset_Nick_Name}}
+                             <p style="display: none;">{{item._id}}</p>
+                          </mat-card-title>
+
+                        </div>
+                        <div class="col-sm-2"></div>
+                        <div class="row">
+                           <button class="btnstyle">
+                              <span class="material-icons" style="color: #1e3a56; line-height: 1.5;" routerLink="/asset_view/{{item._id}}">visibility</span>
+                          </button>
+                          <button class="btnstyle">
+                              <span class="material-icons" style="color: #1e3a56; line-height: 1.5;">create</span>
+                          </button>
+                          <button class="btnstyle">
+                              <span class="material-icons" style="color: #1e3a56; line-height: 1.5;">delete</span>
+                          </button>
+                        </div>
+                    </mat-card-header>
+                    <img mat-card-image src="../../../../assets/images/basic/company.png" alt="" />
+                    <mat-card-content>
+                        <p>{{item.Serial_Number}}</p>
+                        <p>{{item.Asset_Code}}</p>
+                        <p>{{item.Created_By.Name}}</p>
+                    </mat-card-content>
+                    <!-- <mat-card-actions>
+                        <button mat-flat-button color="primary">view</button>
+                    </mat-card-actions> -->
+                </mat-card>
+            </div>
+        </div>
     </div>
-    </div>
- </div>
- <!-- Dropdown menus -->
- <mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
-    <button mat-menu-item>
-       <span>Add Contact</span>
-    </button>
-    <button mat-menu-item>
-       <span>Add Activity</span>
-    </button>
-    <a [routerLink]="['/crm_quotations_create']"><button mat-menu-item>
-       <span>Create Quote</span>
-    </button></a>
- </mat-menu>
- 
+</div>

@@ -15,11 +15,11 @@
          </div>
       </div>
       <form [formGroup]="Form">
+         {{Form.value | json}}
          <div class="row">
             <div class="col-sm-3">
                <!-- Left Section -->
-               <div class="left_section"
-                  style=" background-color:#fff; margin-bottom:150px; box-shadow: 1px 1px 10px #d4d4d4;">
+               <div class="left_section" style=" background-color:#fff; margin-bottom:150px; box-shadow: 1px 1px 10px #d4d4d4;">
                   <div class="row">
                      <div class="col-sm-12 text-center">
                         <img src="../../../../../assets/images/basic/company.png" alt="Company Image"
@@ -69,25 +69,23 @@
                      <div class="col-sm-4 Form_Select" style="margin-bottom: 15px">
                         <div class="example-full-width">
                            <span class="font-style-combo">Model<span class="mandatory-style">*</span></span>
-                           <ng-select class="custom-dropdown" [items]="modelComboList" [bindLabel]="'Model_Name'"
-                              formControlName="Model_Name" [searchable]="true" (click)="getModelList()"
-                              (change)="setModelValue($event)">
+                           <ng-select class="custom-dropdown" [items]="modelComboList" [bindValue]="'_id'" [bindLabel]="'Model_Name'"
+                              formControlName="Model_Id" [searchable]="true" (click)="getModelList()">
                            </ng-select>
-                           <mat-error *ngIf="Form.controls.Model_Name.errors && Form.controls.Model_Name.touched">
-                              <div *ngIf="Form.controls.Model_Name.errors.required"> Model Name is Required </div>
+                           <mat-error *ngIf="Form.controls.Model_Id.errors && Form.controls.Model_Id.touched">
+                              <div *ngIf="Form.controls.Model_Id.errors.required"> Model Name is Required </div>
                            </mat-error>
                         </div>
                      </div>
                      <div class="col-sm-4 Form_Select" style="margin-bottom: 15px">
                         <div class="example-full-width">
                            <span class="font-style-combo">Asset Group<span class="mandatory-style">*</span></span>
-                           <ng-select class="custom-dropdown" [items]="assetGroupList" [bindLabel]="'Asset_Group'"
-                              formControlName="Asset_Group_Name" [searchable]="true" (click)="getAssetGroupList()"
-                              (change)="setAssetGroupValue($event)">
+                           <ng-select class="custom-dropdown" [items]="assetGroupList" [bindValue]="'_id'" [bindLabel]="'Asset_Group'"
+                              formControlName="Asset_Group_Id" [searchable]="true" (click)="getAssetGroupList()">
                            </ng-select>
                            <mat-error
-                              *ngIf="Form.controls.Asset_Group_Name.errors && Form.controls.Asset_Group_Name.touched">
-                              <div *ngIf="Form.controls.Asset_Group_Name.errors.required"> Asset Group is Required
+                              *ngIf="Form.controls.Asset_Group_Id.errors && Form.controls.Asset_Group_Id.touched">
+                              <div *ngIf="Form.controls.Asset_Group_Id.errors.required"> Asset Group is Required
                               </div>
                            </mat-error>
                         </div>
@@ -95,13 +93,13 @@
                      <div class="col-sm-4 Form_Select" style="margin-bottom: 15px">
                         <div class="example-full-width">
                            <span class="font-style-combo">Asset Sub Group<span class="mandatory-style">*</span></span>
-                           <ng-select class="custom-dropdown" [items]="assetSubGroupList"
-                              [bindLabel]="'Asset_Sub_Group'" formControlName="Asset_Sub_Group_Name" [searchable]="true"
-                              (click)="getAssetSubGroupList()" (change)="setAssetSubGroupValue($event)">
+                           <ng-select class="custom-dropdown" [items]="assetSubGroupList" [bindValue]="'_id'"
+                              [bindLabel]="'Asset_Sub_Group'" formControlName="Asset_Sub_Group_Id" [searchable]="true"
+                              (click)="getAssetSubGroupList()">
                            </ng-select>
                            <mat-error
-                              *ngIf="Form.controls.Asset_Sub_Group_Name.errors && Form.controls.Asset_Sub_Group_Name.touched">
-                              <div *ngIf="Form.controls.Asset_Sub_Group_Name.errors.required"> Asset Sub Group is
+                              *ngIf="Form.controls.Asset_Sub_Group_Id.errors && Form.controls.Asset_Sub_Group_Id.touched">
+                              <div *ngIf="Form.controls.Asset_Sub_Group_Id.errors.required"> Asset Sub Group is
                                  Required </div>
                            </mat-error>
                         </div>
@@ -109,13 +107,13 @@
                      <div class="col-sm-4 Form_Select">
                         <div class="example-full-width">
                            <span class="font-style-combo">Manufacturer<span class="mandatory-style">*</span></span>
-                           <ng-select class="custom-dropdown" [items]="manufacturerList" [bindLabel]="'Manufacturer'"
-                              formControlName="Ass_Manufacturer_Name" [searchable]="true"
-                              (click)="getManufacturerList()" (change)="setManufacturerValue($event)">
+                           <ng-select class="custom-dropdown" [items]="manufacturerList" [bindValue]="'_id'" [bindLabel]="'Manufacturer'"
+                              formControlName="AssManufacturer_Id" [searchable]="true"
+                              (click)="getManufacturerList()">
                            </ng-select>
                            <mat-error
-                              *ngIf="Form.controls.Ass_Manufacturer_Name.errors && Form.controls.Ass_Manufacturer_Name.touched">
-                              <div *ngIf="Form.controls.Ass_Manufacturer_Name.errors.required"> Manufacturer is Required
+                              *ngIf="Form.controls.AssManufacturer_Id.errors && Form.controls.AssManufacturer_Id.touched">
+                              <div *ngIf="Form.controls.AssManufacturer_Id.errors.required"> Manufacturer is Required
                               </div>
                            </mat-error>
                         </div>
@@ -123,12 +121,11 @@
                      <div class="col-sm-4 Form_Select">
                         <div class="example-full-width">
                            <span class="font-style-combo">Location<span class="mandatory-style">*</span></span>
-                           <ng-select class="custom-dropdown" [items]="locationList" [bindLabel]="'Location_Name'"
-                              formControlName="Location_Name" [searchable]="true" (click)="getLocationList()"
-                              (change)="setLocationValue($event)">
+                           <ng-select class="custom-dropdown" [items]="locationList" [bindValue]="'_id'" [bindLabel]="'Location_Name'"
+                              formControlName="Location_Id" [searchable]="true" (click)="getLocationList()">
                            </ng-select>
-                           <mat-error *ngIf="Form.controls.Location_Name.errors && Form.controls.Location_Name.touched">
-                              <div *ngIf="Form.controls.Location_Name.errors.required"> Location Name is Required </div>
+                           <mat-error *ngIf="Form.controls.Location_Id.errors && Form.controls.Location_Id.touched">
+                              <div *ngIf="Form.controls.Location_Id.errors.required"> Location Name is Required </div>
                            </mat-error>
                         </div>
                      </div>
@@ -138,16 +135,12 @@
                   <h5 class="text-style-1"> Purchase Details </h5>
                   <div class="row">
                      <div class="col-sm-4">
-                        <mat-form-field class="example-full-width" [floatLabel]="'always'">
-                           <mat-label class="example-label"> Purchase Date </mat-label>
-                           <input matInput (click)="purchaseDt.open()" required [matDatepicker]="purchaseDt"
-                              formControlName="Purchase_Date_Disp" (keypress)="dateValidationinstall($event)">
-                           <mat-datepicker-toggle matSuffix [for]="purchaseDt"></mat-datepicker-toggle>
-                           <mat-datepicker #purchaseDt></mat-datepicker>
-                        </mat-form-field>
-                        <mat-error *ngIf="Form.controls.Purchase_Date.errors && Form.controls.Purchase_Date.touched">
-                           <div *ngIf="Form.controls.Purchase_Date.errors.required"> Purchase Date is Required </div>
-                        </mat-error>
+                        <mat-form-field class="col-sm-12" style="margin-left: -15px;">
+                           <mat-label>Purchase Date</mat-label>
+                           <input matInput [matDatepicker]="picker" (dateChange)="formatDateone($event)" />
+                           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                           <mat-datepicker #picker></mat-datepicker>
+                       </mat-form-field>
                      </div>
                      <div class="col-sm-4">
                         <mat-form-field class="example-full-width" [floatLabel]="'always'">
@@ -173,14 +166,14 @@
                      </div>
                      <div class="col-sm-4 Form_Select">
                         <div class="example-full-width">
-                           <span class="font-style-combo">Vendor Type<span class="mandatory-style">*</span></span>
-                           <ng-select class="custom-dropdown" [items]="VendorList"
-                              [bindLabel]="'Vendor_Name'" formControlName="Vendor_Name"
-                              [searchable]="true" (click)="getVendorValue()" (change)="setVendorValue($event)">
+                           <span class="font-style-combo">Vendor Name<span class="mandatory-style">*</span></span>
+                           <ng-select class="custom-dropdown" [items]="VendorList" [bindValue]="'_id'"
+                              [bindLabel]="'Vendor_Name'" formControlName="Vendor_Name_Id"
+                              [searchable]="true" (click)="getVendorValue()">
                            </ng-select>
                            <mat-error
-                              *ngIf="Form.controls.Ownership_Type_Name.errors && Form.controls.Ownership_Type_Name.touched">
-                              <div *ngIf="Form.controls.Ownership_Type_Name.errors.required"> Ownership Type is Required
+                              *ngIf="Form.controls.Vendor_Name_Id.errors && Form.controls.Vendor_Name_Id.touched">
+                              <div *ngIf="Form.controls.Vendor_Name_Id.errors.required">Vendor Name is Required
                               </div>
                            </mat-error>
                         </div>
@@ -189,8 +182,8 @@
                         <div class="example-full-width">
                            <span class="font-style-combo">Warranty Period(In months)<span
                                  class="mandatory-style">*</span></span>
-                           <ng-select class="custom-dropdown" [bindLabel]="'name'" [items]="months"
-                           (change)="setWarrantyPeriod($event)" formControlName="Warranty_period"></ng-select>
+                           <ng-select class="custom-dropdown" [bindLabel]="'name'" [items]="months" [bindValue]="'id'"
+                            formControlName="Warranty_period"></ng-select>
                            <mat-error
                               *ngIf="Form.controls.Warranty_period.errors && Form.controls.Warranty_period.touched">
                               <div *ngIf="Form.controls.Warranty_period.errors.required"> Warranty Period is Required
@@ -203,7 +196,7 @@
                            <span class="font-style-combo">Warranty Coverage Type<span
                                  class="mandatory-style">*</span></span>
                            <ng-select class="custom-dropdown" [bindLabel]="'name'" [bindName]="'name'" [items]="WarrantyCoverageType"
-                              (change)="setWarrantyCovergeType($event)" formControlName="Warranty_Coverage_Type"></ng-select>
+                           [bindValue]="'id'" formControlName="Warranty_Coverage_Type"></ng-select>
                            <mat-error
                               *ngIf="Form.controls.Warranty_Coverage_Type.errors && Form.controls.Warranty_Coverage_Type.touched">
                               <div *ngIf="Form.controls.Warranty_Coverage_Type.errors.required"> Warranty Coverage Type is Required
@@ -212,32 +205,20 @@
                         </div>
                      </div>          
                      <div class="col-sm-4" style="margin-top: 15px">
-                        <mat-form-field class="example-full-width" [floatLabel]="'always'">
-                           <mat-label class="example-label"> Warranty Start Date </mat-label>
-                           <input matInput (click)="warrantyStartDt.open()" [matDatepicker]="warrantyStartDt"
-                              formControlName="Warranty_Start_Date_Disp" (keypress)="dateValidationinstall($event)">
-                           <mat-datepicker-toggle matSuffix [for]="warrantyStartDt"></mat-datepicker-toggle>
-                           <mat-datepicker #warrantyStartDt></mat-datepicker>
-                           <mat-error
-                              *ngIf="Form.controls.Warranty_Start_Date_Disp.errors && Form.controls.Warranty_Start_Date_Disp.touched">
-                              <div *ngIf="Form.controls.Warranty_Start_Date_Disp.errors.required"> Warranty Start Date is
-                                 Required </div>
-                           </mat-error>
-                        </mat-form-field>
+                        <mat-form-field class="col-sm-12" style="margin-left: -15px;">
+                           <mat-label>Warranty Start Date</mat-label>
+                           <input matInput [matDatepicker]="picker1" (dateChange)="formatDatetwo($event)" />
+                           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                           <mat-datepicker #picker1></mat-datepicker>
+                       </mat-form-field>                         
                      </div>
                      <div class="col-sm-4" style="margin-top: 15px">
-                        <mat-form-field class="example-full-width" [floatLabel]="'always'">
-                           <mat-label class="example-label"> Warranty End Date </mat-label>
-                           <input matInput (click)="warrantyEndDt.open()" [matDatepicker]="warrantyEndDt"
-                              formControlName="Warranty_End_Date_Disp" (keypress)="dateValidationinstall($event)">
-                           <mat-datepicker-toggle matSuffix [for]="warrantyEndDt"></mat-datepicker-toggle>
-                           <mat-datepicker #warrantyEndDt></mat-datepicker>
-                           <mat-error
-                              *ngIf="Form.controls.Warranty_End_Date_Disp.errors && Form.controls.Warranty_End_Date_Disp.touched">
-                              <div *ngIf="Form.controls.Warranty_End_Date_Disp.errors.required"> Warranty End Date is
-                                 Required </div>
-                           </mat-error>
-                        </mat-form-field>
+                        <mat-form-field class="col-sm-12" style="margin-left: -15px;">
+                           <mat-label>Warranty End Date</mat-label>
+                           <input matInput [matDatepicker]="picker2" (dateChange)="formatDatethree($event)" />
+                           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                           <mat-datepicker #picker2></mat-datepicker>
+                       </mat-form-field>
                      </div>
                   </div>
                </div>
@@ -249,13 +230,13 @@
                      <div class="col-sm-4 Form_Select" style="margin-bottom: 15px">
                         <div class="example-full-width">
                            <span class="font-style-combo">Ownership Type<span class="mandatory-style">*</span></span>
-                           <ng-select class="custom-dropdown" [items]="ownershipList"
-                              [bindLabel]="'Ownership_Type_Name'" formControlName="Ownership_Type_Name"
-                              [searchable]="true" (click)="getOwnershipTypeList()" (change)="setOwnershipValue($event)">
+                           <ng-select class="custom-dropdown" [items]="ownershipList" [bindValue]="'_id'"
+                              [bindLabel]="'Ownership_Type_Name'" formControlName="Ownership_Type_Id"
+                              [searchable]="true" (click)="getOwnershipTypeList()">
                            </ng-select>
                            <mat-error
-                              *ngIf="Form.controls.Ownership_Type_Name.errors && Form.controls.Ownership_Type_Name.touched">
-                              <div *ngIf="Form.controls.Ownership_Type_Name.errors.required"> Ownership Type is Required
+                              *ngIf="Form.controls.Ownership_Type_Id.errors && Form.controls.Ownership_Type_Id.touched">
+                              <div *ngIf="Form.controls.Ownership_Type_Id.errors.required"> Ownership Type is Required
                               </div>
                            </mat-error>
                         </div>
@@ -263,13 +244,12 @@
                      <div class="col-sm-4 Form_Select">
                         <div class="example-full-width">
                            <span class="font-style-combo">Asset Type<span class="mandatory-style">*</span></span>
-                           <ng-select class="custom-dropdown" [items]="assetTypeList" [bindLabel]="'Asset_Type'"
-                              formControlName="Asset_Type_Name" [searchable]="true" (click)="getAssetTypeList()"
-                              (change)="setAssetTypeValue($event)">
+                           <ng-select class="custom-dropdown" [items]="assetTypeList" [bindValue]="'_id'" [bindLabel]="'Asset_Type'"
+                              formControlName="Asset_Type_Id" [searchable]="true" (click)="getAssetTypeList()">
                            </ng-select>
                            <mat-error
-                              *ngIf="Form.controls.Asset_Type_Name.errors && Form.controls.Asset_Type_Name.touched">
-                              <div *ngIf="Form.controls.Asset_Type_Name.errors.required"> Asset Type is Required </div>
+                              *ngIf="Form.controls.Asset_Type_Id.errors && Form.controls.Asset_Type_Id.touched">
+                              <div *ngIf="Form.controls.Asset_Type_Id.errors.required"> Asset Type is Required </div>
                            </mat-error>
                         </div>
                      </div>
@@ -277,14 +257,13 @@
                         <div class="example-full-width">
                            <span class="font-style-combo">Maintenance Strategy<span
                                  class="mandatory-style">*</span></span>
-                           <ng-select class="custom-dropdown" [items]="maintenanceList"
-                              [bindLabel]="'Mainatanance_Stratagy'" formControlName="Maintanance_Stratagy_Name"
-                              [searchable]="true" (click)="getMaintenanceTypeList()"
-                              (change)="setMaintenanceValue($event)">
+                           <ng-select class="custom-dropdown" [items]="maintenanceList" [bindValue]="'_id'"
+                              [bindLabel]="'Mainatanance_Stratagy'" formControlName="Maintanance_Stratagy_Id"
+                              [searchable]="true" (click)="getMaintenanceTypeList()">
                            </ng-select>
                            <mat-error
-                              *ngIf="Form.controls.Maintanance_Stratagy_Name.errors && Form.controls.Maintanance_Stratagy_Name.touched">
-                              <div *ngIf="Form.controls.Maintanance_Stratagy_Name.errors.required"> Maintenance Strategy
+                              *ngIf="Form.controls.Maintanance_Stratagy_Id.errors && Form.controls.Maintanance_Stratagy_Id.touched">
+                              <div *ngIf="Form.controls.Maintanance_Stratagy_Id.errors.required"> Maintenance Strategy
                                  is Required </div>
                            </mat-error>
                         </div>
@@ -292,13 +271,13 @@
                      <div class="col-sm-4 Form_Select">
                         <div class="example-full-width">
                            <span class="font-style-combo">Asset Allocated To<span class="mandatory-style">*</span></span>
-                           <ng-select class="custom-dropdown" [items]="allocatedToList"
-                              [bindLabel]="'Employee_Name'" formControlName="Asset_Allocated_Name"
-                              [searchable]="true" (click)="getAllocatedList()" (change)="setAllocatedValue($event)">
+                           <ng-select class="custom-dropdown" [items]="allocatedToList" [bindValue]="'_id'"
+                              [bindLabel]="'Employee_Name'" formControlName="Asset_Allocated_Id"
+                              [searchable]="true" (click)="getAllocatedList()">
                            </ng-select>
                            <mat-error
-                              *ngIf="Form.controls.Asset_Allocated_Name.errors && Form.controls.Asset_Allocated_Name.touched">
-                              <div *ngIf="Form.controls.Asset_Allocated_Name.errors.required">Asset Allocated To Ownership Type is Required
+                              *ngIf="Form.controls.Asset_Allocated_Id.errors && Form.controls.Asset_Allocated_Id.touched">
+                              <div *ngIf="Form.controls.Asset_Allocated_Id.errors.required">Asset Allocated To Ownership Type is Required
                               </div>
                            </mat-error>
                         </div>
@@ -309,12 +288,11 @@
          </div>
          <!-- Footer -->
          <div class="Footer">
-            <button mat-raised-button color="primary" style="top: 5px; margin-right: 10px;"
-            (click)="submit()"> Submit </button>
-            <button mat-raised-button color="primary" style="top: 5px; margin-right: 10px;" (click)="clear()"> Clear
+            <button mat-raised-button color="primary" style="top: 5px; margin-right: 10px;" [routerLink]="['/asset']">Back </button>
+            <button mat-raised-button color="primary" style="top: 5px; margin-right: 10px;" [disabled]="!Form.valid || Uploading" (click)="submit()"> 
+               <span *ngIf="!Uploading" >Submit</span>
+               <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span> 
             </button>
-            <button mat-raised-button color="primary" style="top: 5px; margin-right: 10px;" [routerLink]="['/asset']">
-               Back </button>
          </div>
 
       </form>

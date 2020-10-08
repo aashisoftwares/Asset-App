@@ -32,11 +32,11 @@ const appRoutes: Routes = [
     component : AssetListComponent,
   },
   {
-    path : 'asset_create/:pId',
+    path : 'asset_create',
     component : AssetComponent,
   },
   {
-    path : 'asset_view',
+    path : 'asset_view/:_id',
     component : AssetViewComponent,
   },
   {
