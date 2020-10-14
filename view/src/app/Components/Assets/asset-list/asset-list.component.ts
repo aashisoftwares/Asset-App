@@ -37,10 +37,8 @@ export class AssetListComponent implements OnInit {
   // Menu List
 getAssets(){
   const Info = {'Company_Id':this.loginService.getcompanyId()};
-  console.log (Info);
   this.service.Asset_Simple_List(Info).subscribe(res => {
     const ResponseData = res;
-    console.log (ResponseData)
     this.AssetDataList = ResponseData['Response'];
      });
   }

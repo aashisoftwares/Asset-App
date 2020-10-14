@@ -183,6 +183,7 @@ exports.Asset_List = (req, res) => {
                     { Asset_Nick_Name : 1 ,
                       Serial_Number : 1,
                       Asset_Code : 1 ,
+                      Ass_RFID : 1
                       } ,
                      {sort: { updatedAt: -1 }})
                      .populate({ path: 'Created_By', select: ['Name','Phone','Email']})

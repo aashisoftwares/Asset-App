@@ -32,6 +32,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule} from '@angular/material/table';
 import { MatNativeDateModule, NativeDateAdapter,DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { LoginComponent } from './Components/Common-Components/login/login.component';
 import { HeaderComponent } from './Components/Common-Components/header/header.component';
@@ -75,34 +76,8 @@ import { ModelAssetTypeAssetSettingsComponent } from './models/settings/Asset-Se
 import { ModelOwnershipTypeAssetSettingsComponent } from './models/settings/Asset-Settings/model-ownership-type-asset-settings/model-ownership-type-asset-settings.component';
 import { ModelMaintenanceStrategyAssetSettingsComponent } from './models/settings/Asset-Settings/model-maintenance-strategy-asset-settings/model-maintenance-strategy-asset-settings.component';
 import { CommonService } from './Services/CommonService/common.service';
+import { ModelServiceComponent } from "./models/Service/model-service/model-service.component";
 
-export class AppDateAdapter extends NativeDateAdapter {
-
-  format(date: Date, displayFormat: Object): string {
-
-      if (displayFormat === 'input') {
-
-          const day = date.getDate() <= 9 ? '0' + date.getDate() : date.getDate();
-          const month = (date.getMonth() + 1) <= 9 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1);
-          const year = date.getFullYear();
-
-          return `${day}-${month}-${year}`;
-      }
-
-      return date.toDateString();
-  }
-}
-const MY_DATE_FORMATS = {
-  parse: {
-      dateInput: { month: 'short', year: 'numeric', day: 'numeric' }
-  },
-  display: {
-      dateInput: 'input',
-      monthYearLabel: { year: 'numeric', month: 'short' },
-      dateA11yLabel: { year: 'numeric', month: 'long', day: 'numeric' },
-      monthYearA11yLabel: { year: 'numeric', month: 'long' },
-  }
-};
 @NgModule({
   declarations: [
     AppComponent,
@@ -143,7 +118,8 @@ const MY_DATE_FORMATS = {
     MaintenanceStrategyComponent,
     ModelAssetTypeAssetSettingsComponent,
     ModelOwnershipTypeAssetSettingsComponent,
-    ModelMaintenanceStrategyAssetSettingsComponent
+    ModelMaintenanceStrategyAssetSettingsComponent,
+    ModelServiceComponent
   ],
   imports: [
     BrowserModule,
@@ -177,6 +153,7 @@ const MY_DATE_FORMATS = {
     BsDropdownModule.forRoot(),
     CKEditorModule,
     MatPaginatorModule,
+    MatProgressSpinnerModule,
     MatTableModule,
     MatNativeDateModule,
     MatMomentDateModule,
@@ -187,10 +164,10 @@ const MY_DATE_FORMATS = {
       closeButton: true,
       }),
   ],
-  providers: [ServiceNames,ConstantFile,CommonService,
-    { provide: DateAdapter, useClass: AppDateAdapter },
-    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },MatDatepickerModule
-    ],
+  providers: [ServiceNames,
+              ConstantFile,
+              CommonService,
+              MatDatepickerModule],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

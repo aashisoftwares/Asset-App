@@ -11,10 +11,10 @@
           <i class="material-icons person">person</i>
        </span>
        <!-- Notification -->
-       <span class="notification">
+       <!-- <span class="notification">
           <a><i class="material-icons notify" [matMenuTriggerFor]="notification" > notifications</i></a>
           <span class="badge">5</span>
-       </span>
+       </span> -->
     </div>
     <!-- Header Two -->
     <div class="Header_Two">
@@ -34,12 +34,12 @@
             </span>
          </li>
           <!-- Asset History-->
-          <li [routerLinkActive]="'active'" class="Menu_List">
+          <!-- <li [routerLinkActive]="'active'" class="Menu_List">
             <span class="Menu">
                <i class="material-icons">people</i>
                <span [routerLink]="['/asset']"> &nbsp; Asset History </span> 
             </span>
-         </li>
+         </li> -->
           <!-- Service -->
           <li [routerLinkActive]="'active'" class="Menu_List">
             <span class="Menu">
@@ -48,12 +48,12 @@
             </span>
          </li>
           <!-- Reports -->
-          <li [routerLinkActive]="'active'" class="Menu_List">
+          <!-- <li [routerLinkActive]="'active'" class="Menu_List">
             <span class="Menu">
                <i class="material-icons">people</i>
                <span [routerLink]="['/reports']"> &nbsp; Reports </span> 
             </span>
-         </li>
+         </li> -->
           <!-- settings -->
           <li [routerLinkActive]="'active'" class="Menu_List">
             <span class="Menu_Tree">
@@ -62,9 +62,9 @@
                   <span> &nbsp; Settings </span> 
                </span>
                <ul class="Menu_Tree_View">
-                  <li [routerLinkActive]="'active'" class="Menu_Tree_List"><a [routerLink]="['/csettings']"> Company Settings </a></li>
+                  <!-- <li [routerLinkActive]="'active'" class="Menu_Tree_List"><a [routerLink]="['/csettings']"> Company Settings </a></li> -->
                   <li [routerLinkActive]="'active'" class="Menu_Tree_List"><a [routerLink]="['/asettings']"> Asset Settings </a></li>
-                  <li [routerLinkActive]="'active'" class="Menu_Tree_List"><a [routerLink]="['/usettings']"> Users </a></li>
+                  <!-- <li [routerLinkActive]="'active'" class="Menu_Tree_List"><a [routerLink]="['/usettings']"> Users </a></li> -->
                   <!-- <li [routerLinkActive]="'active'" class="Menu_Tree_List"><a [routerLink]="['/User_Permissions']"> User Permissions </a></li> -->
                </ul>
             </span>
@@ -109,9 +109,9 @@
  
  <!-- Dropdown menus -->
  <mat-menu class="MenuStyleOne" #Action1="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
-    <button mat-menu-item>
+    <!-- <button mat-menu-item>
        <span>Profile</span>
-    </button>
+    </button> -->
     <button mat-menu-item (click)="logOut()">
        <span>LogOut</span>
     </button>      

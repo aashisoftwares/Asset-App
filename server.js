@@ -130,6 +130,14 @@ const asseti = require ('./Server/web/Routes/Asset/AssetImg.routes');
 const assete = require ('./Server/web/Routes/Asset/AssetEdit.routes');
 const assetml = require ('./Server/web/Routes/Asset/AssetMapList.routes');
 
+//Service
+const servicec = require ('./Server/web/Routes/Service/Service.Create.routes');
+const servicel = require ('./Server/web/Routes/Service/Service.List.routes');
+const servicev = require ('./Server/web/Routes/Service/Service.View.routes');
+const servicea = require ('./Server/web/Routes/Service/Service.Activity.routes');
+const serviceal = require ('./Server/web/Routes/Service/Activity.List.routes');
+const serviceu = require ('./Server/web/Routes/Service/Service.Update.routes');
+
 // Route URLS
 app.use('/api/company', company);
 app.use('/api/user', usrcreate);
@@ -206,6 +214,15 @@ app.use ('/api/asseti' , asseti);
 app.use ('/api/assetr' , assetr);
 app.use ('/api/assete' , assete);
 app.use ('/api/assetml', assetml);
+
+//Service 
+app.use ('/api/servicec', servicec);
+app.use ('/api/servicel', servicel);
+app.use ('/api/servicev', servicev);
+app.use ('/api/servicea', servicea);
+app.use ('/api/serviceal', serviceal);
+app.use ('/api/serviceu', serviceu);
+
 
 // Routes
 app.get ('/' , (req, res) => {

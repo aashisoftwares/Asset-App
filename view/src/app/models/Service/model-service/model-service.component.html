@@ -1,0 +1,48 @@
+<h2 mat-dialog-title>Raise Service Request Promotions</h2>
+<mat-dialog-content mat-dialog-content>
+    <form [formGroup]="ServiceForm">
+        <mat-form-field class="col-sm-6">
+            <mat-label>Asset Name</mat-label>
+            <mat-select formControlName="Asset_ID" (click)="getassets()">
+                <mat-option *ngFor="let ass of AssetDataList" value="{{ass._id}}">
+                    {{ass.Asset_Nick_Name}}-{{ass.Asset_Code}}-{{ass.Serial_Number}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="col-sm-6">
+            <mat-label>Request Raised By</mat-label>
+            <input matInput required formControlName="Req_By"/>
+        </mat-form-field>
+        <mat-form-field class="col-sm-6">
+            <mat-label>Contact Number</mat-label>
+            <input matInput required formControlName="Req_Num"/>
+        </mat-form-field>
+        <mat-form-field class="col-sm-6">
+            <mat-label>Problem Reported</mat-label>
+            <textarea matInput placeholder="Ex. It makes me feel..." formControlName="Problem_Description"></textarea>
+        </mat-form-field>
+        <mat-form-field class="col-sm-6">
+            <mat-label>Priority</mat-label>
+            <mat-select formControlName="priority">
+              <mat-option value="low">Low</mat-option>
+              <mat-option value="medium">Medium</mat-option>
+              <mat-option value="high">High</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="col-sm-6">
+            <mat-label>severity</mat-label>
+            <mat-select formControlName="severity">
+                <mat-option value="low">Low</mat-option>
+                <mat-option value="medium">Medium</mat-option>
+                <mat-option value="high">High</mat-option>
+              </mat-select>
+          </mat-form-field>        
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="closeModal()" style="float: right;">Cancel</button>
+    <button mat-raised-button type="submit" [disabled]="!ServiceForm.valid"  (click)="onSubmit()" class="registerbtn" style="float: right;">
+        <span>Submit</span>
+        <!-- <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span> -->
+    </button>
+</mat-dialog-actions>

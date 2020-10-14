@@ -8,7 +8,7 @@ import { EnviroinmentService } from '../enviroinments/enviroinment.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AssetService {
+export class ServiceModuleService {
 
   baseUri = this.environment.baseUrl;
   headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -18,28 +18,20 @@ export class AssetService {
     private environment : EnviroinmentService
   ) { }
 
-  //Create Asset
-  CreateAssets(data): Observable<any> {
-    let url = `${this.baseUri}/asset/Asset_Create`;
+  //Create Service
+  CreateService(data): Observable<any> {
+    let url = `${this.baseUri}/servicec/Service_Create`;
     return this.http.post(url, data)
     catchError(this.handleError) 
   }
 
-  // Asset Simple List
-  Asset_Simple_List(Info: any): Observable<any[]> {
-    let url = `${this.baseUri}/assetl/Asset_List`;
-      return this.http.post(url, Info)
-      .pipe( map(response => response),  
-      catchError(error => of(error)));
-  }
-
-   //Menu View
-   Asset_View(Info:any): Observable<any[]> {
-    let url = `${this.baseUri}/assetv/Asset_View`;
-      return this.http.post(url, Info)
-      .pipe( map(response => response),  
-      catchError(error => of(error)));
-  }
+  //Service List
+    Promo_List(Info:any): Observable<any[]> {
+      let url = `${this.baseUri}/servicel/Service_List`;
+        return this.http.post(url, Info)
+        .pipe( map(response => response),  
+        catchError(error => of(error)));
+    }
 
   //Error Handling 
   handleError(error: HttpErrorResponse) {
@@ -54,5 +46,4 @@ export class AssetService {
     window.alert(errorMessage);
     return throwError(errorMessage);
   }
-
 }

@@ -1,6 +1,4 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { ModelAssetgroupAssetSettingsComponent } from "../../../../../models/settings/Asset-Settings/model-assetgroup-asset-settings/model-assetgroup-asset-settings.component";
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
@@ -19,7 +17,6 @@ import { LoginService } from 'src/app/Services/Login/login.service';
 })
 export class AssetGroupComponent implements OnInit {
 
-  bsModalRef: BsModalRef;
   _Create: Boolean = false;
   _View: Boolean = false;
   _Edit: Boolean = false;
@@ -41,7 +38,7 @@ export class AssetGroupComponent implements OnInit {
   //SEARCH
   searchKey: string='';
 
-  constructor(private modalService: BsModalService,
+  constructor(
     private dialog: MatDialog,
     private Service: AssetSettingServiceService,
     private serviceName: ServiceNames,
