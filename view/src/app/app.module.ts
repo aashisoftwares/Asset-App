@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA, Injectable } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,12 +27,8 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { MatIconModule } from '@angular/material/icon';
-import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule} from '@angular/material/table';
-import { MatNativeDateModule, NativeDateAdapter,DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
-import { MatMomentDateModule } from "@angular/material-moment-adapter";
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { LoginComponent } from './Components/Common-Components/login/login.component';
 import { HeaderComponent } from './Components/Common-Components/header/header.component';
@@ -69,14 +65,6 @@ import { ModelManufacturerAssetSettingsComponent } from './models/settings/Asset
 import { ModelModelAssetSettingsComponent } from './models/settings/Asset-Settings/model-model-asset-settings/model-model-asset-settings.component';
 import { ServiceNames } from './Services/serviceNames';
 import { ConstantFile } from './Services/constantFile';
-import { AssetTypesComponent } from './Components/Settings/Asset-Settings/SubComponents/asset-types/asset-types.component';
-import { OwnershipTypesComponent } from './Components/Settings/Asset-Settings/SubComponents/ownership-types/ownership-types.component';
-import { MaintenanceStrategyComponent } from './Components/Settings/Asset-Settings/SubComponents/maintenance-strategy/maintenance-strategy.component';
-import { ModelAssetTypeAssetSettingsComponent } from './models/settings/Asset-Settings/model-asset-type-asset-settings/model-asset-type-asset-settings.component';
-import { ModelOwnershipTypeAssetSettingsComponent } from './models/settings/Asset-Settings/model-ownership-type-asset-settings/model-ownership-type-asset-settings.component';
-import { ModelMaintenanceStrategyAssetSettingsComponent } from './models/settings/Asset-Settings/model-maintenance-strategy-asset-settings/model-maintenance-strategy-asset-settings.component';
-import { CommonService } from './Services/CommonService/common.service';
-import { ModelServiceComponent } from "./models/Service/model-service/model-service.component";
 
 @NgModule({
   declarations: [
@@ -112,14 +100,7 @@ import { ModelServiceComponent } from "./models/Service/model-service/model-serv
     ModelVendorsAssetSettingsComponent,
     ModelSpaersAssetSettingsComponent,
     ModelModelAssetSettingsComponent,
-    ModelManufacturerAssetSettingsComponent,
-    AssetTypesComponent,
-    OwnershipTypesComponent,
-    MaintenanceStrategyComponent,
-    ModelAssetTypeAssetSettingsComponent,
-    ModelOwnershipTypeAssetSettingsComponent,
-    ModelMaintenanceStrategyAssetSettingsComponent,
-    ModelServiceComponent
+    ModelManufacturerAssetSettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -137,7 +118,6 @@ import { ModelServiceComponent } from "./models/Service/model-service/model-serv
     ChipsModule,
     NgSelectModule,
     MatButtonModule,
-    MatCardModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
@@ -153,10 +133,7 @@ import { ModelServiceComponent } from "./models/Service/model-service/model-serv
     BsDropdownModule.forRoot(),
     CKEditorModule,
     MatPaginatorModule,
-    MatProgressSpinnerModule,
     MatTableModule,
-    MatNativeDateModule,
-    MatMomentDateModule,
     ToastrModule.forRoot({ 
       timeOut: 3000,
       positionClass: 'toast-top-center',
@@ -164,10 +141,7 @@ import { ModelServiceComponent } from "./models/Service/model-service/model-serv
       closeButton: true,
       }),
   ],
-  providers: [ServiceNames,
-              ConstantFile,
-              CommonService,
-              MatDatepickerModule],
+  providers: [ServiceNames,ConstantFile],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

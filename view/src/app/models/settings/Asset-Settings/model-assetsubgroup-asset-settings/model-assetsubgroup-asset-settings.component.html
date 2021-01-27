@@ -35,8 +35,8 @@
       </div>
    </div>
 
-   <div class="Model_Footer" style="padding-top: 5px;" *ngIf="!disableSubmitButton">
-      <button mat-raised-button [disabled]="subGroupForm.invalid" (click)="onSubmit(displayButton)" color="primary">
+   <div class="Model_Footer" style="padding-top: 5px;">
+      <button mat-raised-button [disabled]="disableSubmitButton" (click)="onSubmit()" color="primary">
          <span>{{displayButton}}</span>
       </button>
    </div>

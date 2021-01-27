@@ -35,7 +35,6 @@ export class ModelAssetgroupAssetSettingsComponent implements OnInit {
   displayButton: string;
   disableSubmitButton: boolean=false;
   setValueToForm: boolean=false;
-  methodName: string='';
 
   constructor(
     private modalService: BsModalService,
@@ -56,7 +55,6 @@ export class ModelAssetgroupAssetSettingsComponent implements OnInit {
   ngOnInit(): void {
     this.Form = new FormGroup({
       _id: new FormControl(0),
-      Asset_Group_Id: new FormControl(0),
       Asset_Group : new FormControl('', [Validators.required]),
       Spares : new FormControl(true),
       Company_Id : new FormControl(this.Company_Id),
@@ -96,15 +94,11 @@ export class ModelAssetgroupAssetSettingsComponent implements OnInit {
     this.dialogRef.close();
   }  
 
-  onSubmit(mode) {
-    if(mode=='Submit'){
-      this.methodName=this.serviceName.asset_Group_Create;
-    }else{
-      this.methodName=this.serviceName.asset_Group_Edit;
-      this.Form.controls.Asset_Group_Id.setValue(this.data.AssetGroupModel._id);
-    }
-    if(this.methodName!=null && this.methodName!=undefined){
-      this.Service.commonCreateMethod(this.methodName,this.Form.value).subscribe(
+  onSubmit() {
+    if (!this.Form.valid) {
+      return false;
+    } else {
+      this.Service.commonCreateMethod(this.serviceName.asset_Group_Create,this.Form.value).subscribe(
         (res) => {
           if(res.Status){
             this.toastrService.successMessage(this.error.SUCCESS_MSG)

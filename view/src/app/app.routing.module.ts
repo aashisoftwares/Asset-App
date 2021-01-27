@@ -36,7 +36,7 @@ const appRoutes: Routes = [
     component : AssetComponent,
   },
   {
-    path : 'asset_view/:_id',
+    path : 'asset_view',
     component : AssetViewComponent,
   },
   {

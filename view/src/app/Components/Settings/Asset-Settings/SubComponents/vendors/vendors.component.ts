@@ -7,7 +7,6 @@ import { ConstantFile } from 'src/app/Services/constantFile';
 import { ServiceNames } from 'src/app/Services/serviceNames';
 import { AssetSettingServiceService } from 'src/app/Services/Asset-Settings/asset-setting-service.service';
 import { MatPaginator } from '@angular/material/paginator';
-import { LoginService } from 'src/app/Services/Login/login.service';
 
 @Component({
   selector: 'app-vendors',
@@ -30,8 +29,7 @@ export class VendorsComponent implements OnInit {
     private Service: AssetSettingServiceService,
     private serviceName: ServiceNames,
     private error: ConstantFile,
-    private toaster: ToastrServiceService,
-    private login: LoginService) { }
+    private toaster: ToastrServiceService) { }
 
   ngOnInit(): void {
     this.getListOfVendor();
@@ -68,20 +66,4 @@ export class VendorsComponent implements OnInit {
       );
   }
 
-  deleteVendor(element){
-    element.Vendor_Name_Id=element._id;
-    element.Last_Modified_By=this.login.getUserId();
-    this.Service.commonDeleteMethod(this.serviceName.vendor_Delete, element).subscribe(
-      data => {
-        if (data.Status) {
-          this.toaster.successMessage(data.Message);
-          this.getListOfVendor();
-        } else {
-          this.toaster.errorMessage(data.Message);
-        }
-      }, error => {
-        this.toaster.errorMessage(this.error.SERVER_ERROR);
-      }
-    );
-  }
 }

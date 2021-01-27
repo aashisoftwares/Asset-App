@@ -7,7 +7,6 @@ import { ServiceNames } from 'src/app/Services/serviceNames';
 import { ConstantFile } from 'src/app/Services/constantFile';
 import { ToastrServiceService } from 'src/app/Services/toastr-service/toastr-service.service';
 import { MatPaginator } from '@angular/material/paginator';
-import { LoginService } from 'src/app/Services/Login/login.service';
 
 @Component({
   selector: 'app-model',
@@ -30,14 +29,13 @@ export class ModelComponent implements OnInit {
     private Service: AssetSettingServiceService,
     private serviceName: ServiceNames,
     private error: ConstantFile,
-    private toaster: ToastrServiceService,
-    private login: LoginService) { }
+    private toaster: ToastrServiceService) { }
 
   ngOnInit(): void {
     this.getListForModel();
   }
   
-  //CREATE Model
+  //CREATE ASSET GROUP
   dialogRef;
   CreateModel(element,mode) {
     this.dialogRef = this.dialog.open(ModelModelAssetSettingsComponent, {
@@ -67,23 +65,6 @@ export class ModelComponent implements OnInit {
         this.toaster.errorMessage(this.error.SERVER_ERROR);
       }
       );
-  }
-
-  deleteModel(element){
-    element.Model_Name_Id=element._id;
-    element.Last_Modified_By=this.login.getUserId();
-    this.Service.commonDeleteMethod(this.serviceName.model_Delete, element).subscribe(
-      data => {
-        if (data.Status) {
-          this.toaster.successMessage(data.Message);
-          this.getListForModel();
-        } else {
-          this.toaster.errorMessage(data.Message);
-        }
-      }, error => {
-        this.toaster.errorMessage(this.error.SERVER_ERROR);
-      }
-    );
   }
 
 }

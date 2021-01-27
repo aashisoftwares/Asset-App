@@ -57,9 +57,9 @@ app.use (bodyParser.urlencoded({extended : false}))
 app.use (express.json());
 
 // Routes Config
-const company = require('./Server/web/Routes/Basic/companyregister.routes');
-const usrcreate = require('./Server/web/Routes/Basic/user_crat');
-const loginusr = require('./Server/web/Routes/Basic/lgn_user');
+const company = require('./server/web/routes/Basic/companyregister.routes');
+const usrcreate = require('./server/web/routes/Basic/user_crat');
+const loginusr = require('./server/web/routes/Basic/lgn_user');
 const assetgrp = require('./Server/web/Routes/Settings/Asset/Assetgroup.routes');
 const assetsgrp = require('./Server/web/Routes/Settings/Asset/Assetsubgroup.routes');
 const assetman = require('./Server/web/Routes/Settings/Asset/Manufacturer.routes');
@@ -119,24 +119,8 @@ const locationl = require ('./Server/web/Routes/Settings/General/LocationList.ro
 const employeel = require ('./Server/web/Routes/Settings/General/EmployeeList.routes');
 const locationsl = require ('./Server/web/Routes/Settings/General/LocationSimpleList.routes');
 const employeesl = require ('./Server/web/Routes/Settings/General/EmployeeSimpleList.routes');
-
-//Asset Routes
 const asset = require ('./Server/web/Routes/Asset/Asset.routes');
 const assetl = require ('./Server/web/Routes/Asset/AssetList.routes');
-const assetv = require ('./Server/web/Routes/Asset/AssetView.routes');
-const assetm = require ('./Server/web/Routes/Asset/AssetMap.routes');
-const assetr = require ('./Server/web/Routes/Asset/AssetRemove.routes');
-const asseti = require ('./Server/web/Routes/Asset/AssetImg.routes');
-const assete = require ('./Server/web/Routes/Asset/AssetEdit.routes');
-const assetml = require ('./Server/web/Routes/Asset/AssetMapList.routes');
-
-//Service
-const servicec = require ('./Server/web/Routes/Service/Service.Create.routes');
-const servicel = require ('./Server/web/Routes/Service/Service.List.routes');
-const servicev = require ('./Server/web/Routes/Service/Service.View.routes');
-const servicea = require ('./Server/web/Routes/Service/Service.Activity.routes');
-const serviceal = require ('./Server/web/Routes/Service/Activity.List.routes');
-const serviceu = require ('./Server/web/Routes/Service/Service.Update.routes');
 
 // Route URLS
 app.use('/api/company', company);
@@ -204,25 +188,8 @@ app.use('/api/clocatel', locationl);
 app.use('/api/employeel', employeel);
 app.use('/api/clocatesl', locationsl);
 app.use('/api/employeesl', employeesl);
-
-//Asset Routes
 app.use ('/api/asset' , asset);
 app.use ('/api/assetl' , assetl);
-app.use ('/api/assetv' , assetv);
-app.use ('/api/assetm' , assetm);
-app.use ('/api/asseti' , asseti);
-app.use ('/api/assetr' , assetr);
-app.use ('/api/assete' , assete);
-app.use ('/api/assetml', assetml);
-
-//Service 
-app.use ('/api/servicec', servicec);
-app.use ('/api/servicel', servicel);
-app.use ('/api/servicev', servicev);
-app.use ('/api/servicea', servicea);
-app.use ('/api/serviceal', serviceal);
-app.use ('/api/serviceu', serviceu);
-
 
 // Routes
 app.get ('/' , (req, res) => {

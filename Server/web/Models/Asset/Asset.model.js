@@ -6,11 +6,10 @@ const AssetSchema = mongoose.Schema({
     Asset_Nick_Name: { type : String , required : true},
     Serial_Number: { type: String, required : true },
     Asset_Code: { type : String , required : true },
-    Ass_RFID: { type : String },
     Model_Id: {  type: Schema.Types.ObjectId, ref: 'Model', required : true  },
     Asset_Group_Id : { type: Schema.Types.ObjectId, ref: 'AssetGroup', required : true },
     Asset_Sub_Group_Id: {  type: Schema.Types.ObjectId, ref: 'AssetSubGroup', required : true  },
-    AssManufacturer_Id : { type: Schema.Types.ObjectId, ref: 'Manufacturer', required : true },
+    AssManufacturer__Id : { type: Schema.Types.ObjectId, ref: 'Manufacturer', required : true },
     Location_Id : { type: Schema.Types.ObjectId, ref: 'Location_DB', required : true  },
     Purchase_Date : { type : String , required : true},
     Price : { type: String, required : true },
@@ -28,8 +27,7 @@ const AssetSchema = mongoose.Schema({
     Created_By : { type: Schema.Types.ObjectId, ref: 'User_Management', required : true },
     Last_Modified_By: { type: Schema.Types.ObjectId, ref: 'User_Management', required : true },
     Active_Status: { type : Boolean , required : true},
-    If_Deleted: { type : Boolean , required : true },
-    Rfid_Status: { type : Boolean , required : true }
+    If_Deleted: { type : Boolean , required : true }
     },
     { timestamps: true }
  );

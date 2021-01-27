@@ -1,31 +1,49 @@
 <app-header></app-header>
 <!-- page -->
-<div class="page" style="margin-top:100px;margin-bottom:100px;">
-   <div class="container-fluid">
-      <!-- page Identity -->
-      <div class="Page_Identity">
-         <div class="Page_Track">
-            <ul>
-               <li class="HeaderName">Asset</li>
-               <li class="arrow">>></li>
-               <li class="LinkName"><a [routerLink]="['/asset']">Asset</a></li>
-               <li class="arrow">>></li>
-               <li>Create</li>
-            </ul>
-         </div>
-      </div>
-      <form [formGroup]="Form">
-         <div class="row">
-            <div class="col-sm-3">
-               <!-- Left Section -->
-               <div class="left_section" style=" background-color:#fff; margin-bottom:150px; box-shadow: 1px 1px 10px #d4d4d4;">
-                  <div class="row">
-                     <div class="col-sm-12 text-center">
-                        <img src="../../../../../assets/images/basic/company.png" alt="Company Image"
-                           style="width:150px; height:150px; margin-top:40px; box-shadow:0 1px 5px 1px rgba(0,0,0,.2);">
+ <div class="page" style="margin-top:100px;margin-bottom:100px;">
+    <div class="container-fluid">
+       <!-- page Identity -->
+       <div class="Page_Identity">
+          <div class="Page_Track">
+             <ul>
+                <li class="HeaderName">Asset</li>
+                <li class="arrow">>></li>
+                <li class="LinkName"><a [routerLink]="['/asset']">Asset</a></li>
+                <li class="arrow">>></li>
+                <li>Create</li>
+             </ul>
+          </div>
+       </div>
+       <form [formGroup]="Form" (ngSubmit)="onSubmit()" >
+          <div class="row">
+             <div class="col-sm-3" >
+                <!-- Left Section -->
+                <div class="left_section" style=" background-color:#fff; margin-bottom:150px; box-shadow: 1px 1px 10px #d4d4d4;">
+                   <div class="row">
+                      <div class="col-sm-12 text-center">
+                         <img src="../../../../../assets/images/basic/company.png" alt="Company Image" style="width:150px; height:150px; margin-top:40px; box-shadow:0 1px 5px 1px rgba(0,0,0,.2);">
+                      </div></div><br>
+                      <!-- <div class="row">
+                      <div class="col-sm-12 Form_Input" style="margin-bottom: 30px" >
+                         <input type="text" formControlName="Asset_Nick_Name" placeholder="Asset Nick Name" style="width:90%;margin-left:15px;margin-bottom: 0px;">
+                         <p class="error" *ngIf="Form.controls['Asset_Nick_Name'].errors && !Form.controls['Asset_Nick_Name'].pristine">
+                           <span *ngIf="Form.controls['Asset_Nick_Name'].errors.required">Asset Group is required</span>
+                        </p>
+                        </div>
+                      <div class="col-sm-12 Form_Input" style="margin-bottom: 30px" >
+                        <input type="text" formControlName="Serial_Number"  placeholder="Serial Number" style="width:90%;margin-left:15px;margin-bottom: 0px;">
+                        <p class="error" *ngIf="Form.controls['Serial_Number'].errors && !Form.controls['Serial_Number'].pristine">
+                           <span *ngIf="Form.controls['Serial_Number'].errors.required">Asset Group is required</span>
+                        </p>
                      </div>
-                  </div><br>
-                  <div class="row" style="padding: 15px;">
+                      <div class="col-sm-12 Form_Input" style="margin-bottom: 30px">
+                         <input  type="text" formControlName="Asset_Code" placeholder="Asset Code" style="width:90%;margin-left:15px;margin-bottom: 0px;">
+                         <p class="error" *ngIf="Form.controls['Asset_Code'].errors && !Form.controls['Asset_Code'].pristine">
+                           <span *ngIf="Form.controls['Asset_Code'].errors.required">Asset Group is required</span>
+                        </p>
+                      </div>
+                   </div> -->
+                   <div class="row">
                      <div class="col-sm-12 form-group">
                         <mat-form-field class="example-full-width" [floatLabel]="'always'">
                            <mat-label class="example-label"> Asset Nick Name </mat-label>
@@ -33,8 +51,7 @@
                               oninput="this.value = this.value.toUpperCase()">
                            <mat-error
                               *ngIf="Form.controls.Asset_Nick_Name.errors && Form.controls.Asset_Nick_Name.touched">
-                              <div *ngIf="Form.controls.Asset_Nick_Name.errors.required"> Asset Nick Name is Required
-                              </div>
+                              <div *ngIf="Form.controls.Asset_Nick_Name.errors.required"> Asset Nick Name is Required </div>
                            </mat-error>
                         </mat-form-field>
                      </div>
@@ -43,7 +60,8 @@
                            <mat-label class="example-label"> Serial Number </mat-label>
                            <input matInput autofocus formControlName="Serial_Number" required tabindex="2"
                               oninput="this.value = this.value.toUpperCase()">
-                           <mat-error *ngIf="Form.controls.Serial_Number.errors && Form.controls.Serial_Number.touched">
+                           <mat-error
+                              *ngIf="Form.controls.Serial_Number.errors && Form.controls.Serial_Number.touched">
                               <div *ngIf="Form.controls.Serial_Number.errors.required"> Serial Number is Required </div>
                            </mat-error>
                         </mat-form-field>
@@ -53,247 +71,101 @@
                            <mat-label class="example-label"> Asset Code </mat-label>
                            <input matInput autofocus formControlName="Asset_Code" required tabindex="3"
                               oninput="this.value = this.value.toUpperCase()">
-                           <mat-error *ngIf="Form.controls.Asset_Code.errors && Form.controls.Asset_Code.touched">
+                           <mat-error
+                              *ngIf="Form.controls.Asset_Code.errors && Form.controls.Asset_Code.touched">
                               <div *ngIf="Form.controls.Asset_Code.errors.required"> Asset Code is Required </div>
                            </mat-error>
                         </mat-form-field>
                      </div>
-                  </div>
-               </div>
-            </div>
-            <div class="col-sm-9">
-               <div class="Company_Details">
-                  <h5 class="text-style-1"> Asset Details </h5>
-                  <div class="row">
-                     <div class="col-sm-4 Form_Select" style="margin-bottom: 15px">
-                        <div class="example-full-width">
-                           <span class="font-style-combo">Model<span class="mandatory-style">*</span></span>
-                           <ng-select class="custom-dropdown" [items]="modelComboList" [bindValue]="'_id'" [bindLabel]="'Model_Name'"
-                              formControlName="Model_Id" [searchable]="true" (click)="getModelList()">
-                           </ng-select>
-                           <mat-error *ngIf="Form.controls.Model_Id.errors && Form.controls.Model_Id.touched">
-                              <div *ngIf="Form.controls.Model_Id.errors.required"> Model Name is Required </div>
-                           </mat-error>
+                   </div>
+                </div>
+             </div>
+             <div class="col-sm-9">
+                <div class="Company_Details">
+                   <h5 class="text-style-1"> Asset Details </h5>
+                   <div class="row" >
+                      <div class="col-sm-4 Form_Select" style="margin-bottom: 15px">
+                        <ng-select class="NgSelect" placeholder="Model"></ng-select>
+                      </div>
+                      <div class="col-sm-4 Form_Select" style="margin-bottom: 15px">
+                        <ng-select class="NgSelect" placeholder="Asset Group"></ng-select>
+                      </div>
+                      <div class="col-sm-4 Form_Select" style="margin-bottom: 15px">
+                        <ng-select class="NgSelect" placeholder="Asset Sub Group"></ng-select>
+                      </div>
+                      <div class="col-sm-4 Form_Select" >
+                        <ng-select class="NgSelect" placeholder="Manufacturer"></ng-select>
+                      </div>
+                      <div class="col-sm-4 Form_Select" >
+                        <ng-select class="NgSelect" placeholder="Asset Location"></ng-select>
+                      </div>
+                   </div>
+                </div>
+                <div class="Company_Details">
+                   <h5 class="text-style-1"> Purchase Details </h5>
+                   <div class="row">
+                      <div class="col-sm-4 Form_Input" style="margin-bottom: 15px" >
+                         <input type="text" formControlName="Purchase_Date" placeholder="Purchase Date" style="margin-bottom: 0px">
+                      </div>
+                      <div class="col-sm-4 Form_Input" style="margin-bottom: 15px" >
+                         <input type="text" formControlName="Price" placeholder="Price (incl TAX)">
+                      </div>
+                      <div class="col-sm-4 Form_Input" style="margin-bottom: 15px" >
+                        <input type="text" formControlName="Invoice_Number"  placeholder="Invoice Number">
+                     </div>
+                      <div class="col-sm-4 Form_Select" >
+                        <ng-select class="NgSelect" placeholder="Vendor Name"></ng-select>
+                      </div>
+                      <div class="col-sm-4 Form_Select" >
+                        <ng-select class="NgSelect" placeholder="Warranty Period in months"></ng-select>
+                      </div>
+                      <div class="col-sm-4 Form_Input" style="margin-bottom: 15px">
+                        <input type="text" placeholder="Warranty Start Date" style="margin-bottom: 0px">
+                     </div>
+                      <div class="col-sm-4 Form_Input" style="margin-bottom: 15px">
+                        <input type="text" placeholder="Warranty End Date" style="margin-bottom: 0px">
+                     </div>
+                      <div class="col-sm-4 Form_Select" >
+                        <ng-select class="NgSelect" placeholder="Warranty Coverage Type"></ng-select>
+                      </div>
+                   </div>
+                </div>
+                   <div class="Company_Details">
+                      <div>
+                         <h5 class="text-style-1"> Ownership Details </h5>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-4 Form_Select" style="margin-bottom: 15px">
+                          <ng-select class="NgSelect" placeholder="Ownership Type"></ng-select>
+                        </div>
+                        <div class="col-sm-4 Form_Select" >
+                           <ng-select class="NgSelect" placeholder="Asset Type"></ng-select>
+                         </div>
+                        <div class="col-sm-4 Form_Select" >
+                           <ng-select class="NgSelect" placeholder="Maintanance Stratagy"></ng-select>
+                        </div>
+                        <div class="col-sm-4 Form_Select" >
+                          <ng-select class="NgSelect" 
+                                             [items]="Asset"
+                                             bindLabel="AssetAllocated"
+                                             placeholder="Asset Allocated to"
+                                             appendTo="body"
+                                             multiple="true"
+                                             >
+                          </ng-select>
                         </div>
                      </div>
-                     <div class="col-sm-4 Form_Select" style="margin-bottom: 15px">
-                        <div class="example-full-width">
-                           <span class="font-style-combo">Asset Group<span class="mandatory-style">*</span></span>
-                           <ng-select class="custom-dropdown" [items]="assetGroupList" [bindValue]="'_id'" [bindLabel]="'Asset_Group'"
-                              formControlName="Asset_Group_Id" [searchable]="true" (click)="getAssetGroupList()">
-                           </ng-select>
-                           <mat-error
-                              *ngIf="Form.controls.Asset_Group_Id.errors && Form.controls.Asset_Group_Id.touched">
-                              <div *ngIf="Form.controls.Asset_Group_Id.errors.required"> Asset Group is Required
-                              </div>
-                           </mat-error>
-                        </div>
-                     </div>
-                     <div class="col-sm-4 Form_Select" style="margin-bottom: 15px">
-                        <div class="example-full-width">
-                           <span class="font-style-combo">Asset Sub Group<span class="mandatory-style">*</span></span>
-                           <ng-select class="custom-dropdown" [items]="assetSubGroupList" [bindValue]="'_id'"
-                              [bindLabel]="'Asset_Sub_Group'" formControlName="Asset_Sub_Group_Id" [searchable]="true"
-                              (click)="getAssetSubGroupList()">
-                           </ng-select>
-                           <mat-error
-                              *ngIf="Form.controls.Asset_Sub_Group_Id.errors && Form.controls.Asset_Sub_Group_Id.touched">
-                              <div *ngIf="Form.controls.Asset_Sub_Group_Id.errors.required"> Asset Sub Group is
-                                 Required </div>
-                           </mat-error>
-                        </div>
-                     </div>
-                     <div class="col-sm-4 Form_Select">
-                        <div class="example-full-width">
-                           <span class="font-style-combo">Manufacturer<span class="mandatory-style">*</span></span>
-                           <ng-select class="custom-dropdown" [items]="manufacturerList" [bindValue]="'_id'" [bindLabel]="'Manufacturer'"
-                              formControlName="AssManufacturer_Id" [searchable]="true"
-                              (click)="getManufacturerList()">
-                           </ng-select>
-                           <mat-error
-                              *ngIf="Form.controls.AssManufacturer_Id.errors && Form.controls.AssManufacturer_Id.touched">
-                              <div *ngIf="Form.controls.AssManufacturer_Id.errors.required"> Manufacturer is Required
-                              </div>
-                           </mat-error>
-                        </div>
-                     </div>
-                     <div class="col-sm-4 Form_Select">
-                        <div class="example-full-width">
-                           <span class="font-style-combo">Location<span class="mandatory-style">*</span></span>
-                           <ng-select class="custom-dropdown" [items]="locationList" [bindValue]="'_id'" [bindLabel]="'Location_Name'"
-                              formControlName="Location_Id" [searchable]="true" (click)="getLocationList()">
-                           </ng-select>
-                           <mat-error *ngIf="Form.controls.Location_Id.errors && Form.controls.Location_Id.touched">
-                              <div *ngIf="Form.controls.Location_Id.errors.required"> Location Name is Required </div>
-                           </mat-error>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="Company_Details">
-                  <h5 class="text-style-1"> Purchase Details </h5>
-                  <div class="row">
-                     <div class="col-sm-4">
-                        <mat-form-field class="col-sm-12" style="margin-left: -15px;">
-                           <mat-label>Purchase Date</mat-label>
-                           <input matInput [matDatepicker]="picker" (dateChange)="formatDateone($event)" />
-                           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                           <mat-datepicker #picker></mat-datepicker>
-                       </mat-form-field>
-                     </div>
-                     <div class="col-sm-4">
-                        <mat-form-field class="example-full-width" [floatLabel]="'always'">
-                           <mat-label class="example-label"> Price (incl TAX) </mat-label>
-                           <input matInput formControlName="Price" required
-                              oninput="this.value = this.value.toUpperCase()">
-                           <mat-error *ngIf="Form.controls.Price.errors && Form.controls.Price.touched">
-                              <div *ngIf="Form.controls.Price.errors.required"> Price is Required </div>
-                           </mat-error>
-                        </mat-form-field>
-                     </div>
-                     <div class="col-sm-4">
-                        <mat-form-field class="example-full-width" [floatLabel]="'always'">
-                           <mat-label class="example-label"> Invoice Number </mat-label>
-                           <input matInput formControlName="Invoice_Number" required
-                              oninput="this.value = this.value.toUpperCase()">
-                           <mat-error
-                              *ngIf="Form.controls.Invoice_Number.errors && Form.controls.Invoice_Number.touched">
-                              <div *ngIf="Form.controls.Invoice_Number.errors.required"> Invoice Number is Required
-                              </div>
-                           </mat-error>
-                        </mat-form-field>
-                     </div>
-                     <div class="col-sm-4 Form_Select">
-                        <div class="example-full-width">
-                           <span class="font-style-combo">Vendor Name<span class="mandatory-style">*</span></span>
-                           <ng-select class="custom-dropdown" [items]="VendorList" [bindValue]="'_id'"
-                              [bindLabel]="'Vendor_Name'" formControlName="Vendor_Name_Id"
-                              [searchable]="true" (click)="getVendorValue()">
-                           </ng-select>
-                           <mat-error
-                              *ngIf="Form.controls.Vendor_Name_Id.errors && Form.controls.Vendor_Name_Id.touched">
-                              <div *ngIf="Form.controls.Vendor_Name_Id.errors.required">Vendor Name is Required
-                              </div>
-                           </mat-error>
-                        </div>
-                     </div>
-                     <div class="col-sm-4 Form_Select">
-                        <div class="example-full-width">
-                           <span class="font-style-combo">Warranty Period(In months)<span
-                                 class="mandatory-style">*</span></span>
-                           <ng-select class="custom-dropdown" [bindLabel]="'name'" [items]="months" [bindValue]="'id'"
-                            formControlName="Warranty_period"></ng-select>
-                           <mat-error
-                              *ngIf="Form.controls.Warranty_period.errors && Form.controls.Warranty_period.touched">
-                              <div *ngIf="Form.controls.Warranty_period.errors.required"> Warranty Period is Required
-                              </div>
-                           </mat-error>
-                        </div>
-                     </div>
-                     <div class="col-sm-4 Form_Select">
-                        <div class="example-full-width">
-                           <span class="font-style-combo">Warranty Coverage Type<span
-                                 class="mandatory-style">*</span></span>
-                           <ng-select class="custom-dropdown" [bindLabel]="'name'" [bindName]="'name'" [items]="WarrantyCoverageType"
-                           [bindValue]="'id'" formControlName="Warranty_Coverage_Type"></ng-select>
-                           <mat-error
-                              *ngIf="Form.controls.Warranty_Coverage_Type.errors && Form.controls.Warranty_Coverage_Type.touched">
-                              <div *ngIf="Form.controls.Warranty_Coverage_Type.errors.required"> Warranty Coverage Type is Required
-                              </div>
-                           </mat-error>
-                        </div>
-                     </div>          
-                     <div class="col-sm-4" style="margin-top: 15px">
-                        <mat-form-field class="col-sm-12" style="margin-left: -15px;">
-                           <mat-label>Warranty Start Date</mat-label>
-                           <input matInput [matDatepicker]="picker1" (dateChange)="formatDatetwo($event)" />
-                           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                           <mat-datepicker #picker1></mat-datepicker>
-                       </mat-form-field>                         
-                     </div>
-                     <div class="col-sm-4" style="margin-top: 15px">
-                        <mat-form-field class="col-sm-12" style="margin-left: -15px;">
-                           <mat-label>Warranty End Date</mat-label>
-                           <input matInput [matDatepicker]="picker2" (dateChange)="formatDatethree($event)" />
-                           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                           <mat-datepicker #picker2></mat-datepicker>
-                       </mat-form-field>
-                     </div>
-                  </div>
-               </div>
-               <div class="Company_Details">
-                  <div>
-                     <h5 class="text-style-1"> Ownership Details </h5>
-                  </div>
-                  <div class="row">
-                     <div class="col-sm-4 Form_Select" style="margin-bottom: 15px">
-                        <div class="example-full-width">
-                           <span class="font-style-combo">Ownership Type<span class="mandatory-style">*</span></span>
-                           <ng-select class="custom-dropdown" [items]="ownershipList" [bindValue]="'_id'"
-                              [bindLabel]="'Ownership_Type_Name'" formControlName="Ownership_Type_Id"
-                              [searchable]="true" (click)="getOwnershipTypeList()">
-                           </ng-select>
-                           <mat-error
-                              *ngIf="Form.controls.Ownership_Type_Id.errors && Form.controls.Ownership_Type_Id.touched">
-                              <div *ngIf="Form.controls.Ownership_Type_Id.errors.required"> Ownership Type is Required
-                              </div>
-                           </mat-error>
-                        </div>
-                     </div>
-                     <div class="col-sm-4 Form_Select">
-                        <div class="example-full-width">
-                           <span class="font-style-combo">Asset Type<span class="mandatory-style">*</span></span>
-                           <ng-select class="custom-dropdown" [items]="assetTypeList" [bindValue]="'_id'" [bindLabel]="'Asset_Type'"
-                              formControlName="Asset_Type_Id" [searchable]="true" (click)="getAssetTypeList()">
-                           </ng-select>
-                           <mat-error
-                              *ngIf="Form.controls.Asset_Type_Id.errors && Form.controls.Asset_Type_Id.touched">
-                              <div *ngIf="Form.controls.Asset_Type_Id.errors.required"> Asset Type is Required </div>
-                           </mat-error>
-                        </div>
-                     </div>
-                     <div class="col-sm-4 Form_Select">
-                        <div class="example-full-width">
-                           <span class="font-style-combo">Maintenance Strategy<span
-                                 class="mandatory-style">*</span></span>
-                           <ng-select class="custom-dropdown" [items]="maintenanceList" [bindValue]="'_id'"
-                              [bindLabel]="'Mainatanance_Stratagy'" formControlName="Maintanance_Stratagy_Id"
-                              [searchable]="true" (click)="getMaintenanceTypeList()">
-                           </ng-select>
-                           <mat-error
-                              *ngIf="Form.controls.Maintanance_Stratagy_Id.errors && Form.controls.Maintanance_Stratagy_Id.touched">
-                              <div *ngIf="Form.controls.Maintanance_Stratagy_Id.errors.required"> Maintenance Strategy
-                                 is Required </div>
-                           </mat-error>
-                        </div>
-                     </div>
-                     <div class="col-sm-4 Form_Select">
-                        <div class="example-full-width">
-                           <span class="font-style-combo">Asset Allocated To<span class="mandatory-style">*</span></span>
-                           <ng-select class="custom-dropdown" [items]="allocatedToList" [bindValue]="'_id'"
-                              [bindLabel]="'Employee_Name'" formControlName="Asset_Allocated_Id"
-                              [searchable]="true" (click)="getAllocatedList()">
-                           </ng-select>
-                           <mat-error
-                              *ngIf="Form.controls.Asset_Allocated_Id.errors && Form.controls.Asset_Allocated_Id.touched">
-                              <div *ngIf="Form.controls.Asset_Allocated_Id.errors.required">Asset Allocated To Ownership Type is Required
-                              </div>
-                           </mat-error>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
+                   </div>
+                </div>
+             </div>
          <!-- Footer -->
          <div class="Footer">
-            <button mat-raised-button color="primary" style="top: 5px; margin-right: 10px;" [routerLink]="['/asset']">Back </button>
-            <button mat-raised-button color="primary" style="top: 5px; margin-right: 10px;" [disabled]="!Form.valid || Uploading" (click)="submit()"> 
-               <span *ngIf="!Uploading" >Submit</span>
-               <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span> 
-            </button>
+            <button mat-raised-button color="primary" style = "top: 5px;" type="submit" > Submit </button>
          </div>
+             
+       </form>
+    </div>
+ </div>
 
-      </form>
-   </div>
-</div>
+
+ 

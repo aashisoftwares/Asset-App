@@ -8,7 +8,6 @@ import { ServiceNames } from 'src/app/Services/serviceNames';
 import { ToastrServiceService } from 'src/app/Services/toastr-service/toastr-service.service';
 import { AssetSettingServiceService } from 'src/app/Services/Asset-Settings/asset-setting-service.service';
 import { ConstantFile } from 'src/app/Services/constantFile';
-import { LoginService } from 'src/app/Services/Login/login.service';
 
 @Component({
   selector: 'app-model-assetsubgroup-asset-settings',
@@ -31,7 +30,6 @@ export class ModelAssetsubgroupAssetSettingsComponent implements OnInit {
   subGroupForm: FormGroup;
 
   assetGroupList = [];
-  methodName:string='';
 
   constructor(private modalService: BsModalService,
     public dialogRef: MatDialogRef<AssetSubGroupComponent>,
@@ -39,18 +37,16 @@ export class ModelAssetsubgroupAssetSettingsComponent implements OnInit {
     private toastrService: ToastrServiceService,
     private serviceName: ServiceNames,
     private Service: AssetSettingServiceService,
-    private constant: ConstantFile,
-    private loginService: LoginService) {
+    private constant: ConstantFile) {
     this.headingDisplay = 'Create';
     this.displayButton = 'Submit';
-    this.Company_Id = this.loginService.getcompanyId();
-    this.User_Id = this.loginService.getUserId();
+    this.Company_Id = "5ed8bc9eba679310987c12cd";
+    this.User_Id = "5ed8d69fc2b07e09dcd16828";
   }
 
   ngOnInit(): void {
     this.subGroupForm = new FormGroup({
       _id: new FormControl(0),
-      Asset_Sub_Group_Id: new FormControl(0),
       Asset_Sub_Group: new FormControl('', [Validators.required]),
       Asset_Group_Id: new FormControl(''),
       Asset_Group_Name: new FormControl('',[Validators.required]),
@@ -82,8 +78,6 @@ export class ModelAssetsubgroupAssetSettingsComponent implements OnInit {
       this.subGroupForm.patchValue(this.data.SubGroupModel);
       this.subGroupForm.controls.Asset_Group_Name.setValue(this.data.SubGroupModel.Asset_Group_Id.Asset_Group);
       this.subGroupForm.controls.Asset_Group_Id.setValue(this.data.SubGroupModel.Asset_Group_Id._id);
-      this.subGroupForm.controls.Created_By.setValue(this.data.SubGroupModel.Created_By._id);
-      this.subGroupForm.controls.Last_Modified_By.setValue(this.User_Id);
     }
   }
 
@@ -91,15 +85,11 @@ export class ModelAssetsubgroupAssetSettingsComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onSubmit(mode) {
-    if(mode=='Submit'){
-      this.methodName=this.serviceName.asset_subGroup_Create;
-    }else{
-      this.methodName=this.serviceName.asset_subGroup_Edit;
-      this.subGroupForm.controls.Asset_Sub_Group_Id.setValue(this.data.SubGroupModel._id);
-    }
-    if(this.methodName!=''&& this.methodName!=null&&this.methodName!=undefined){
-      this.Service.commonCreateMethod(this.methodName, this.subGroupForm.value).subscribe(
+  onSubmit() {
+    if (!this.subGroupForm.valid) {
+      return false;
+    } else {
+      this.Service.commonCreateMethod(this.serviceName.asset_subGroup_Create, this.subGroupForm.value).subscribe(
         (res) => {
           if (res.Status) {
             this.toastrService.successMessage(this.constant.SUCCESS_MSG)
@@ -124,6 +114,7 @@ export class ModelAssetsubgroupAssetSettingsComponent implements OnInit {
   setAssetGroupValue(event){
     this.subGroupForm.controls.Asset_Group_Id.setValue(event._id);
     this.subGroupForm.controls.Asset_Group_Name.setValue(event.Asset_Group);
+
   }
 
 }

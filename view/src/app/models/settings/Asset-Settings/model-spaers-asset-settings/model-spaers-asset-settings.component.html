@@ -19,29 +19,28 @@
                 </mat-form-field>  
           </div>
           <div class="col-sm-12 form-group">
-            <div class="example-full-width">
-               <span class="font-style-combo">Spare Type<span class="mandatory-style">*</span></span>
-               <ng-select class="custom-dropdown" [items]="spareTypeList" [bindLabel]="'Spare_Type'"
-                  formControlName="Spare_Type_Name" [searchable]="true"
-                  (click)="getSpareTypeList()" (change)="setSpareTypeValue($event)">
-               </ng-select>
-               <mat-error
-               *ngIf="Form.controls.Spare_Type_Name.invalid && Form.controls.Spare_Type_Name.touched">
-               <div style="font-size: 11px " *ngIf="Form.controls.Spare_Type_Name.errors.required">
-                  Spare Type is Required </div>
-             </mat-error>
-            </div>
+            <mat-form-field class="example-full-width" [floatLabel]="'always'">
+               <mat-label class="example-label"> Spare Type </mat-label>
+               <mat-select formControlName="Spare_Type">
+                  <mat-option *ngFor="let spareType of spareTypeList" [value]="spareType">
+                     {{spareType}}
+                  </mat-option>
+               </mat-select>
+               <mat-error *ngIf="Form.controls.Spare_Type.errors && Form.controls.Spare_Type.touched">
+                  <div *ngIf="Form.controls.Spare_Type.errors.required"> Spare Type is Required </div>
+               </mat-error>
+         </mat-form-field>
          </div>
          <div class="col-md-12">
-            <mat-checkbox [checked]= "true" formControlName="Stocable">Stockable</mat-checkbox>
+            <mat-checkbox [checked]= "true" formControlName="stockable">Stockable</mat-checkbox>
          </div>
          <div class="col-md-12">
-            <mat-checkbox [checked]= "true" formControlName="Purchaseable">Purchaseable</mat-checkbox>
+            <mat-checkbox [checked]= "true" formControlName="purchaseable">Purchaseable</mat-checkbox>
          </div>
          <div class="col-sm-12 form-group">
             <mat-form-field class="example-full-width" [floatLabel]="'always'">
                 <mat-label class="example-label"> Description </mat-label>
-                <textarea matInput formControlName="Description"
+                <textarea matInput formControlName="description"
                     oninput="this.value = this.value.toUpperCase()"></textarea>
             </mat-form-field>
         </div>
@@ -49,8 +48,8 @@
        </div>
  
     </div>
-    <div class="Model_Footer" *ngIf="!disableSubmitButton">
-       <button type="submit" (click)="onSubmit(displayButton)" [disabled]="Form.invalid"  mat-raised-button color="primary">
+    <div class="Model_Footer">
+       <button type="submit" (click)="onSubmit()" [disabled]="disableSubmitButton"  mat-raised-button color="primary">
           <span>{{displayButton}}</span>
         </button>
     </div>

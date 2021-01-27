@@ -26,10 +26,6 @@
                    <li class="Tab" [ngClass]="{'active':Active_Tab === 'Spare_Types'}" (click)="Active_Tab_Change('Spare_Types')"><span class="Tab_Content">Spare Types</span></li> 
                    <li class="Tab" [ngClass]="{'active':Active_Tab === 'Spares'}" (click)="Active_Tab_Change('Spares')"><span class="Tab_Content">Spares</span></li> 
                    <li class="Tab" [ngClass]="{'active':Active_Tab === 'Vendors'}" (click)="Active_Tab_Change('Vendors')"><span class="Tab_Content">Vendors</span></li> 
-                   <li class="Tab" [ngClass]="{'active':Active_Tab === 'Asset_Type'}" (click)="Active_Tab_Change('Asset_Type')"><span class="Tab_Content">Asset Type</span></li> 
-                   <li class="Tab" [ngClass]="{'active':Active_Tab === 'OwnerShip_Type'}" (click)="Active_Tab_Change('OwnerShip_Type')"><span class="Tab_Content">OwnerShip Type</span></li> 
-                   <li class="Tab" [ngClass]="{'active':Active_Tab === 'Maintenance_Strategy'}" (click)="Active_Tab_Change('Maintenance_Strategy')"><span class="Tab_Content">Maintenance Strategy</span></li> 
-
                 </ul>
              </div>
             <div class="Right_Section">
@@ -53,15 +49,6 @@
                </div>
                <div *ngIf="Active_Tab === 'Vendors'">
                   <app-vendors></app-vendors>
-               </div>
-               <div *ngIf="Active_Tab === 'Asset_Type'">
-                  <app-asset-types></app-asset-types>
-               </div>
-               <div *ngIf="Active_Tab === 'OwnerShip_Type'">
-                  <app-ownership-types></app-ownership-types>
-               </div>
-               <div *ngIf="Active_Tab === 'Maintenance_Strategy'">
-                  <app-maintenance-strategy></app-maintenance-strategy>
                </div>
             </div>
           </div>
